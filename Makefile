@@ -5,14 +5,14 @@ SOLUTIONS=$(wildcard solutions*.tex)
 
 PDFS=$(EXERCISES:.tex=.pdf) $(SOLUTIONS:.tex=.pdf)
 
-VPATH = dist:assets
+VPATH = build:assets
 
 all: $(PDFS)
 
-$(PDFS):%.pdf:%.tex | dist
-	$(DOCKER) latexmk -pdf -xelatex -jobname=dist/$(@:.pdf=) $<
+$(PDFS):%.pdf:%.tex | build
+	$(DOCKER) latexmk -pdf -xelatex -jobname=build/$(@:.pdf=) $<
 
-dist: 
+build: 
 	mkdir -p dist
 
 clean:
