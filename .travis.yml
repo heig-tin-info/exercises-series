@@ -1,0 +1,15 @@
+sudo: required
+language: latex
+services: docker
+script:
+- make
+addons:
+  artifacts: true
+deploy:
+  provider: releases
+  api_key:
+    secure: ufEiAtvuN1kPcVVkfuQGaC/JFQDhEFdjmcv1kCG4HyNJmeTWiWde7FAHtrTDqaqA0bwWoxwPctm4dnF0QEEDCZnEUlOyZaPIkluqzO8xv1R2JV8e7odp8BDItvL6uibBs4tQSbJ4PX9FGr2vNxMK6c9VJ6cf/s4wOogC5dtsMmfXTGh2N2JAOqEWYDhNrFZh48JZWqOusBlVqxiWvzkLhx++5PsoUHN/DroMpeyWbv85oiOOkKRn+b8aWLetSJ0nC6PqSZZ6nWapwLjwBEbUk4EFVFVVRXTbvaXtQr++DueBbFraGCstCGZbhOoXLyrNq7bL6iBPI3iZjqgSolh5Ta5//JNozyITOKTpS9IvOottPGJ1sUl9vJoB3nQwV+7hkVboGtDlvq46LveWTzczcSwtjgb/YB7jEfu2wh32zOHUU5ldIxcaifns521dzQmSfRGFfiE/OxqsddinDufv2BvhyzkEpMXcbYQtnIiPcMd7Qtf+YzpOiy9SU0WdSZ1wqSLlnDlUUNyTNm3+OnhB8SVKJ1y1yNPhkp+us8w4B6lbDLxFgEpyHEddZH4Sy/vluPo8Iq04c4uo01wYrbwXnhvJP5Lj7bbf2h4MRXtH09Hwj6U43j9sODy72dDOM4Syo9qmFrMmehJRz4FwmHEupazgR2tSnZpory8uZs6K0Fg=
+  file_glob: true
+  file: "*.pdf"
+  on:
+    repo: heig-tin-info/exercises-series
