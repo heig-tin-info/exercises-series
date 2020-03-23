@@ -13,7 +13,7 @@ $(PDFS):%.pdf:%.tex | build
 	$(DOCKER) latexmk -pdf -xelatex -jobname=build/$(@:.pdf=) $<
 
 build: 
-	mkdir -p dist
+	mkdir -p $@
 
 clean:
 	$(DOCKER) latexmk -C
