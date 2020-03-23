@@ -1,0 +1,56 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper, total={18cm, 25cm}]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{lmodern}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{xpatch}
+\usepackage{realboxes}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage[ttdefault=true]{AnonymousPro}
+\usepackage{titlesec}
+
+\graphicspath{ {./assets/} }
+
+\definecolor{mygray}{rgb}{0.9,0.9,0.9}
+\definecolor{points}{rgb}{0.5,0.5,0.5}
+
+\titleformat{\section}{\bfseries\sffamily\large}{Problème \thesection~-- }{0.2em}{}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\titleformat*{\subsubsection}{\small\bfseries}
+\titlespacing*{\section}{0pt}{*2}{*1}
+\titlespacing*{\subsection}{0pt}{*2}{*1}
+
+\lstset{
+  language=c,
+  breaklines=true,
+  keywordstyle=\bfseries\color{black},
+  basicstyle=\ttfamily\color{black}\fontsize{9pt}{10pt}\selectfont,
+  emphstyle={\em \color{gray}},
+  emph={expression, expr, type, NAME, name, expr, value, filename, label, member, type},
+  keepspaces=true,
+  showspaces=false,
+  showtabs=true,
+  tabsize=3,
+  upquote=true,
+  backgroundcolor=\color{mygray},
+  aboveskip=2pt,
+  belowskip=2pt,
+  framexleftmargin=2pt,  
+}
+
+\makeatletter
+\xpretocmd\lstinline{\Colorbox{mygray}\bgroup\appto\lst@DeInit{\egroup}}{}{}
+\makeatother
+
+\newcommand\pts[1]{\small\color{points}\emph{(#1 pt)}}
+\newcommand{\fixspacing}{\vspace{0pt plus 1filll}\mbox{}}
