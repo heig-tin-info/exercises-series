@@ -10,12 +10,13 @@ VPATH = build:assets
 all: $(PDFS)
 
 $(PDFS):%.pdf:%.tex | build
-	$(DOCKER) latexmk -pdf -xelatex -jobname=build/$(@:.pdf=) $<
+	$(DOCKER) latexmk -pdf -xelatex -jobname=build/$(@:.pdf=) "$<"
 
 build: 
 	mkdir -p $@
 
 clean:
 	$(DOCKER) latexmk -C
+	$(RM) -rf dist
 
 .PHONY: clean all
