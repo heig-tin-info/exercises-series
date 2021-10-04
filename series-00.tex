@@ -1,0 +1,121 @@
+\documentclass[french,a4paper,addpoints,11pt,answers]{exam}
+\usepackage{hexercises}
+
+\title{Introduction}
+\seriesno{\texttt{0x00}}
+\department{TIN}
+\classroom{INFO1-TIN}
+
+\setlength\answerlinelength{10 cm}
+\setlength\answerskip{3ex}
+\setlength\answerclearance{1.1ex}
+\CorrectChoiceEmphasis{}
+\renewcommand{\thepartno}{\alph{partno}}
+\renewcommand{\partlabel}{\thepartno.}
+
+
+\renewcommand{\arraystretch}{1.75} % expand the cells vertically <<<<<<<<<<<<<<<<
+
+
+\begin{document}
+\maketitle
+
+\begin{questions}
+
+\question
+Quelques généralités.
+\begin{parts}
+    \part Quels sont les noms des deux inventeurs du langage C ?
+    \answerline[Brian Kernighan et Dennis Ritchie]
+
+    \part Citez au moins deux paradigmes de programmation que le C supporte ?
+    \answerline[Impératif, Structuré et Procédural]
+
+    \part La \fillin[compilation] est le nom de l'étape permettant de transformer du code source en un programme exécutable ?
+
+    \part L'unité de mesure de la quantité d'information est le \fillin[bit] qui est par définition la quantité minimale d'information transmise par un message.
+
+    \part L'octet aujourd'hui équivalent à un \fillin[byte] offre une taille suffisante pour encoder un caractère ASCII étendu.
+
+    \part Soit deux mains humaines dont chaque doigt peut être levé ou baissé,  quel est le nombre de configurations qui peuvent être exprimées ?
+    \answerline[1024]
+
+    \part Parmis les choix suivants, sur quel site internet peut-on poser des questions liées à la programmation en C ?
+    \begin{checkboxes}
+        \choice \url{http://heig-vd.ch}
+        \choice \url{http://kernighan.us}
+        \CorrectChoice \url{http://stackoverflow.com/}
+        \choice \url{https://learnxinyminutes.com//}
+        \choice \url{https://puzzling.stackexchange.com/}
+    \end{checkboxes}
+    \part En quel année a été inventé le langage C ?
+    \begin{checkboxes}
+        \choice 1941
+        \choice 1969
+        \CorrectChoice 1972
+        \choice 1997
+        \choice 2004
+    \end{checkboxes}
+\end{parts}
+
+\newpage
+\question Complétez la table suivante avec les valeurs qui conviennent. Utilisez la convention d'écriture C, soit le préfixe \CD{0} pour l'octal, le \CD{0b} pour le binaire et le \CD{0x} pour l'hexadécimal.
+
+\medskip
+\begin{center}
+\begin{tabular}{*4{c}}
+Binaire & Octal & Décimal & Hexadécimal \\ \hline
+\CD{0b0000} & \fillin[000] & \fillin[0] & \fillin[0x0] \\
+\CD{0b0001} & \fillin[001] & \fillin[1] & \fillin[0x1] \\
+\CD{0b0010} & \fillin[002] & \fillin[2] & \fillin[0x2] \\
+\fillin[0b0011] & \CD{003} & \fillin[3] & \fillin[0x3] \\
+\CD{0b0100} & \fillin[004] & \fillin[4] & \fillin[0x4] \\
+\CD{0b0101} & \fillin[005] & \fillin[5] & \fillin[0x5] \\
+\CD{0b0110} & \fillin[006] & \fillin[6] & \fillin[0x6] \\
+\CD{0b0111} & \fillin[007] & \fillin[7] & \fillin[0x7] \\
+\CD{0b1000} & \fillin[010] & \fillin[8] & \fillin[0x8] \\
+\CD{0b1001} & \fillin[011] & \fillin[9] & \fillin[0x9] \\
+\fillin[0b1010] & \fillin[012] & \CD{10} & \fillin[0xA] \\
+\CD{0b1011} & \fillin[013] & \fillin[11] & \fillin[0xB] \\
+\fillin[0b1100] & \fillin[014] & \fillin[12] & \CD{0xC} \\
+\CD{0b1101} & \fillin[015] & \fillin[13] & \fillin[0xD] \\
+\CD{0b1110} & \fillin[016] & \fillin[14] & \fillin[0xE] \\
+\CD{0b1111} & \fillin[017] & \fillin[15] & \fillin[0xF] \\
+
+\end{tabular}
+\end{center}
+
+\question
+Afin de préserver la méthode d'addition et de soustraction standard avec retenue, la technique du complément à $(b - 1) + 1$ est utilisée. Ainsi en binaire la base étant $2$, on nomme la technique le \guillemotleft Complément à 2\guillemotright~qu'il faut lire \guillemotleft Complément à (2 - 1), plus 1\guillemotright.
+Dans les valeurs ci-dessous la base est exprimée en indice p. ex. $253_{64}$ exprimé en base 64.
+
+\begin{parts}
+    \part Quel est le complément à 1 du nombre 8-bit $10011011_2$ ?
+    \answerline[$01100100_2$]
+
+    \part Quel est le complément à 5 du nombre 8-bit $124530_6$ ?
+    \answerline[$431025_6$]
+
+    \part Quelle est la représentation binaire signée 8-bit du nombre  $13_{10}$ ?
+    \answerline[$13_{10} \rightarrow 00001101_2 \rightarrow 11110010_2 \rightarrow 11110011_2$]
+
+\end{parts}
+
+\newpage
+\question
+Complétez le tableau ci-dessous qui comporte dans chaque ligne une valeur 8-bits à exprimer en utilisant les autres systèmes de numération vus en cours. \textbf{Note : ne pas utiliser la calculatrice}.
+\medskip
+\begin{center}
+    \begin{tabular}{*5{c}}
+    Binaire & Octal & Décimal non signé & Décimal signé & Hexadécimal \\ \hline
+    \CD{0b00000001} & \fillin[0001] & \fillin[1] & \fillin[1] & \fillin[0x1] \\
+    \fillin[\CD{0b11111111}] & \fillin[0377] & \fillin[255] & $-1$ & \fillin[0xFF] \\
+    \fillin[\CD{0b11111001}] & \fillin[0371] & \fillin[249] & \fillin[$-7$] & \CD{0xF9} \\
+    \CD{0b10101011} & \fillin[0253] & \fillin[171] & \fillin[-85] & \fillin[0xAB] \\
+    \fillin[\CD{0b00001100}] & \CD{014} & \fillin[12] & \fillin[12] & \fillin[0xC] \\
+    \end{tabular}
+\end{center}
+
+\end{questions}
+
+\end{document}

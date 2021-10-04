@@ -1,0 +1,98 @@
+\usepackage[a4paper, total={165mm,250mm}]{geometry}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{regexpatch}
+\usepackage{realboxes}
+\usepackage{textcomp}
+\usepackage{xfrac}
+\usepackage{tikzpagenodes}
+\usepackage{inconsolata}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[ttdefault=true]{AnonymousPro}
+\usepackage{parskip}
+
+\usepackage{tikz}
+
+\setlength{\parskip}{0em}
+
+\definecolor{GitHubGray}{rgb}{0.9,0.9,0.9}
+
+\lstset{
+    language=c,
+    breaklines=true,
+    keywordstyle=\bfseries\color{black},
+    basicstyle=\ttfamily\color{black}\fontsize{9pt}{10pt}\selectfont,
+    emphstyle={\em \color{gray}},
+    keepspaces=true,
+    showspaces=false,
+    showtabs=true,
+    tabsize=3,
+    upquote=true,
+    aboveskip=2pt,
+    belowskip=2pt,
+    framexleftmargin=2pt,
+    extendedchars=true,
+    inputencoding=utf8,
+    literate=
+    {à}{{\`a}}1
+    {è}{{\`e}}1
+    {é}{{\'e}}1
+    {É}{{\'E}}1
+    {ê}{{\^e}}1
+    {î}{{\^i}}1
+    {ö}{{\"o}}1
+    {°}{\textdegree}1
+    {ç}{{\c{c}}}1
+}
+
+% Listing
+\mdfsetup{%
+  roundcorner=2pt,
+  innerleftmargin=3pt,
+  innertopmargin=3pt,
+  linecolor=black!60,%
+  linewidth=0.3pt,
+  innerbottommargin=3pt
+}
+
+\xpretocmd\lstinline{\Colorbox{GitHubGray}\bgroup\appto\lst@DeInit{\egroup}}{}{}
+
+\DeclareRobustCommand*\school[1]{\gdef\@school{#1}}
+\DeclareRobustCommand*\department[1]{\gdef\@department{#1}}
+\DeclareRobustCommand*\seriesno[1]{\gdef\@seriesno{#1}}
+\DeclareRobustCommand*\classroom[1]{\gdef\@classroom{#1}}
+
+\def\@maketitle{%
+  \newpage
+  \begin{tikzpicture}[remember picture,overlay,shift={(current page.north west)}]
+  \node[anchor=north west,xshift=2.1cm,yshift=-1.5cm]{
+      \includegraphics[width=1.7cm]{assets/heig-vd-black.pdf}
+  };
+  \end{tikzpicture}
+  \null
+  \begin{center}%
+    {\LARGE Série d'exercices \@seriesno \par}%
+    \ifprintanswers Solution \fi
+
+    {\LARGE \bfseries\@title \par}%
+    \vskip 1.5em%
+    {\@classroom}%
+    \vskip 1.0em%
+    {\@date}
+    \vskip 1.0em%
+  \end{center}%
+  \par
+  \noindent\rule{\textwidth}{0.4pt}\vskip 1em}
+
+\newcommand{\CD}[1]{\lstinline{#1}}
+
+\qformat{\textbf{Exercice \thequestion}\hfill}
+
+\renewcommand{\questionshook}{\leftmargin=0pt%
+  \labelwidth=-\labelsep}
