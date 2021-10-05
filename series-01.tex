@@ -1,7 +1,7 @@
 \documentclass[french,a4paper,addpoints,11pt,answers]{exam}
 \usepackage{hexercises}
 \usepackage{mathtools, nccmath}
-\title{Introduction}
+\title{Numération et Arguments}
 \seriesno{\texttt{0x01}}
 \department{TIN}
 \classroom{INFO1-TIN}
@@ -28,9 +28,9 @@ Quelques généralités.
     \part Comment écrire en C une constante littérale octale représentant la valeur $2642_{8}$ ?
     \answerline[02642]
 
-    \part Bien qu'il ne soit pas normalisé dans C11, le préfix \fillin[0b] est utilisé pour représenter une constante littérale binaire ?
+    \part Bien qu'il ne soit pas normalisé dans C11, le préfixe \fillin[0b] est utilisé pour représenter une constante littérale binaire ?
 
-    \part On peut savoir si un nombre en complément à deux en observant son bit de poids \fillin[fort] alors que le bit de poids \fillin[faible] renseigne sur sa parité (pair ou impair).
+    \part Le signe d'un nombre en complément à deux peut être connu en observant son bit de poids \fillin[fort] tandis que le bit de poids \fillin[faible] renseigne sur sa parité (pair ou impair).
 
     \part Le programme suivant est appelé. Combien d'arguments le programme reçoit-il ?
 
@@ -40,7 +40,7 @@ Quelques généralités.
 \answerline[4 arguments]
 
 
-    \part Comment s'appelle le flux qui permet à un programme de recevoir des informations par exemples saisies au clavier ?
+    \part Comment s'appelle le flux qui permet à un programme de recevoir des informations par exemple saisies au clavier ?
     \answerline[L'entrée standard]
 
     \part Combien de bytes y a-t-il dans un Mebibyte (MiB) ?
@@ -49,11 +49,11 @@ Quelques généralités.
     \part Combien de bits faut-il pour représenter un Gigabyte (GB) de données ?
     \answerline[$\lceil \log_2\left(1 \cdot 10^9 \right)\rceil \approx \lceil 29.89 \rceil = 30~\text{bits}$]
 \end{parts}
-\newpage
-\question Effectuez les additions suivantes à la main en binaire sur 8 bits
+
+\question Effectuer les additions suivantes à la main en binaire sur 8 bits
 \begin{parts}
 \part $1 + 51$
-\makeemptybox{3cm}
+\ifprintanswers
 \begin{solution}
 \begin{lstlisting}
         11
@@ -63,25 +63,92 @@ Quelques généralités.
   00110100 = 0x34 = 52
 \end{lstlisting}
 \end{solution}
-    \part $51 - 7$
-    \makeemptybox{3cm}
-    \part $204 + 51$
-    \makeemptybox{3cm}
-    \part $204 + 204$
-    \makeemptybox{3cm}
-\end{parts}
+\else
+\makeemptybox{3cm}
+\fi
 
-\newpage
-\question Écrire un programme qui lit le premier argument passé en ligne de commande et l'affiche à l'écran.
-
-\fillwithdottedlines{5cm}
+\part $51 - 7$
+\ifprintanswers
 \begin{solution}
 \begin{lstlisting}
-int main(int argc, char *argv[]) {
-    printf("Votre nombre est : %d\n", atoi(argv[1]));
+ 1111  11
+  00110011 = 0x33 = 51
++ 11111001 = (~00000111 + 1) = 0xF9 = -7
+----------
+  00101100 = 0x2C = 54
+\end{lstlisting}
+\end{solution}
+\else
+\makeemptybox{3cm}
+\fi
+\part $204 + 51$
+\ifprintanswers
+\begin{solution}
+\begin{lstlisting}
+  
+  11001100 = 0xCC = 204
++ 00110011 = 0x33 = 51
+----------
+  11111111 = 0xFF = 255
+\end{lstlisting}
+\end{solution}
+\else
+\makeemptybox{3cm}
+\fi
+\part $204 + 204$
+\ifprintanswers
+\begin{solution}
+\begin{lstlisting}
+     11 
+  11001100 = 0xCC = 204
++ 11001100 = 0xCC = 204
+----------
+  10011000 = 0x98 = (408-256) = 152
+\end{lstlisting}
+\end{solution}
+\else
+\makeemptybox{3cm}
+\fi
+\end{parts}
+
+\question Écrire un programme qui lit le premier argument passé en ligne de commande et l'affiche à l'écran.
+
+\ifprintanswers
+\begin{solution}
+    \begin{lstlisting}
+    int main(int argc, char *argv[]) {
+        printf("Votre nombre est : %d\n", atoi(argv[1]));
+    }
+    \end{lstlisting}
+\end{solution}
+\else
+\fillwithdottedlines{4cm}
+\fi
+
+\question Écrire un programme qui affiche explicitement la somme de deux nombres. 
+Ces deux nombres sont déclarés dans des variables entières nommées \CD{a} et \CD{b}. 
+
+Voici ce que produit le programme :
+
+\begin{lstlisting}
+./a.out 
+42 + 23 = 65
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+\begin{lstlisting}
+int main() {
+    int a = 42;
+    int b = 23;
+    printf("%d + %d = %d", a, b, a + b);
 }
 \end{lstlisting}
 \end{solution}
+\else
+\fillwithdottedlines{4cm}
+\fi
+
 \end{questions}
 
 \end{document}
