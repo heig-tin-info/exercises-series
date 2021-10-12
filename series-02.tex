@@ -1,0 +1,171 @@
+\documentclass[french,a4paper,addpoints,11pt]{exam}
+\usepackage{hexercises}
+\usepackage{mathtools, nccmath}
+\title{Variables et identificateurs}
+\seriesno{\texttt{0x02}}
+\department{TIN}
+\classroom{INFO1-TIN}
+
+\setlength\answerlinelength{10 cm}
+\setlength\answerskip{3ex}
+\setlength\answerclearance{1.1ex}
+\CorrectChoiceEmphasis{}
+\renewcommand{\thepartno}{\alph{partno}}
+\renewcommand{\partlabel}{\thepartno.}
+\renewcommand{\arraystretch}{1.75} % expand the cells vertically
+
+\begin{document}
+\maketitle
+
+\begin{questions}
+
+\question Pour chacun des identificateurs suivants, indiquez s'il est correct ou incorrect, et donnez une justification.
+\begin{parts}
+    \part \CD{2_pi} \hfill \fillin[Incorrect, commence par un chiffre][10cm]
+    \part \CD{x_2} \hfill \fillin[Correct][10cm]
+    \part \CD{x__3} \hfill \fillin[Correct][10cm] 
+    \part \CD{x  2} \hfill \fillin[Incorrect, contient des espaces][10cm] 
+    \part \CD{robotPosition} \hfill \fillin[Correct][10cm] 
+    \part \CD{stored_values} \hfill \fillin[Correct][10cm] 
+    \part \CD{-output_current} \hfill \fillin[Incorrect, tiret interdit][10cm] 
+    \part \CD{_alarm_} \hfill \fillin[Correct][10cm] 
+    \part \CD{issue#2} \hfill \fillin[Incorrect, signe dièse interdit][10cm] 
+    \part \CD{int} \hfill \fillin[Incorrect, mot réservé du langage][10cm] 
+    \part \CD{défaillance} \hfill \fillin[Incorrect, mot accentué][10cm] 
+    \part \CD{f'} \hfill \fillin[Incorrect, comporte une apostrophe][10cm] 
+    \part \CD{INT} \hfill \fillin[Correct, mais pas recommandé][10cm] 
+    \part \CD{main} \hfill \fillin[Correct, mais plutôt réservé à la fonction d'entrée][10cm] 
+\end{parts}
+\vskip 2em
+\question
+Pour chacune des variables suivantes, indiquer leurs valeurs. 
+Les variables non initialisées sont notées avec \CD{?}. Cela signifie que leur contenu n'est pas prévisible. 
+\medskip
+\begin{center}
+    \begin{tabular}{*5{c}}
+    Instruction & \CD{a} & \CD{b} & \CD{c} & \CD{d} \\ \hline
+    \CD{a = 5;} & \fillin[5] & \fillin[?] & \fillin[?] & \fillin[?] \\
+    \CD{b = c;} & \fillin[5] & \fillin[?] & \fillin[?] & \fillin[?] \\
+    \CD{c = a;} & \fillin[5] & \fillin[?] & \fillin[5] & \fillin[?] \\
+    \CD{a = a + 1;} & \fillin[6] & \fillin[?] & \fillin[5] & \fillin[?] \\
+    \CD{b = a * (c + 1);} & \fillin[6] & \fillin[36] & \fillin[5] & \fillin[?] \\
+    \CD{d = b \% 2;} & \fillin[6] & \fillin[36] & \fillin[5] & \fillin[0] \\
+    \end{tabular}
+\end{center}
+
+\newpage
+\question Écrire une fonction permettant d'échanger les valeurs de \CD{a} et \CD{b}. À la fin de cette séquence d'instruction, la valeur initiale de \CD{a}, doit être dans \CD{b} et réciproquement.
+
+\ifprintanswers
+\begin{solution}
+\begin{lstlisting}
+int tmp;
+tmp = a;
+a = b;
+b = tmp;
+\end{lstlisting}
+\end{solution}
+\else
+\makeemptybox{5cm}
+\fi
+
+
+\question Le programme suivant comporte 13 erreurs. Trouvez-les et corrigez-les. 
+
+
+
+\ifprintanswers
+\begin{solution}
+\begin{lstlisting}
+// /* 1. Ouverture de commentaire inutile
+/* Programme exemple */
+// */ 2. Fermeture de commentaire inutile
+
+#include <std_io.h> // 3. S'écrit <stdio.h>
+#jnclude <stdlib.h> // 4. S'écrit #include, et inutile dans ce programme
+
+INT Main() // 5. S'écrit int, 6. S'écrit main()
+{
+    int a, sum;
+    printf("Addition de 2 entiers a et b.\n");
+
+    printf("a:");
+    scanf("%d", a); // 7. Manque le & devant a
+
+    printf("b:");   
+    scanf("%d", &b); // 8. La variable b n'est pas déclarée
+
+    somme = a + b; // 9. Probablement `sum` pas `somme`
+    Printf("%f + %d = %d\n", a, b, sum); // 10. printf en minuscule, 11. %d pas %f
+
+    retturn 1; // 11. Return avec un t, 12. Retourne 0 si pas d'erreur
+}
+} // 13. Une accolade en trop.
+\end{lstlisting}
+\end{solution}
+\else
+\begin{lstlisting}
+/* 
+/* Programme exemple */
+*/
+
+#include <std_io.h>
+#jnclude <stdlib.h>
+
+INT Main()
+{
+    int a, sum;
+    printf("Addition de 2 entiers a et b.\n");
+
+    printf("a:"); 
+    scanf("%d", a); 
+
+    printf("b:");   
+    scanf("%d", &b);
+
+    somme = a + b;
+    Printf("%f + %d = %d\n", a, b, sum);
+
+    retturn 1;
+}
+}
+\end{lstlisting}
+\fi
+
+\newpage
+\question Écrire un programme demandant sur l'entrée standard 2 nombres réels : tension et résistance. Le programme indique ensuite la valeur du courant circulant dans le circuit en utilisant la loi d'Ohm. Un test doit être prévu si la résistance est nulle. 
+
+\ifprintanswers
+\begin{solution}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main() {
+  printf("Application de la loi d'Ohm, calcul du courant.\n");
+  printf("-----------------------------------------------\n\n");
+  
+  double resistor;
+  printf("Résistance en Ohm : ");
+  scanf("%lf", &resistor);
+
+  if (resistor <= 0) { 
+    printf("Erreur: valeur de résistance incorrecte !\n");
+    return 1;
+  }
+
+  double voltage;
+  printf("Tension en Volts : ");
+  scanf("%lf", &voltage);
+  
+  printf("Le courant est de %g Ampères\n", voltage / resistor);
+  return 0;
+}
+\end{lstlisting}
+\end{solution}
+\else
+\makeemptybox{10cm}
+\fi
+
+\end{questions}
+
+\end{document}
