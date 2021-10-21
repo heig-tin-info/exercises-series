@@ -1,0 +1,115 @@
+\documentclass[french,a4paper,addpoints,11pt]{exam}
+\usepackage{hexercises}
+\usepackage{mathtools, nccmath}
+\title{Entrées sorties}
+\seriesno{\texttt{0x03}}
+\department{TIN}
+\classroom{INFO1-TIN}
+
+\setlength\answerlinelength{10 cm}
+\setlength\answerskip{3ex}
+\setlength\answerclearance{1.1ex}
+\CorrectChoiceEmphasis{}
+\renewcommand{\thepartno}{\alph{partno}}
+\renewcommand{\partlabel}{\thepartno.}
+\renewcommand{\arraystretch}{1.75} % expand the cells vertically
+
+\begin{document}
+\maketitle
+
+\begin{questions}
+
+\question Pour chacune des constantes littérales de type caractère suivantes indiquez si elles sont correctes ou non.
+\begin{parts}
+    \part \CD{'a'} \hfill \fillin[Correct][10cm]
+    \part \CD{'A'} \hfill \fillin[Correct][10cm]
+    \part \CD{'ab'} \hfill \fillin[Incorrect, seulement 1 caractère][10cm] 
+    \part \CD{'\\x41'} \hfill \fillin[Correct][10cm] 
+    \part \CD{'\\041'} \hfill \fillin[Correct][10cm] 
+    \part \CD{'\\0x41'} \hfill \fillin[Incorrect][10cm] 
+    \part \CD{'\\n'} \hfill \fillin[Correct][10cm] 
+    \part \CD{'\\w'} \hfill \fillin[Incorrect][10cm] 
+    \part \CD{'\\t'} \hfill \fillin[Correct (tabulation)][10cm] 
+    \part \CD{'\\xp2'} \hfill \fillin[Incorrect, p2 n'est pas hexadécimal][10cm] 
+    \part \CD{"abc"} \hfill \fillin[Correct][10cm] 
+    \part \CD{"\\abc\\ndef"} \hfill \fillin[Correct][10cm] 
+    \part \CD{"\\'\\"\\"} \hfill \fillin[Correct][10cm] 
+\end{parts}
+\vskip 2em
+
+\question
+Pour les instructions suivantes, indiquez quel est l'affichage obtenu considérant cette initialisation : 
+
+\begin{lstlisting}
+char a = 'a';
+short s = 5;
+float f = 7.0f;
+int i = 7, j = 'a';
+\end{lstlisting}
+
+\begin{parts}
+  \part \CD{printf("Next: \%c.\n", a + 1);} 
+    \answerline[\CD{Next: b⤶} suivant]
+    
+\end{parts}
+\vskip 2em
+
+\question Que voyez-vous sur la sortie standard ?
+
+\begin{parts}
+  \part \CD{printf("\%d\n", 42);} 
+    \answerline[\CD{42}]
+  \part \CD{printf("\% 5d\n", 42);} 
+    \answerline[\CD{   42}]
+  \part \CD{printf("\%05d\n", 42);} 
+    \answerline[\CD{00042}]
+  \part \CD{printf("\%-5d\n", 42);} 
+    \answerline[\CD{42   }]
+  \part \CD{printf("\%-05d\n", i);} 
+    \answerline[\CD{42000}]
+  \part \CD{printf("\%0*d\n", 10, i);} 
+    \answerline[\CD{0000000042}]
+  \part \CD{printf("\%.1f\n", 3.1415);} 
+    \answerline[\CD{3.1}]
+  \part \CD{printf("\%05.1f\n", 3.1415);} 
+    \answerline[\CD{003.1}]
+  \part \CD{printf("\%d\%d\%d\n", 42, 23, 42);} 
+    \answerline[\CD{422342}]
+  \part \CD{printf("\%d \%d \%d\n", 42, 23, 42);} 
+    \answerline[\CD{42 23 42}]
+\end{parts}
+\vskip 2em
+
+
+\question Quels sont les valeurs des variables modifiées ?
+
+\begin{lstlisting}
+  int i = 0;
+  int j = 0;
+  int r = 0;
+  char c = '\0';
+\end{lstlisting}
+
+\begin{parts}
+  \part \CD{r = sscanf("42", "\%d", &i);} 
+    \answerline[i = 42, r = 1]
+  \part \CD{r = sscanf("4 8", "\%d", &i);} 
+    \answerline[i = 4, r = 1]
+  \part \CD{r = sscanf("4 8", "\%d \%d", &i, &j);} 
+    \answerline[\CD{i = 4, j = 8, r = 2}]
+  \part \CD{r = sscanf("4 8", "\%d\%d", &i, &j);} 
+    \answerline[\CD{i = 4, j = 8, r = 2}]
+  \part \CD{r = sscanf("15 16", "\%d\%c\%d", &i, &c, &j);} 
+    \answerline[\CD{i = 15, c = ' ', j = 16, r = 3}]
+  \part \CD{r = sscanf("1568", "\%1d\%2d", &i, &j);} 
+    \answerline[\CD{i = 1, j = 56, r = 2}]
+  \part \CD{r = sscanf("1568", "\%c\%c", &i, &j);} 
+    \answerline[\CD{i = 0x30, j = 0x35, r = 2}]
+  \part \CD{r = sscanf("1568", "\%*c\%c", &i);} 
+    \answerline[\CD{i = 0x35, r = 1}]
+\end{parts}
+\vskip 2em
+
+\end{questions}
+
+\end{document}
