@@ -1,0 +1,323 @@
+\documentclass[french,a4paper,addpoints,11pt]{exam}
+\usepackage{hexercises}
+\usepackage{mathtools, nccmath}
+\title{Opérateurs et embranchements}
+\seriesno{\texttt{0x06}}
+\department{TIN}
+\classroom{INFO1-TIN}
+
+\setlength\answerlinelength{10 cm}
+\setlength\answerskip{3ex}
+\setlength\answerclearance{1.1ex}
+\CorrectChoiceEmphasis{}
+\renewcommand{\thepartno}{\alph{partno}}
+\renewcommand{\partlabel}{\thepartno.}
+\renewcommand{\arraystretch}{1.75} % expand the cells vertically
+
+\begin{document}
+\maketitle
+
+\begin{questions}
+
+\question Opérateurs Combinés : en reprenant à chaque fois les valeurs suivntes, calculer les valeurs de \CD{i}, \CD{j} et lorsque cela s'applique \CD{z} après l'exécution des instructions suivantes :
+
+\begin{lstlisting}
+int i = 1; j = 3;
+int z;
+\end{lstlisting}
+
+\begin{center}
+\begin{tabular}{l|*3{c}}
+  Expression & \CD{i} & \CD{j} & \CD{z} \\ \hline
+  \CD{i += j} & \fillin[4] & \fillin[3] & \fillin[?] \\
+  \CD{i += -j} & \fillin[-2] & \fillin[3] & \fillin[?] \\
+  \CD{i -= j} & \fillin[-2] & \fillin[3] & \fillin[?] \\
+  \CD{i -= -j} & \fillin[4] & \fillin[3] & \fillin[?] \\
+  \CD{i *= j} & \fillin[3] & \fillin[3] & \fillin[?] \\
+  \CD{i *= -j} & \fillin[-3] & \fillin[3] & \fillin[?] \\
+  \CD{i /= j} & \fillin[0] & \fillin[3] & \fillin[?] \\
+  \CD{z = i * j == 6} & \fillin[1] & \fillin[3] & \fillin[0] \\
+  \CD{z = i++ * j == 6} & \fillin[2] & \fillin[3] & \fillin[0] \\
+  \CD{z = ++i * j == 6} & \fillin[2] & \fillin[3] & \fillin[1] \\
+\end{tabular}
+\end{center}
+
+\question Opérateur ternaire 
+\begin{parts}
+
+\part Simplifiez l'expression suivante
+\begin{lstlisting}
+z = (a > b ? a : b) + (a <= b ? a : b) ;
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+\begin{lstlisting}
+z = a + b;
+\end{lstlisting}
+\end{solution}
+\else
+\fillwithdottedlines{1cm}
+\fi
+    
+\part Soit variable \CD{n} est de type \CD{int}. Écrire une expression unique qui prend la valeur: 
+
+\begin{enumerate}
+  \item \CD{-1} si \CD{n} est négatif
+  \item \CD{0} si \CD{n} est nul
+  \item \CD{1} si \CD{n} est positif
+\end{enumerate}
+
+\ifprintanswers
+\begin{solution}
+\begin{lstlisting}
+n < 0 ? -1 : (n == 0) ? 0 : 1
+\end{lstlisting}
+\end{solution}
+\else
+\fillwithdottedlines{1cm}
+\fi
+
+\end{parts}
+
+\newpage
+\question Opérateurs incorrects
+
+Soit les déclarations suivantes, indiquez pourquoi les propositions suivantes sont incorrectes :
+\begin{lstlisting}
+double f, g = 7;
+int i, j = j;
+\end{lstlisting}
+
+\begin{parts}
+\part
+\begin{lstlisting}
+int(f) + 1.9
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+La coercition de type s'écrit \CD{(int)f} et non \CD{int(f)}. 
+\end{solution}
+\else
+\fillwithdottedlines{1.5cm}
+\fi
+
+\part
+\begin{lstlisting}
+i = 1 + j = j / 2
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+L'opérateur \CD{=} est moins prioritaire que \CD{+}. En conséquence, cette expression tente d'affecter \CD{j / 2} à \CD{1 + j}. Or, une affectation n'est possible que si l'expression à gauche est une variable, ce qui n'est pas le cas ici.
+\end{solution}
+\else
+\fillwithdottedlines{1.5cm}
+\fi
+
+\part
+\begin{lstlisting}
+f = g << 2
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+Le décalage de bits est un opérateur de type \CD{int}, et non un opérateur de type \CD{double}.
+\end{solution}
+\else
+\fillwithdottedlines{1.5cm}
+\fi
+
+\part
+\begin{lstlisting}
+i = ++j++
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+Cette expression essaie d'exécuter l'opérateur de post-incrémentation à \CD{(++j)} or cette expression est évalué comme une valeur, et non une variable.
+\end{solution}
+\else
+\fillwithdottedlines{1.5cm}
+\fi
+
+\part
+\begin{lstlisting}
+i++ = ++j
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+La partie gauche de l'opérateur \CD{i++} est évaluée comme une valeur, et n'est donc pas assignable. On dit que le membre de gauche n'est pas une \emph{lvalue}.
+\end{solution}
+\else
+\fillwithdottedlines{1.5cm}
+\fi
+
+\end{parts}
+
+\question Indiquez pour chaque groupe d'instruction ci-dessous si l'expression est correcte ou non. Sinon, expliquer pourquoi.
+
+\begin{lstlisting}
+int i;
+assert(scanf("%d", &i) == 1);
+\end{lstlisting}
+  
+\begin{parts}
+
+\part
+\begin{lstlisting}
+if (!(i < 8) && !(i > 8)) then printf("i vaut 8\n");
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+Incorrect : une erreur apparaît à la compilation, le mot \emph{then} n'est pas valide en C.
+\end{solution}
+\else
+\fillwithdottedlines{1.5cm}
+\fi
+
+\part
+\begin{lstlisting}
+if (!(i < 8) && !(i > 8)) printf("i "); printf("vaut 8\n");
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+Incorrect : la première instruction est correctement exécutée mais la seconde s'exécute inconditionnellement.
+\end{solution}
+\else
+\fillwithdottedlines{1.5cm}
+\fi
+
+\part
+\begin{lstlisting}
+if !(i < 8) && !(i > 8) printf("i vaut 8\n");
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+Incorrect : l'expression est mal formée, la condition d'embranchement après le \emph{if} doit être entre parenthèses.
+\end{solution}
+\else
+\fillwithdottedlines{1.5cm}
+\fi
+
+\part
+\begin{lstlisting}
+if (!(i < 8) && !(i > 8)) printf("i vaut 8\n");
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+Correct !
+\end{solution}
+\else
+\fillwithdottedlines{1.5cm}
+\fi
+
+\part
+\begin{lstlisting}
+if (i = 8) printf("i vaut 8\n");
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+Incorrect : affiche que \CD{i} vaut 8 dans tous les cas.
+\end{solution}
+\else
+\fillwithdottedlines{1.5cm}
+\fi
+
+\part
+\begin{lstlisting}
+if (i & (1 << 3)) printf("i vaut 8\n");
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+Correct !
+\end{solution}
+\else
+\fillwithdottedlines{1.5cm}
+\fi
+
+\part
+\begin{lstlisting}
+if (i ^ 8) printf("i vaut 8\n");
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+Incorrect : affiche \emph{i vaut 8} pour tous les cas sauf lorsque \CD{i} vaut 8 !
+\end{solution}
+\else
+\fillwithdottedlines{1.5cm}
+\fi
+
+\part
+\begin{lstlisting}
+if (i - 8) printf("i vaut 8\n");
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+Incorrect : affiche \emph{i vaut 8} pour tous les cas sauf lorsque \CD{i} vaut 8 !
+\end{solution}
+\else
+\fillwithdottedlines{1.5cm}
+\fi
+
+\part
+\begin{lstlisting}
+if (i == 1 << 3) printf ("i vaut 8\n");
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+Correct !
+\end{solution}
+\else
+\fillwithdottedlines{1.5cm}
+\fi
+
+\part
+\begin{lstlisting}
+if (!((i < 8) || (i > 8))) printf("i vaut 8\n");
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+Correct !
+\end{solution}
+\else
+\fillwithdottedlines{1.5cm}
+\fi
+\end{parts}
+
+\question Que voyez-vous sur la sortie standard ?
+\begin{lstlisting}
+#include <stdio.h>
+int main() {
+    int x = 2;
+    int y = ++x * ++x;
+    printf("%d%d", x, y);
+    x = 2;
+    y = x++ * ++x;
+    printf("%d%d", x, y);
+}
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+41649
+\end{solution}
+\else
+\fillwithdottedlines{1cm}
+\fi
+
+\end{questions}
+
+\end{document}

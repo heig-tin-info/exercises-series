@@ -1,0 +1,221 @@
+\documentclass[french,a4paper,addpoints,11pt]{exam}
+\usepackage{hexercises}
+\usepackage{mathtools, nccmath}
+\title{Chaînes de caractères}
+\seriesno{\texttt{0x07}}
+\department{TIN}
+\classroom{INFO1-TIN}
+
+\setlength\answerlinelength{10 cm}
+\setlength\answerskip{3ex}
+\setlength\answerclearance{1.1ex}
+\CorrectChoiceEmphasis{}
+\renewcommand{\thepartno}{\alph{partno}}
+\renewcommand{\partlabel}{\thepartno.}
+\renewcommand{\arraystretch}{1.75} % expand the cells vertically
+
+\begin{document}
+\maketitle
+
+\begin{questions}
+
+\question Pour les exemples ci-dessous, indiquez successivement s'ils compilent sans erreur et le cas échéant, si les chaînes de caractères sont modifiables ou non.
+
+\begin{parts}
+\part 
+\begin{lstlisting}
+char s[] = 'foo';\end{lstlisting}
+\answerline[Erreur, guillemet simple]
+
+\part 
+\begin{lstlisting}
+char s[42] = "Les carottes sont cuites.";\end{lstlisting}
+\answerline[L'expression compile et la chaîne est modifiable.]
+
+\part 
+\begin{lstlisting}
+char s[2] = "Babel Fish";\end{lstlisting}
+\answerline[Erreur : la taille de la chaîne est trop courte]
+
+\part 
+\begin{lstlisting}
+char s[] = "foo\0bar\0";\end{lstlisting}
+\answerline[L'expression compile et la chaîne est modificable]
+
+\part 
+\begin{lstlisting}
+char *s = "Prix Béton 1981";\end{lstlisting}
+\answerline[L'expression compile mais la chaîne est non modifiable]
+
+\part 
+\begin{lstlisting}
+char *s[] = {"foo", "bar", "baz"};\end{lstlisting}
+\answerline[Le tableau de chaînes est non modifiable]
+
+\part 
+\begin{lstlisting}
+char s[] = {"foo" "bar" "baz"};\end{lstlisting}
+\answerline[La chaîne compile et est modifiable. Elle vaut \CD{"foobarbaz"}]
+
+\end{parts}
+
+\question Manipulation des chaînes de caractères : que retournent chacunes de ces fonctions ?
+\begin{parts}
+
+\part 
+\begin{lstlisting}
+int foo() { char s[] = "foo"; return strlen(s); }\end{lstlisting}
+\answerline[3]
+
+\part
+\begin{lstlisting}
+int foo() { char s[] = "foo"; return sizeof(s); }\end{lstlisting}
+\answerline[4]
+
+\part
+\begin{lstlisting}
+int foo() { char s[] = "foo"; return s[3]; }\end{lstlisting}
+\answerline[0]
+
+\part
+\begin{lstlisting}
+int foo() { char s[] = "foo"; return s[4]; }\end{lstlisting}
+\answerline[On ne peut pas savoir, peut être une \emph{segmentation fault}.]
+
+\part
+\begin{lstlisting}
+int foo() { char s[] = "foo\n\t\0bar"; return strlen(s); }
+\end{lstlisting}
+\answerline[5]
+
+\end{parts}
+
+\question En utilisant la bibliothèque \emph{ctype.h}, écrire une fonction qui transforme une\ chaîne de caractères reçue en majuscules. Le prototype de la fonction est \CD{void majuscule(char *s)}.
+
+\ifprintanswers
+
+\begin{lstlisting}
+void majuscule(char *s) {
+  while (*s) {
+    *s = toupper(*s);
+    s++;
+  }
+}
+\end{lstlisting}
+\fi
+
+\question Soit un texte d'entrée, indiquer la position à laquelle se trouve une sous-chaîne, si elle existe. Sinon retourne -1. Le prototype de la fonction est \CD{int position(char s[], char sub[])}. Aidez-vous également de la bibliothèque \emph{ctype.h}
+
+\ifprintanswers
+
+\begin{lstlisting}
+int position(char s[], char sub[]) {
+  if (strstr(s, sub) == NULL) {
+    return -1;
+  }
+  return strstr(s, sub) - s;
+}
+\end{lstlisting}
+\fi
+
+\question Que fait cette fonction et que retourne-t-elle ?
+
+\begin{lstlisting}
+int mysterious()
+{
+    char v[] = "aeiouy";
+    char s[] = "Hello, world!";
+    size_t c = 0, k = 0;
+    while (s[k] != '\0')
+    {
+        int n = 0;
+        while (v[n] != '\0')
+            c += s[k] == v[n++];
+        k++;
+    }
+    return c;
+}
+\end{lstlisting}
+
+\ifprintanswers
+\begin{solution}
+La fonction compte le nombre de voyelles dans la chaîne \texttt{s}. Elle retourne la valeur 3.
+\end{solution}
+\else
+\fillwithdottedlines{1cm}
+\fi
+  
+\question 
+\textbf{Difficile : } Il existe trois types de modifications qui peuvent être appliquées à une chaîne de caractère : insérer un caractère, supprimer un caractère, ou remplacer un caractère. Considérant deux chaînes de caractères, écrivez une fonction qui retourne si les deux chaînes ne sont qu'à une modification pr\`es.
+
+\begin{itemize}
+\item \texttt{pale, ple -> true}
+\item \texttt{pales, pale -> true}
+\item \texttt{pale, bale -> true}
+\item \texttt{pale, bake -> false}
+\end{itemize}
+
+\ifprintanswers
+\begin{solution}
+\begin{lstlisting}
+bool one_away(char s1[], char s2[])
+{
+    int i = 0, j = 0, k = 0;
+    while (s1[i] != '\0' && s2[j] != '\0')
+    {
+        if (s1[i] == s2[j])
+        {
+            i++;
+            j++;
+        }
+        else if (s1[i] != s2[j])
+        {
+            if (s1[i + 1] == s2[j] || s1[i] == s2[j + 1])
+            {
+                i++;
+                j++;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+    if (s1[i] == '\0' && s2[j] == '\0')
+    {
+        return 1;
+    }
+    else if (s1[i] == '\0')
+    {
+        while (s2[j] != '\0')
+        {
+            if (s2[j + 1] == s2[j])
+            {
+                return 0;
+            }
+            j++;
+        }
+        return 1;
+    }
+    else if (s2[j] == '\0')
+    {
+        while (s1[i] != '\0')
+        {
+            if (s1[i + 1] == s1[i])
+            {
+                return 0;
+            }
+            i++;
+        }
+        return 1;
+    }
+    return 0;
+}
+\end{lstlisting}
+\end{solution}
+
+\fi
+
+\end{questions}
+
+\end{document}
