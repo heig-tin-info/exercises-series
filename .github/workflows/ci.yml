@@ -18,7 +18,7 @@ jobs:
       - name: Build
         run: docker run -v $GITHUB_WORKSPACE:/srv -w/srv local make
       - name: Clean 
-        run: find . -type f ! -iname "*.pdf" -delete
+        run: docker run -v $GITHUB_WORKSPACE:/srv -w/srv local /bin/bash -c 'find . -type f ! -iname "*.pdf" -delete'
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
