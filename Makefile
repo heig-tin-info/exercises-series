@@ -1,22 +1,26 @@
-DOCKER=docker run -it -v "$$(pwd):/srv" -w=/srv nowox/latex:1.2
-
 EXERCISES=$(wildcard series*.tex)
-SOLUTIONS=$(wildcard solutions*.tex)
 
-PDFS=$(EXERCISES:.tex=.pdf) $(SOLUTIONS:.tex=.pdf)
+PDFS=$(EXERCISES:.tex=.pdf) 
+SOLUTIONS=$(EXERCISES:.tex=-solution.pdf)
 
 VPATH = build:assets
 
-all: $(PDFS)
+all: $(PDFS) $(SOLUTIONS)
 
-$(PDFS):%.pdf:%.tex | build
-	$(DOCKER) latexmk -pdf -xelatex -jobname=build/$(@:.pdf=) "$<"
+$(PDFS):%.pdf:%.tex FORCE | build
+	latexmk -jobname=build/$(@:.pdf=) "$<"
+
+$(SOLUTIONS):%-solution.pdf:%.tex FORCE | build
+
+	latexmk -jobname=build/$(@:.pdf=) -pdflatex='xelatex %O "\PassOptionsToClass{answers}{exam}\input{%S}"' $<
 
 build: 
 	mkdir -p $@
 
 clean:
-	$(DOCKER) latexmk -C
-	$(RM) -rf dist
+	latexmk -C
+	$(RM) -rf build
+
+FORCE:
 
 .PHONY: clean all
