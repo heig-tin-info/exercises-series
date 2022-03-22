@@ -1,0 +1,210 @@
+\documentclass[french,a4paper,addpoints,11pt]{exam}
+\usepackage{hexercises}
+\usepackage{mathtools, nccmath}
+\title{Révision du cours Info1}
+\seriesno{\texttt{0x20}}
+\department{TIN}
+\classroom{INFO2-TIN}
+
+\setlength\answerlinelength{10 cm}
+\setlength\answerskip{3ex}
+\setlength\answerclearance{1.1ex}
+\CorrectChoiceEmphasis{}
+\renewcommand{\thepartno}{\alph{partno}}
+\renewcommand{\partlabel}{\thepartno.}
+\renewcommand{\arraystretch}{1.75} % expand the cells vertically
+
+\begin{document}
+\maketitle
+
+\begin{questions}
+
+\question Considérez les déclarations suivantes :
+
+\begin{lstlisting}
+char c = 3;    short s = 7;
+int i = 3;     long l = 4;
+float f = 3.3; double d = 7.7;
+\end{lstlisting}
+
+Pour chacune des expressions ci-dessous, indiquez leur type et leur valeur. 
+
+\textbf{Exemple :} \CD{2 / 3 * c}, réponse : \CD{(int)0}.
+
+\begin{parts}
+    \part \CD{c / 2}
+    \answerline[\CD{(int)1}]
+
+    \part \CD{s + c / 10}
+    \answerline[\CD{(int)7}]
+
+    \part \CD{l + i / 2.0}
+    \answerline[\CD{(double)5.5}]
+
+    \part \CD{d + f}
+    \answerline[\CD{(double)11}]
+
+    \part \CD{(int)d + f}
+    \answerline[\CD{(float)10.3}]
+
+    \part \CD{(int)d + l}
+    \answerline[\CD{(long)11}]
+
+    \part \CD{c << 2}
+    \answerline[\CD{(int)12}]
+
+    \part \CD{s & 0xf0}
+    \answerline[\CD{(int)0}]
+
+    \part \CD{s && 0xf0}
+    \answerline[\CD{(int)1}]
+
+    \part \CD{d + f == s + l}
+    \answerline[\CD{(int)0}]
+\end{parts}
+
+\question 
+Dans chacune des structures de contrôle ci-dessous, indiquer la nature de l'erreur.
+
+\begin{parts}
+
+\part ~\par
+
+\begin{lstlisting}
+double x = 100.0;
+do 
+    x = x / 2.0;
+    i++;
+while (x > 1.0);
+\end{lstlisting}
+
+\begin{solutionordottedlines}[2cm]
+Il manque les accolades autour du bloc \CD{do..while}.
+\end{solutionordottedlines}
+
+\part ~\par
+\begin{lstlisting}
+long x = 100;
+if (x = 0) 
+    print("Erreur : la valeur 0 est interdite !\n");
+\end{lstlisting}
+
+\begin{solutionordottedlines}[2cm]
+Le test d'égalité utilise l'opérateur \CD{==}. L'opérateur d'affectation \CD{=} n'est pas valable.
+\end{solutionordottedlines}
+
+\part ~\par
+\begin{lstlisting}
+double x = 100.0;
+switch (x) {
+    case 0:
+        printf("x est nul.\n");
+        break;
+    default: 
+        print("OK.\n");
+}
+\end{lstlisting}
+
+\begin{solutionordottedlines}[2cm]
+L'instruction \CD{switch} n'est pas applicable à un type à virgule flottante. 
+\end{solutionordottedlines}
+
+\part ~\par
+\begin{lstlisting}
+for (int i = 0; i < 10; i++);
+{
+    printf("%d\n", i);
+}
+\end{lstlisting}
+
+\begin{solutionordottedlines}[2cm]
+Le point virgule à la fin de l'instruction termine cette dernière. Le bloc formé des accolades n'appartient pas à la boucle.
+\end{solutionordottedlines}
+
+\part ~\par
+\begin{lstlisting}
+int i = 0;
+while i < 100 
+{
+    printf("%d\n", ++i);
+}
+\end{lstlisting}
+
+\begin{solutionordottedlines}[2cm]
+Il manque des parenthèses autour de la condition de l'instruction \CD{while}.
+\end{solutionordottedlines}
+\end{parts}
+
+\newpage
+
+\question 
+On s'intéresse ici au passage par adresse. Observez le programme suivant et indiquez ce que vous voyez sur la sortie standard.
+
+\begin{lstlisting}
+#include <stdio.h>
+#include <stdlib.h>
+
+int test(int a, int *b, int *c, int *d) {
+    a = *b;
+    *b = *b + 5;
+    *c = a + 2;
+    d = c;
+    return *d;
+}
+
+int main() {
+  int a = 0, b = 100, c = 200, d = 300, e = 400;
+  e = test(a, &b, &c, &d);
+  printf("%05d %d %d %d %d", a, b, c, d, e);
+}
+\end{lstlisting}
+
+\begin{solutionordottedlines}[1cm]
+\CD{00000 105 102 300 102}
+\end{solutionordottedlines}
+  
+\question Algorithme sur les tableaux 
+Écrire une fonction qui reçoit en paramètre un tableau d'entiers et qui retourne la position de la première occurrence d'une valeur dans ce tableau, ou \CD{-1} si la valeur n'est pas présente. Utiliser la syntaxe pointeur pour le paramètre tableau. 
+
+\ifprintanswers
+\begin{solution}
+\begin{lstlisting}
+int index(int *array, size_t size, int value) {
+  for (int i = 0; i < size; i++)
+      if (array[i] == value)
+          return i;
+}
+\end{lstlisting}
+\end{solution}
+\else
+\fillwithdottedlines{5cm}
+\fi
+
+\question 
+Écrire une fonction qui calcul la longueur totale des segments de droite dont les points sont reçus en paramètre. Le données est un tableau composé de N par 2. Les indices du sous tableau sont les coordonnées X et Y des points. 
+
+\ifprintanswers
+\begin{solution}
+\begin{lstlisting}
+double distance(double x1, double y1, double x1, double y1) {
+  return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+}
+
+double length(double array[][2], size_t size) {
+  double length = 0;
+  for (int i = 0; i < size - 1; i++)
+      length += distance(
+          array[i][0], array[i][1], 
+          array[i + 1][0], array[i + 1][1]
+      );
+  return length;
+}
+\end{lstlisting}
+\end{solution}
+\else
+\fillwithdottedlines{7cm}
+\fi
+
+\end{questions}
+
+\end{document}
