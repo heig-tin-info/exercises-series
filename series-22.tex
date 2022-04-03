@@ -1,0 +1,135 @@
+\documentclass[french,a4paper,addpoints,11pt]{exam}
+\usepackage{hexercises}
+\usepackage{mathtools, nccmath}
+\title{Les structures de données}
+\seriesno{\texttt{0x22}}
+\department{TIN}
+\classroom{INFO2-TIN}
+
+\setlength\answerlinelength{10 cm}
+\setlength\answerskip{3ex}
+\setlength\answerclearance{1.1ex}
+\CorrectChoiceEmphasis{}
+\renewcommand{\thepartno}{\alph{partno}}
+\renewcommand{\partlabel}{\thepartno.}
+\renewcommand{\arraystretch}{1.75} % expand the cells vertically
+
+\begin{document}
+\maketitle
+
+\begin{questions}
+
+\question Écrire la déclaration d'un type de structure de données \CD{Datetime} permettant de mémoriser une date (jour, mois, année, heure, minutes, secondes).
+
+\ifprintanswers
+\begin{solution}
+\begin{lstlisting}
+typedef struct datetime {
+    uint8_t day;
+    uint8_t month;
+    uint16_t year;
+    uint8_t hour;
+    uint8_t minute;
+    uint8_t second;
+} Datetime;
+\end{lstlisting}
+\end{solution}
+\fi
+
+
+\begin{parts}
+
+\part Tout programme exécuté ouvre trois flux (fichiers) quels sont leur noms et leur direction (entrée/sortie) ?
+\begin{enumerate}
+    \item \fillin[stdin, entrée][4cm]
+    \item \fillin[stdout, sortie][4cm]
+    \item \fillin[stderr, sortie][4cm]
+\end{enumerate}
+
+\part Quelle est la fonction utilisée pour positionner manuellement le curseur dans un fichier ?
+\begin{checkboxes}
+    \choice \CD{fopen}
+    \choice \CD{fgets}
+    \CorrectChoice \CD{fseek}
+    \choice \CD{fputc}
+    \choice \CD{feof}
+\end{checkboxes}
+
+\part Quel est le mode à transmettre à l'appel \CD{fopen("f.txt", mode} pour ouvrir un fichier existant en mode binaire en lecture écriture ?
+\begin{checkboxes}
+    \choice \CD{"r"}
+    \choice \CD{"w"}
+    \CorrectChoice \CD{"ab+"}
+    \choice \CD{"aw"}
+    \choice \CD{"w+"}
+\end{checkboxes}
+\end{parts}
+
+\question Vous disposez d'un pointeur sur un fichier ouvert en lecture \CD{fp} et vous souhaitez connaître la taille de ce fichier. Écrire une fonction \CD{size_t fsize(FILE *fp)} qui retourne la taille du fichier.
+
+\begin{solutionordottedlines}[7cm]
+\begin{lstlisting}
+size_t fsize(FILE *fp) {
+    if (fp == NULL) return 0;
+    size_t size = 0;
+    fseek(fp, 0, SEEK_END);
+    size = ftell(fp);
+    fseek(fp, 0, SEEK_SET);
+    return size;
+}
+\end{lstlisting}
+\end{solutionordottedlines}
+
+\question Écrire un programme qui prend le nom d'un fichier texte en argument ainsi qu'un texte à rechercher. Votre programme doit afficher le numéro de toute ligne du fichier contenant le texte recherché.
+
+\begin{solutionordottedlines}[10cm]
+\begin{lstlisting}
+int main(int argc, char *argv[]) {
+    assert(argc == 3);
+    char *filename = argv[1];
+    char *search = argv[2];
+    FILE *fp = fopen(filename, "r");
+    assert(fp != NULL);
+    char line[1024];
+    while (fgets(line, sizeof(line), fp) != NULL) {
+        if (strstr(line, search) != NULL) {
+            printf("%d\n", line);
+        }
+    }
+}
+\end{lstlisting}
+\end{solutionordottedlines}
+
+\question Écrire un programme qui retourne la taille de la ligne la plus longue dans un fichier texte. Le programme prend soit un nom de fichier passé en arguments, soit utilise l'entrée standard.
+
+\begin{solutionordottedlines}[10cm]
+\begin{lstlisting}
+int main(int argc, char *argv[]) {
+    char *filename = argc > 1 ? argv[1] : "stdin";
+    FILE *fp = fopen(filename, "r");
+    assert(fp != NULL);
+    size_t max_len = 0;
+    size_t count = 0;
+    char c;
+    while(c = fgetc(fp)) {
+        if (c == '\n' || c == EOF) {
+            if (count > max_len) {
+                max_len = count;
+            }
+            count = 0;
+            continue;
+        }
+        count++;
+    }
+}
+\end{lstlisting}
+\end{solutionordottedlines}
+
+\question Type de données composés
+Le tableau périodique des éléments de Mendeleev regroupe tous les éléments chimiques. Ces éléments sont caractérisés par un nom pouvant comporter jusqu'à 20 lettres, un symbole comportant au maximum 3 lettres, un numéro périodique représentant la position dans le tableau (c'est-à-dire le nombre de protons du noyau), et une valeur logique indiquant si la substance est radioactive ou non.
+
+Déclarez les types de données et une variable permettant de stocker les caractéristiques mentionnées ci-dessus pour un nombre variable d'éléments compris entre 0 et 120 éléments.
+
+\end{questions}
+
+\end{document}
