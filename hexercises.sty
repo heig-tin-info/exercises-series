@@ -69,6 +69,8 @@
 \DeclareRobustCommand*\seriesno[1]{\gdef\@seriesno{#1}}
 \DeclareRobustCommand*\classroom[1]{\gdef\@classroom{#1}}
 
+\input{revision}
+
 \def\@maketitle{%
   \newpage
   \begin{tikzpicture}[remember picture,overlay,shift={(current page.north west)}]
@@ -85,7 +87,7 @@
     \vskip 1.5em%
     {\@classroom}%
     \vskip 1.0em%
-    {\@date}
+    {\revisiondate}
     \vskip 1.0em%
   \end{center}%
   \par
@@ -97,3 +99,5 @@
 
 \renewcommand{\questionshook}{\leftmargin=0pt%
   \labelwidth=-\labelsep}
+
+\firstpagefooter{\revision}{}{Page \thepage\ sur \numpages}

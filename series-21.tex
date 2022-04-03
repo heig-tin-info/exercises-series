@@ -16,6 +16,7 @@
 
 \begin{document}
 \maketitle
+\thispagestyle{headandfoot}
 
 \begin{questions}
 
@@ -39,7 +40,7 @@
     \choice \CD{feof}
 \end{checkboxes}
 
-\part Quel est le mode à transmettre à l'appel \CD{fopen("f.txt", mode} pour ouvrir un fichier existant en mode binaire en lecture écriture ?
+\part Quel est le mode à transmettre à l'appel \CD{fopen("f.txt", mode)} pour ouvrir un fichier existant en mode binaire en lecture écriture ?
 \begin{checkboxes}
     \choice \CD{"r"}
     \choice \CD{"w"}
@@ -84,12 +85,12 @@ int main(int argc, char *argv[]) {
 \end{lstlisting}
 \end{solutionordottedlines}
 
-\question Écrire un programme qui retourne la taille de la ligne la plus longue dans un fichier texte. Le programme prend soit un nom de fichier passé en arguments, soit utilise l'entrée standard. 
+\question Écrire un programme qui retourne la taille de la ligne la plus longue dans un fichier texte. Le programme prend soit un nom de fichier passé en arguments, soit utilise l'entrée standard.
 
 \begin{solutionordottedlines}[10cm]
 \begin{lstlisting}
 int main(int argc, char *argv[]) {
-    char *filename = argc > 1 ? argv[1] : "stdin";        
+    char *filename = argc > 1 ? argv[1] : "stdin";
     FILE *fp = fopen(filename, "r");
     assert(fp != NULL);
     size_t max_len = 0;
@@ -104,7 +105,7 @@ int main(int argc, char *argv[]) {
             continue;
         }
         count++;
-    }    
+    }
 }
 \end{lstlisting}
 \end{solutionordottedlines}
@@ -113,6 +114,3 @@ int main(int argc, char *argv[]) {
 \end{questions}
 
 \end{document}
-
-
-

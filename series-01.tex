@@ -16,6 +16,7 @@
 
 \begin{document}
 \maketitle
+\thispagestyle{headandfoot}
 
 \begin{questions}
 
@@ -85,7 +86,7 @@ Quelques généralités.
 \ifprintanswers
 \begin{solution}
 \begin{lstlisting}
-  
+
   11001100 = 0xCC = 204
 + 00110011 = 0x33 = 51
 ----------
@@ -99,7 +100,7 @@ Quelques généralités.
 \ifprintanswers
 \begin{solution}
 \begin{lstlisting}
-     11 
+     11
   11001100 = 0xCC = 204
 + 11001100 = 0xCC = 204
 ----------
@@ -125,13 +126,13 @@ Quelques généralités.
 \fillwithdottedlines{4cm}
 \fi
 
-\question Écrire un programme qui affiche explicitement la somme de deux nombres. 
-Ces deux nombres sont déclarés dans des variables entières nommées \CD{a} et \CD{b}. 
+\question Écrire un programme qui affiche explicitement la somme de deux nombres.
+Ces deux nombres sont déclarés dans des variables entières nommées \CD{a} et \CD{b}.
 
 Voici ce que produit le programme :
 
 \begin{lstlisting}
-./a.out 
+./a.out
 42 + 23 = 65
 \end{lstlisting}
 

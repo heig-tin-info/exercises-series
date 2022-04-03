@@ -16,6 +16,7 @@
 
 \begin{document}
 \maketitle
+\thispagestyle{headandfoot}
 
 \begin{questions}
 
@@ -37,7 +38,7 @@ double x, y;
 int z = x >= 0 && x <= 20 && y > x || y == 50 && x == 1 * 2 || y == 30 + 30;
 \end{lstlisting}
 \fi
-    
+
 \part Quelle est la valeur de \CD{z} évaluées avec les valeurs suivantes ?
 
 \begin{parts}
@@ -80,7 +81,7 @@ k = k = 5, i++ >= j ? i++ : --j;
 \part Que valent \CD{i}, \CD{j} et \CD{k} ? \hfill \fillin[i: 3, j: 1, k: 8][5cm]
 \begin{lstlisting}
 short i = 2, j = 1, k;
-k = i >= j << 1 ? i++ << 2 : --j << 3;  
+k = i >= j << 1 ? i++ << 2 : --j << 3;
 \end{lstlisting}
 
 \end{parts}
@@ -148,18 +149,18 @@ int32_t reverse(int32_t num);
 \end{lstlisting}
 
 Exemple : 123 donne 321. 208478933 donne 339874802.
-  
+
 \ifprintanswers
 \begin{solution}
 \begin{lstlisting}
 int32_t reverse(int32_t num) {
   unsigned int count = sizeof(num) * 8 - 1;
   int32_t reversed = num;
-    
-  num >>= 1; 
+
+  num >>= 1;
   while(num)
   {
-     reversed <<= 1;       
+     reversed <<= 1;
      reversed |= num & 1;
      num >>= 1;
      count--;

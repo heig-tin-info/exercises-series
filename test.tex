@@ -1,22 +1,29 @@
-\documentclass{exam}
+\documentclass[addpoints]{exam}
+\firstpagefooter{left}{middle}{Page \thepage\ sur \numpages}
+\title{Exam}
+
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \begin{center}%
+    {\LARGE \bfseries\@title \par}%
+    \vskip 1.5em%
+  \end{center}%
+  \par
+  \noindent\rule{\textwidth}{0.4pt}\vskip 1em
+}
+
+\makeatother
+
+\usepackage{xpatch}
+\xpatchcmd{\maketitle}
+{\thispagestyle{plain}}
+{}{}{}
 
 \begin{document}
-
-\setlength\answerskip{3ex} % No effect
-
+\maketitle
 \begin{questions}
-\question A regular question \par
-The path of the \fillin[righteous] man is beset on all sides
-By the inequities of the selfish and the tyranny of evil men.
-
-\question Another question \par
-\medskip
-\begin{center}
-    \begin{tabular}{*3{|c}|}
-        Foo & Bar & Baz \\ \hline
-        A & \fillin[B] & C \\ \hline
-        \fillin[D] & E & \fillin[F] \\ \hline
-    \end{tabular}
-\end{center}
+\question Lorem Ipsum
 \end{questions}
 \end{document}

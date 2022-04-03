@@ -281,3 +281,5 @@ TSWLatexianTemp*
 #*Notes.bib
 
 build/
+series-*.pdf
+revision.tex

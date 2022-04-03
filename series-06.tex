@@ -16,6 +16,7 @@
 
 \begin{document}
 \maketitle
+\thispagestyle{headandfoot}
 
 \begin{questions}
 
@@ -42,7 +43,7 @@ int z;
 \end{tabular}
 \end{center}
 
-\question Opérateur ternaire 
+\question Opérateur ternaire
 \begin{parts}
 
 \part Simplifiez l'expression suivante
@@ -59,8 +60,8 @@ z = a + b;
 \else
 \fillwithdottedlines{1cm}
 \fi
-    
-\part Soit variable \CD{n} est de type \CD{int}. Écrire une expression unique qui prend la valeur: 
+
+\part Soit variable \CD{n} est de type \CD{int}. Écrire une expression unique qui prend la valeur:
 
 \begin{enumerate}
   \item \CD{-1} si \CD{n} est négatif
@@ -97,7 +98,7 @@ int(f) + 1.9
 
 \ifprintanswers
 \begin{solution}
-La coercition de type s'écrit \CD{(int)f} et non \CD{int(f)}. 
+La coercition de type s'écrit \CD{(int)f} et non \CD{int(f)}.
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
@@ -163,7 +164,7 @@ La partie gauche de l'opérateur \CD{i++} est évaluée comme une valeur, et n'e
 int i;
 assert(scanf("%d", &i) == 1);
 \end{lstlisting}
-  
+
 \begin{parts}
 
 \part

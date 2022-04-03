@@ -16,6 +16,7 @@
 
 \begin{document}
 \maketitle
+\thispagestyle{headandfoot}
 
 \begin{questions}
 
@@ -23,17 +24,17 @@
 \begin{parts}
     \part \CD{'a'} \hfill \fillin[Correct][10cm]
     \part \CD{'A'} \hfill \fillin[Correct][10cm]
-    \part \CD{'ab'} \hfill \fillin[Incorrect, seulement 1 caractère][10cm] 
-    \part \CD{'\\x41'} \hfill \fillin[Correct][10cm] 
-    \part \CD{'\\041'} \hfill \fillin[Correct][10cm] 
-    \part \CD{'\\0x41'} \hfill \fillin[Incorrect][10cm] 
-    \part \CD{'\\n'} \hfill \fillin[Correct][10cm] 
-    \part \CD{'\\w'} \hfill \fillin[Incorrect][10cm] 
-    \part \CD{'\\t'} \hfill \fillin[Correct (tabulation)][10cm] 
-    \part \CD{'\\xp2'} \hfill \fillin[Incorrect, p2 n'est pas hexadécimal][10cm] 
-    \part \CD{"abc"} \hfill \fillin[Correct][10cm] 
-    \part \CD{"\\abc\\ndef"} \hfill \fillin[Correct][10cm] 
-    \part \CD{"\\'\\"\\"} \hfill \fillin[Correct][10cm] 
+    \part \CD{'ab'} \hfill \fillin[Incorrect, seulement 1 caractère][10cm]
+    \part \CD{'\\x41'} \hfill \fillin[Correct][10cm]
+    \part \CD{'\\041'} \hfill \fillin[Correct][10cm]
+    \part \CD{'\\0x41'} \hfill \fillin[Incorrect][10cm]
+    \part \CD{'\\n'} \hfill \fillin[Correct][10cm]
+    \part \CD{'\\w'} \hfill \fillin[Incorrect][10cm]
+    \part \CD{'\\t'} \hfill \fillin[Correct (tabulation)][10cm]
+    \part \CD{'\\xp2'} \hfill \fillin[Incorrect, p2 n'est pas hexadécimal][10cm]
+    \part \CD{"abc"} \hfill \fillin[Correct][10cm]
+    \part \CD{"\\abc\\ndef"} \hfill \fillin[Correct][10cm]
+    \part \CD{"\\'\\"\\"} \hfill \fillin[Correct][10cm]
 \end{parts}
 \vskip 2em
 
@@ -81,7 +82,7 @@ x = 2.5;
 % \begin{lstlisting}
 %   int nb_parts = 2000;
 %   int nb_parts_bad = 200;
-%   double percent_good = (nb_parts - nb_parts_bad) / nb_parts;  
+%   double percent_good = (nb_parts - nb_parts_bad) / nb_parts;
 % \end{lstlisting}
 
 % \begin{parts}
@@ -93,7 +94,7 @@ x = 2.5;
 %   \else
 %   \fillwithdottedlines{3cm}
 %   \fi
-    
+
 %   \part Qu'obtient-il dans la pratique ?
 %   \ifprintanswers
 %   \begin{solution}
@@ -116,7 +117,7 @@ x = 2.5;
 %     \begin{lstlisting}
 % int nb_parts = 2000;
 % int nb_parts_bad = 200;
-% double percent_good = (double)(nb_parts - nb_parts_bad) / nb_parts;  
+% double percent_good = (double)(nb_parts - nb_parts_bad) / nb_parts;
 %     \end{lstlisting}
 %   \end{solution}
 %   \else

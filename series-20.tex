@@ -16,6 +16,7 @@
 
 \begin{document}
 \maketitle
+\thispagestyle{headandfoot}
 
 \begin{questions}
 
@@ -27,7 +28,7 @@ int i = 3;     long l = 4;
 float f = 3.3; double d = 7.7;
 \end{lstlisting}
 
-Pour chacune des expressions ci-dessous, indiquez leur type et leur valeur. 
+Pour chacune des expressions ci-dessous, indiquez leur type et leur valeur.
 
 \textbf{Exemple :} \CD{2 / 3 * c}, réponse : \CD{(int)0}.
 
@@ -63,7 +64,7 @@ Pour chacune des expressions ci-dessous, indiquez leur type et leur valeur.
     \answerline[\CD{(int)0}]
 \end{parts}
 
-\question 
+\question
 Dans chacune des structures de contrôle ci-dessous, indiquer la nature de l'erreur.
 
 \begin{parts}
@@ -72,7 +73,7 @@ Dans chacune des structures de contrôle ci-dessous, indiquer la nature de l'err
 
 \begin{lstlisting}
 double x = 100.0;
-do 
+do
     x = x / 2.0;
     i++;
 while (x > 1.0);
@@ -85,7 +86,7 @@ Il manque les accolades autour du bloc \CD{do..while}.
 \part ~\par
 \begin{lstlisting}
 long x = 100;
-if (x = 0) 
+if (x = 0)
     print("Erreur : la valeur 0 est interdite !\n");
 \end{lstlisting}
 
@@ -100,13 +101,13 @@ switch (x) {
     case 0:
         printf("x est nul.\n");
         break;
-    default: 
+    default:
         print("OK.\n");
 }
 \end{lstlisting}
 
 \begin{solutionordottedlines}[2cm]
-L'instruction \CD{switch} n'est pas applicable à un type à virgule flottante. 
+L'instruction \CD{switch} n'est pas applicable à un type à virgule flottante.
 \end{solutionordottedlines}
 
 \part ~\par
@@ -124,7 +125,7 @@ Le point virgule à la fin de l'instruction termine cette dernière. Le bloc for
 \part ~\par
 \begin{lstlisting}
 int i = 0;
-while i < 100 
+while i < 100
 {
     printf("%d\n", ++i);
 }
@@ -137,7 +138,7 @@ Il manque des parenthèses autour de la condition de l'instruction \CD{while}.
 
 \newpage
 
-\question 
+\question
 On s'intéresse ici au passage par adresse. Observez le programme suivant et indiquez ce que vous voyez sur la sortie standard.
 
 \begin{lstlisting}
@@ -162,9 +163,8 @@ int main() {
 \begin{solutionordottedlines}[1cm]
 \CD{00000 105 102 300 102}
 \end{solutionordottedlines}
-  
-\question Algorithme sur les tableaux 
-Écrire une fonction qui reçoit en paramètre un tableau d'entiers et qui retourne la position de la première occurrence d'une valeur dans ce tableau, ou \CD{-1} si la valeur n'est pas présente. Utiliser la syntaxe pointeur pour le paramètre tableau. 
+
+\question Algorithme sur les tableaux : écrire une fonction qui reçoit en paramètre un tableau d'entiers et qui retourne la position de la première occurrence d'une valeur dans ce tableau, ou \CD{-1} si la valeur n'est pas présente. Utiliser la syntaxe pointeur pour le paramètre tableau.
 
 \ifprintanswers
 \begin{solution}
@@ -180,8 +180,8 @@ int index(int *array, size_t size, int value) {
 \fillwithdottedlines{5cm}
 \fi
 
-\question 
-Écrire une fonction qui calcul la longueur totale des segments de droite dont les points sont reçus en paramètre. Le données est un tableau composé de N par 2. Les indices du sous tableau sont les coordonnées X et Y des points. 
+\question
+Écrire une fonction qui calcul la longueur totale des segments de droite dont les points sont reçus en paramètre. Les données sont un tableau composé de N par 2. Les indices du sous tableau sont les coordonnées X et Y des points.
 
 \ifprintanswers
 \begin{solution}
@@ -194,7 +194,7 @@ double length(double array[][2], size_t size) {
   double length = 0;
   for (int i = 0; i < size - 1; i++)
       length += distance(
-          array[i][0], array[i][1], 
+          array[i][0], array[i][1],
           array[i + 1][0], array[i + 1][1]
       );
   return length;

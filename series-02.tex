@@ -16,6 +16,7 @@
 
 \begin{document}
 \maketitle
+\thispagestyle{headandfoot}
 
 \begin{questions}
 
@@ -23,23 +24,23 @@
 \begin{parts}
     \part \CD{2_pi} \hfill \fillin[Incorrect, commence par un chiffre][10cm]
     \part \CD{x_2} \hfill \fillin[Correct][10cm]
-    \part \CD{x__3} \hfill \fillin[Correct][10cm] 
-    \part \CD{x  2} \hfill \fillin[Incorrect, contient des espaces][10cm] 
-    \part \CD{robotPosition} \hfill \fillin[Correct][10cm] 
-    \part \CD{stored_values} \hfill \fillin[Correct][10cm] 
-    \part \CD{-output_current} \hfill \fillin[Incorrect, tiret interdit][10cm] 
-    \part \CD{_alarm_} \hfill \fillin[Correct][10cm] 
-    \part \CD{issue#2} \hfill \fillin[Incorrect, signe dièse interdit][10cm] 
-    \part \CD{int} \hfill \fillin[Incorrect, mot réservé du langage][10cm] 
-    \part \CD{défaillance} \hfill \fillin[Incorrect, mot accentué][10cm] 
-    \part \CD{f'} \hfill \fillin[Incorrect, comporte une apostrophe][10cm] 
-    \part \CD{INT} \hfill \fillin[Correct, mais pas recommandé][10cm] 
-    \part \CD{main} \hfill \fillin[Correct, mais plutôt réservé à la fonction d'entrée][10cm] 
+    \part \CD{x__3} \hfill \fillin[Correct][10cm]
+    \part \CD{x  2} \hfill \fillin[Incorrect, contient des espaces][10cm]
+    \part \CD{robotPosition} \hfill \fillin[Correct][10cm]
+    \part \CD{stored_values} \hfill \fillin[Correct][10cm]
+    \part \CD{-output_current} \hfill \fillin[Incorrect, tiret interdit][10cm]
+    \part \CD{_alarm_} \hfill \fillin[Correct][10cm]
+    \part \CD{issue#2} \hfill \fillin[Incorrect, signe dièse interdit][10cm]
+    \part \CD{int} \hfill \fillin[Incorrect, mot réservé du langage][10cm]
+    \part \CD{défaillance} \hfill \fillin[Incorrect, mot accentué][10cm]
+    \part \CD{f'} \hfill \fillin[Incorrect, comporte une apostrophe][10cm]
+    \part \CD{INT} \hfill \fillin[Correct, mais pas recommandé][10cm]
+    \part \CD{main} \hfill \fillin[Correct, mais plutôt réservé à la fonction d'entrée][10cm]
 \end{parts}
 \vskip 2em
 \question
-Pour chacune des variables suivantes, indiquer leurs valeurs. 
-Les variables non initialisées sont notées avec \CD{?}. Cela signifie que leur contenu n'est pas prévisible. 
+Pour chacune des variables suivantes, indiquer leurs valeurs.
+Les variables non initialisées sont notées avec \CD{?}. Cela signifie que leur contenu n'est pas prévisible.
 \medskip
 \begin{center}
     \begin{tabular}{*5{c}}
@@ -70,7 +71,7 @@ b = tmp;
 \fi
 
 
-\question Le programme suivant comporte 13 erreurs. Trouvez-les et corrigez-les. 
+\question Le programme suivant comporte 13 erreurs. Trouvez-les et corrigez-les.
 
 
 
@@ -92,7 +93,7 @@ INT Main() // 5. S'écrit int, 6. S'écrit main()
     printf("a:");
     scanf("%d", a); // 7. Manque le & devant a
 
-    printf("b:");   
+    printf("b:");
     scanf("%d", &b); // 8. La variable b n'est pas déclarée
 
     somme = a + b; // 9. Probablement `sum` pas `somme`
@@ -105,7 +106,7 @@ INT Main() // 5. S'écrit int, 6. S'écrit main()
 \end{solution}
 \else
 \begin{lstlisting}
-/* 
+/*
 /* Programme exemple */
 */
 
@@ -117,10 +118,10 @@ INT Main()
     int a, sum;
     printf("Addition de 2 entiers a et b.\n");
 
-    printf("a:"); 
-    scanf("%d", a); 
+    printf("a:");
+    scanf("%d", a);
 
-    printf("b:");   
+    printf("b:");
     scanf("%d", &b);
 
     somme = a + b;
@@ -133,7 +134,7 @@ INT Main()
 \fi
 
 \newpage
-\question Écrire un programme demandant sur l'entrée standard 2 nombres réels : tension et résistance. Le programme indique ensuite la valeur du courant circulant dans le circuit en utilisant la loi d'Ohm. Un test doit être prévu si la résistance est nulle. 
+\question Écrire un programme demandant sur l'entrée standard 2 nombres réels : tension et résistance. Le programme indique ensuite la valeur du courant circulant dans le circuit en utilisant la loi d'Ohm. Un test doit être prévu si la résistance est nulle.
 
 \ifprintanswers
 \begin{solution}
@@ -143,12 +144,12 @@ INT Main()
 int main() {
   printf("Application de la loi d'Ohm, calcul du courant.\n");
   printf("-----------------------------------------------\n\n");
-  
+
   double resistor;
   printf("Résistance en Ohm : ");
   scanf("%lf", &resistor);
 
-  if (resistor <= 0) { 
+  if (resistor <= 0) {
     printf("Erreur: valeur de résistance incorrecte !\n");
     return 1;
   }
@@ -156,7 +157,7 @@ int main() {
   double voltage;
   printf("Tension en Volts : ");
   scanf("%lf", &voltage);
-  
+
   printf("Le courant est de %g Ampères\n", voltage / resistor);
   return 0;
 }

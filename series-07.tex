@@ -16,43 +16,44 @@
 
 \begin{document}
 \maketitle
+\thispagestyle{headandfoot}
 
 \begin{questions}
 
 \question Pour les exemples ci-dessous, indiquez successivement s'ils compilent sans erreur et le cas échéant, si les chaînes de caractères sont modifiables ou non.
 
 \begin{parts}
-\part 
+\part
 \begin{lstlisting}
 char s[] = 'foo';\end{lstlisting}
 \answerline[Erreur, guillemet simple]
 
-\part 
+\part
 \begin{lstlisting}
 char s[42] = "Les carottes sont cuites.";\end{lstlisting}
 \answerline[L'expression compile et la chaîne est modifiable.]
 
-\part 
+\part
 \begin{lstlisting}
 char s[2] = "Babel Fish";\end{lstlisting}
 \answerline[Erreur : la taille de la chaîne est trop courte]
 
-\part 
+\part
 \begin{lstlisting}
 char s[] = "foo\0bar\0";\end{lstlisting}
 \answerline[L'expression compile et la chaîne est modificable]
 
-\part 
+\part
 \begin{lstlisting}
 char *s = "Prix Béton 1981";\end{lstlisting}
 \answerline[L'expression compile mais la chaîne est non modifiable]
 
-\part 
+\part
 \begin{lstlisting}
 char *s[] = {"foo", "bar", "baz"};\end{lstlisting}
 \answerline[Le tableau de chaînes est non modifiable]
 
-\part 
+\part
 \begin{lstlisting}
 char s[] = {"foo" "bar" "baz"};\end{lstlisting}
 \answerline[La chaîne compile et est modifiable. Elle vaut \CD{"foobarbaz"}]
@@ -62,7 +63,7 @@ char s[] = {"foo" "bar" "baz"};\end{lstlisting}
 \question Manipulation des chaînes de caractères : que retournent chacunes de ces fonctions ?
 \begin{parts}
 
-\part 
+\part
 \begin{lstlisting}
 int foo() { char s[] = "foo"; return strlen(s); }\end{lstlisting}
 \answerline[3]
@@ -144,8 +145,8 @@ La fonction compte le nombre de voyelles dans la chaîne \texttt{s}. Elle retour
 \else
 \fillwithdottedlines{1cm}
 \fi
-  
-\question 
+
+\question
 \textbf{Difficile : } Il existe trois types de modifications qui peuvent être appliquées à une chaîne de caractère : insérer un caractère, supprimer un caractère, ou remplacer un caractère. Considérant deux chaînes de caractères, écrivez une fonction qui retourne si les deux chaînes ne sont qu'à une modification pr\`es.
 
 \begin{itemize}
