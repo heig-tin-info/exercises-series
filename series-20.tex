@@ -73,6 +73,7 @@ Dans chacune des structures de contrôle ci-dessous, indiquer la nature de l'err
 
 \begin{lstlisting}
 double x = 100.0;
+size_t i = 0;
 do
     x = x / 2.0;
     i++;
@@ -87,7 +88,7 @@ Il manque les accolades autour du bloc \CD{do..while}.
 \begin{lstlisting}
 long x = 100;
 if (x = 0)
-    print("Erreur : la valeur 0 est interdite !\n");
+    printf("Erreur : la valeur 0 est interdite !\n");
 \end{lstlisting}
 
 \begin{solutionordottedlines}[2cm]
@@ -173,6 +174,7 @@ int index(int *array, size_t size, int value) {
   for (int i = 0; i < size; i++)
       if (array[i] == value)
           return i;
+  return -1;
 }
 \end{lstlisting}
 \end{solution}
@@ -186,7 +188,7 @@ int index(int *array, size_t size, int value) {
 \ifprintanswers
 \begin{solution}
 \begin{lstlisting}
-double distance(double x1, double y1, double x1, double y1) {
+double distance(double x1, double y1, double x2, double y2) {
   return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
 }
 
