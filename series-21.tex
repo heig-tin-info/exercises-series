@@ -76,9 +76,11 @@ int main(int argc, char *argv[]) {
     FILE *fp = fopen(filename, "r");
     assert(fp != NULL);
     char line[1024];
+    size_t line_no = 0;
     while (fgets(line, sizeof(line), fp) != NULL) {
+        line_no++;
         if (strstr(line, search) != NULL) {
-            printf("%d\n", line);
+            printf("%d\n", line_no);
         }
     }
 }
@@ -90,7 +92,7 @@ int main(int argc, char *argv[]) {
 \begin{solutionordottedlines}[10cm]
 \begin{lstlisting}
 int main(int argc, char *argv[]) {
-    char *filename = argc > 1 ? argv[1] : "stdin";
+    char *filename = argc > 1 ? argv[1] : stdin;
     FILE *fp = fopen(filename, "r");
     assert(fp != NULL);
     size_t max_len = 0;

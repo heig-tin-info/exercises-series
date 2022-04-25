@@ -36,8 +36,8 @@ Instruction & \CD{a} & \CD{b} & \CD{c} & \CD{p} & \CD{q} \\ \hline
 \CD{int a = 1;}  & \fillin[1] & \fillin[ ] & \fillin[ ] & \fillin[ ] & \fillin[ ] \\
 \CD{int b = 2;}  & \fillin[1] & \fillin[2] & \fillin[ ] & \fillin[ ] & \fillin[ ] \\
 \CD{int c = 3;}  & \fillin[1] & \fillin[2] & \fillin[3] & \fillin[ ] & \fillin[ ] \\
-\CD{int p = &a;} & \fillin[1] & \fillin[2] & \fillin[3] & \fillin[\&a] & \fillin[ ] \\
-\CD{int q = &c;} & \fillin[1] & \fillin[2] & \fillin[3] & \fillin[\&a] & \fillin[\&c] \\
+\CD{int *p = &a;} & \fillin[1] & \fillin[2] & \fillin[3] & \fillin[\&a] & \fillin[ ] \\
+\CD{int *q = &c;} & \fillin[1] & \fillin[2] & \fillin[3] & \fillin[\&a] & \fillin[\&c] \\
 \CD{*p=(*q)++;}  & \fillin[3] & \fillin[2] & \fillin[4] & \fillin[\&a] & \fillin[\&c] \\
 \CD{p = q;}  & \fillin[3] & \fillin[2] & \fillin[4] & \fillin[\&c] & \fillin[\&c] \\
 \CD{q=&b;}  & \fillin[3] & \fillin[2] & \fillin[4] & \fillin[\&c] & \fillin[\&b] \\
