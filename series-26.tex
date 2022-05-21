@@ -1,0 +1,203 @@
+\documentclass[french,a4paper,addpoints,11pt]{exam}
+\usepackage{hexercises}
+\usepackage{mathtools, nccmath}
+\usepackage{tabularx}
+\title{L'allocation dynamique}
+\seriesno{\texttt{0x26}}
+\department{TIN}
+\classroom{INFO2-TIN}
+
+\setlength\answerlinelength{10 cm}
+\setlength\answerskip{3ex}
+\setlength\answerclearance{1.1ex}
+\CorrectChoiceEmphasis{}
+\renewcommand{\thepartno}{\alph{partno}}
+\renewcommand{\partlabel}{\thepartno.}
+\renewcommand{\arraystretch}{1.75} % expand the cells vertically
+
+\begin{document}
+\maketitle
+\thispagestyle{headandfoot}
+
+\ifprintanswers
+\else
+\begin{multicols}{2}
+\fi
+\begin{questions}
+
+\question
+On souhaite lire un fichier dont la taille n'est pas connue avant l'exécution du programme. Un espace mémoire doit alors être réservé sur le \emph{heap}. Écrire la fonction \CD{load} permettant de charger l'ensemble du fichier en mémoire dans la variable \CD{data}.
+
+\begin{lstlisting}
+int main(int argc, char*argv[]) {
+  assert(argc > 1);
+  FILE *fp = fopen(argv[1]);
+  assert(fp != NULL);
+  char *data;
+  load(&data, fp);
+  close(fp);
+}
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+void load(char **data, FILE*fp) {
+  assert(fp != NULL);
+  fseek(fp, 0, SEEK_END);
+  size_t size = ftell(fp);
+  fseek(fp, 0, SEEK_SET);
+  *data = malloc(size);
+  assert(*data != NULL);
+  fread(*data, 1, size, fp);
+}
+\end{lstlisting}
+\end{solution}
+
+\question
+Une structure avec un membre flexible est défini comme suit :
+
+\begin{lstlisting}
+typedef struct point {
+  int x; int y;
+} Point;
+
+typedef struct record {
+  int id;
+  Point points[];
+} Record;
+\end{lstlisting}
+
+\begin{parts}
+\part Quelle est la taille de la structure record en bytes?
+\begin{solution}
+Le membre flexible n'est pas inclus dans la structure, cette dernière est donc la taille de l'entier 32-bit, soit 4 bytes.
+\end{solution}
+
+\part Déclarez la variable \CD{r} puis allouer l'espace mémoire nécessaire pour y stocker 10 points.
+\begin{solution}
+\begin{lstlisting}
+Record *r = malloc(sizeof(Record) + sizeof(Point) * 10);
+assert(r != NULL);
+\end{lstlisting}
+\end{solution}
+
+\part Redimensionnez la variable \CD{r} pour y stocker jusqu'à 100 points.
+\begin{solution}
+\begin{lstlisting}
+void *tmp = realloc(sizeof(Record) + sizeof(Point) * 100, 1);
+assert(tmp != NULL);
+r = tmp;
+\end{lstlisting}
+\end{solution}
+
+
+\part À la fin de l'exercice, il est nécessaire de libérer l'espace mémoire utilisé. Comment libérez-vous l'espace alloué ?
+
+\begin{solution}
+\begin{lstlisting}
+free(r);
+\end{lstlisting}
+\end{solution}
+\end{parts}
+
+\question Une fonction s'occupe de redimensionner un set de données pour pouvoir y stocker \CD{n} valeurs. Écrire la fonction \CD{resize}.
+
+\begin{parts}
+\part Dans le premier cas le set de donnée est défini comme suit:
+\begin{lstlisting}
+typedef struct measurements {
+  size_t elements; // Nombre d'éléments dans le set
+  size_t capacity; // Capacité en éléments de l'espace alloué
+  int *data;
+} Measurements;
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+int resize(Measurements *meas, size_t n) {
+  if (n < meas->elements)
+    return 1;
+  if (meas->data == NULL) {
+    meas->data = malloc(sizeof(Measurements.data[0]));
+    if (meas->data == NULL) return 2;
+    meas->capacity = n;
+    return 0;
+  }
+  meas->capacity = n;
+  void *tmp = realloc(meas->data, sizeof(Measurements.data[0]) * meas->capacity;
+  if (tmp == NULL) return 3;
+  meas->data = tmp;
+  return 0;
+}
+\end{lstlisting}
+\end{solution}
+
+\part Dans le second cas le set de donnée est défini à l'aide d'un membre flexible :
+\begin{lstlisting}
+typedef struct measurements {
+  size_t elements; // Nombre d'éléments dans le set
+  size_t capacity; // Capacité en éléments de l'espace alloué
+  int data[];
+} Measurements;
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+int resize(Measurements **meas, size_t n) {
+  if ((*meas) == NULL) {
+    (*meas) = malloc(sizeof(Measurements) + n * sizeof(Measurements.data[0]));
+    (*meas)->capacity = n;
+    (*meas)->elements = 0;
+    if ((*meas) == NULL) return 2;
+    return 0;
+  }
+  if (n < (*meas)->elements)
+    return 1;
+  (*meas)->capacity = n;
+  void *tmp = realloc((*meas),
+    sizeof(Measurements) + n * sizeof(Measurements.data[0]));
+  if (tmp == NULL) return 3;
+  (*meas) = tmp;
+  return 0;
+}
+\end{lstlisting}
+\end{solution}
+\end{parts}
+
+\question Dans un jeu de Sudoku, on souhaite allouer l'espace nécessaire pour y stocker une grille dont la taille (nombre de colonnes) est déterminée à l'exécution du programme.
+
+La grille est stockée dans un pointeur sur un tableau à deux dimensions, dont chaque dimension est la taille de la variable \CD{columns}.
+
+\begin{parts}
+
+\part Écrire la structure de donnée et allouer cette grille en initialisant toutes les valeurs à zéro.
+
+\begin{solution}
+\begin{lstlisting}
+const int columns = 10;
+assert(columns < UINT8_MAX);
+uint8_t (*grid)[][columns] = calloc(sizeof(uint8_t), columns * columns);
+assert(grid != NULL);
+\end{lstlisting}
+\end{solution}
+
+\part Affichez la grille sur la sortie standard.
+
+\begin{solution}
+\begin{lstlisting}
+for(int i = 0; i < columns; i++) {
+    for(int j = 0; j < columns; j++) {
+        printf("%d ", (*grid)[i][j]);
+    }
+    printf("\n");
+}
+\end{lstlisting}
+\end{solution}
+\end{parts}
+\end{questions}
+
+\ifprintanswers
+\else
+\end{multicols}
+\fi
+\end{document}

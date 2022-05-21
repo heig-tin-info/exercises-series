@@ -1,0 +1,228 @@
+\documentclass[french,a4paper,addpoints,11pt]{exam}
+\usepackage{hexercises}
+\usepackage{mathtools, nccmath}
+\usepackage{tabularx}
+\title{Tableaux dynamiques}
+\seriesno{\texttt{0x27}}
+\department{TIN}
+\classroom{INFO2-TIN}
+
+\setlength\answerlinelength{10 cm}
+\setlength\answerskip{3ex}
+\setlength\answerclearance{1.1ex}
+\CorrectChoiceEmphasis{}
+\renewcommand{\thepartno}{\alph{partno}}
+\renewcommand{\partlabel}{\thepartno.}
+\renewcommand{\arraystretch}{1.75} % expand the cells vertically
+
+\begin{document}
+\maketitle
+\thispagestyle{headandfoot}
+
+\ifprintanswers
+\else
+\begin{multicols}{2}
+\fi
+Un tableau dynamique est déterminé par un facteur de croissance et comporte généralement deux informations associées aux données : le nombre d'éléments stockés dans le tableau, la capacité du tableau en nombre d'éléments. Lorsque la capacité du tableau atteint la limite de stockage, il est étendu en prenant en compte le facteur de croissance.
+
+Les opérations sur un tableau dynamiques sont : \emph{push} pour ajouter un élément à la fin du tableau, \emph{unshift} pour ajouter un élément au début du tableau, \emph{pop} pour supprimer un élément à la fin du tableau et \emph{shift} pour supprimer un élément en début de tableau.
+
+Parfois d'autres opérations existent : \emph{delete} pour supprimer un élément à l'indice K et \emph{insert} pour ajouter un élément après l'élément K.
+
+Utilisez ici \CD{assert} pour le test des erreurs, et ne réduisez pas la taille du tableau, il ne fait que s'agrandir au gré des données le peuplant.
+\begin{questions}
+
+\question On souhaite implémenter un tableau dynamique, implémentez les fonctions demandées :
+
+\begin{parts}
+
+\part Écrire une structure de donnée représentant un tableau dynamique et permettant de stocker des paires de \CD{double}.
+\ifprintanswers
+\begin{solution}
+\begin{lstlisting}
+typedef struct array {
+  size_t capacity;
+  size_t elements;
+  double (*data)[2];
+} Array;
+\end{lstlisting}
+\end{solution}
+\else
+\begin{lstlisting}
+void array_init(Array *array)
+\end{lstlisting}
+\fi
+
+\part Compte tenu de la structure déclarée précédemment, écrire une fonction permettant d'initialiser un tableau. C'est à dire allouer l'espace mémoire nécessaire et renseigner les informations nécessaires. La structure de ce tableau est la suivante :
+
+\begin{lstlisting}
+typedef struct array {
+  size_t capacity;
+  size_t elements;
+  double (*data)[2];
+} Array;
+\end{lstlisting}
+
+\part Écrire la fonction \CD{array_init}
+
+\ifprintanswers
+\begin{solution}
+void array_init(Array *array) {
+  array->capacity = 1;
+  array->elements = 0;
+  array->data = malloc(sizeof(double[2]) * array->capacity);
+}
+\end{solution}
+\else
+\begin{lstlisting}
+void array_init(Array *array);
+\end{lstlisting}
+\fi
+
+\part Écrire la fonction \CD{array_push}
+
+\ifprintanswers
+\begin{solution}
+void array_push(Array *array, double x, double y) {
+  if (array->elements == array->capacity) {
+    array->capacity *= 2;
+    array->data = realloc(array->data, sizeof(double[2]) * array->capacity);
+    assert(array->data != NULL);
+  }
+  array->data[array->elements][0] = x;
+  array->data[array->elements][1] = y;
+  array->elements++;
+}
+\end{solution}
+\else
+\begin{lstlisting}
+void array_push(Array *array, double x, double y);
+\end{lstlisting}
+\fi
+
+\part Écrire la fonction \CD{array_pop}
+
+\ifprintanswers
+\begin{solution}
+void array_pop(Array *array, double *x, double *y) {
+  assert(array->elements > 0);
+  array->elements--;
+  *x = array->data[array->elements][0];
+  *y = array->data[array->elements][1];
+}
+\end{solution}
+\else
+\begin{lstlisting}
+void array_pop(Array *array, double *x, double *y);
+\end{lstlisting}
+\fi
+
+\part Écrire la fonction \CD{array_shift}
+
+\ifprintanswers
+\begin{solution}
+void array_shift(Array *array, double *x, double *y) {
+  assert(array->elements > 0);
+  *x = array->data[0][0];
+  *y = array->data[0][1];
+  for (size_t i = 0; i < array->elements - 1; i++) {
+    array->data[i][0] = array->data[i + 1][0];
+    array->data[i][1] = array->data[i + 1][1];
+  }
+  array->elements--;
+}
+\end{solution}
+\else
+\begin{lstlisting}
+void array_shift(Array *array, double *x, double *y)
+\end{lstlisting}
+\fi
+
+\part Écrire la fonction \CD{array_unshift}
+
+\ifprintanswers
+\begin{solution}
+void array_unshift(Array *array, double x, double y) {
+  if (array->elements == array->capacity) {
+    array->capacity *= 2;
+    array->data = realloc(array->data, sizeof(double[2]) * array->capacity);
+  }
+  for (size_t i = array->elements; i > 0; i--) {
+    array->data[i][0] = array->data[i - 1][0];
+    array->data[i][1] = array->data[i - 1][1];
+  }
+  array->data[0][0] = x;
+  array->data[0][1] = y;
+  array->elements++;
+}
+\end{solution}
+\else
+\begin{lstlisting}
+void array_unshift(Array *array, double x, double y)
+\end{lstlisting}
+\fi
+
+\part Écrire la fonction \CD{array_insert}
+
+\ifprintanswers
+\begin{solution}
+void array_insert(Array *array, size_t index, double x, double y) {
+  if (array->elements == array->capacity) {
+    array->capacity *= 2;
+    array->data = realloc(array->data, sizeof(double[2]) * array->capacity);
+  }
+  for (size_t i = array->elements; i > index; i--) {
+    array->data[i][0] = array->data[i - 1][0];
+    array->data[i][1] = array->data[i - 1][1];
+  }
+  array->data[index][0] = x;
+  array->data[index][1] = y;
+  array->elements++;
+}
+\end{solution}
+\else
+\begin{lstlisting}
+void array_insert(Array *array, size_t index, double x, double y);
+\end{lstlisting}
+\fi
+
+\part Écrire la fonction \CD{array_delete}
+
+\ifprintanswers
+\begin{solution}
+void array_delete(Array *array, size_t index) {
+  for (size_t i = index; i < array->elements - 1; i++) {
+    array->data[i][0] = array->data[i + 1][0];
+    array->data[i][1] = array->data[i + 1][1];
+  }
+  array->elements--;
+}
+
+\end{solution}
+\else
+\begin{lstlisting}
+void array_delete(Array *array, size_t index);
+\end{lstlisting}
+\fi
+
+\part Quelle est la complexité (Big-O) en temps pour l'opération \emph{push} ?
+
+\begin{solution}
+O(1) amorti.
+\end{solution}
+
+\part Quelle est la complexité (Big-O) en temps pour l'opération \emph{insert} ?
+
+\begin{solution}
+O(n)
+\end{solution}
+
+\end{parts}
+\end{questions}
+
+
+\ifprintanswers
+\else
+\end{multicols}
+\fi
+\end{document}

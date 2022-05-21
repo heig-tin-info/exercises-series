@@ -283,3 +283,6 @@ TSWLatexianTemp*
 build/
 series-*.pdf
 revision.tex
+
+*:Zone.Identifier
+.vscode/
