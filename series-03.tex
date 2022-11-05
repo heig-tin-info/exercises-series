@@ -20,27 +20,27 @@
 
 \begin{questions}
 
-\question Pour chacune des constantes littérales de type caractère suivantes indiquez si elles sont correctes ou non.
-\begin{parts}
-    \part \CD{'a'} \hfill \fillin[Correct][10cm]
-    \part \CD{'A'} \hfill \fillin[Correct][10cm]
-    \part \CD{'ab'} \hfill \fillin[Incorrect, seulement 1 caractère][10cm]
-    \part \CD{'\\x41'} \hfill \fillin[Correct][10cm]
-    \part \CD{'\\041'} \hfill \fillin[Correct][10cm]
-    \part \CD{'\\0x41'} \hfill \fillin[Incorrect][10cm]
-    \part \CD{'\\n'} \hfill \fillin[Correct][10cm]
-    \part \CD{'\\w'} \hfill \fillin[Incorrect][10cm]
-    \part \CD{'\\t'} \hfill \fillin[Correct (tabulation)][10cm]
-    \part \CD{'\\xp2'} \hfill \fillin[Incorrect, p2 n'est pas hexadécimal][10cm]
-    \part \CD{"abc"} \hfill \fillin[Correct][10cm]
-    \part \CD{"\\abc\\ndef"} \hfill \fillin[Correct][10cm]
-    \part \CD{"\\'\\"\\"} \hfill \fillin[Correct][10cm]
-\end{parts}
-\vskip 2em
+    \question Pour chacune des constantes littérales de type caractère suivantes indiquez si elles sont correctes ou non.
+    \begin{parts}
+        \part \CD{'a'} \hfill \fillin[Correct][10cm]
+        \part \CD{'A'} \hfill \fillin[Correct][10cm]
+        \part \CD{'ab'} \hfill \fillin[Incorrect, seulement 1 caractère][10cm]
+        \part \CD{'\\x41'} \hfill \fillin[Correct][10cm]
+        \part \CD{'\\041'} \hfill \fillin[Correct][10cm]
+        \part \CD{'\\0x41'} \hfill \fillin[Incorrect. Pour l'exadécimal c'est \CD{'\\x41'}][10cm]
+        \part \CD{'\\n'} \hfill \fillin[Correct][10cm]
+        \part \CD{'\\w'} \hfill \fillin[Incorrect][10cm]
+        \part \CD{'\\t'} \hfill \fillin[Correct (tabulation)][10cm]
+        \part \CD{'\\xp2'} \hfill \fillin[Incorrect, p2 n'est pas hexadécimal][10cm]
+        \part \CD{"abc"} \hfill \fillin[Correct][10cm]
+        \part \CD{"\\abc\\ndef"} \hfill \fillin[Correct][10cm]
+        \part \CD{"\\'\\"\\"} \hfill \fillin[Correct][10cm]
+    \end{parts}
+    \vskip 2em
 
-\question
-Quel est le \textbf{type} résultant puis la \textbf{valeur} des expressions suivantes ?
-\begin{lstlisting}
+    \question
+    Quel est le \textbf{type} résultant puis la \textbf{valeur} des expressions suivantes ?
+    \begin{lstlisting}
 int n, p;
 float x;
 n = 10;
@@ -48,103 +48,103 @@ p = 7;
 x = 2.5;
 \end{lstlisting}
 
-\begin{parts}
-  \part \CD{x + n \% p} \hfill \fillin[float][5cm]\hspace{1cm}\fillin[5.5][2cm]
-  \part \CD{x + p / n}\hfill \fillin[float][5cm]\hspace{1cm}\fillin[2.5][2cm]
-  \part \CD{(x + p) / n}\hfill \fillin[float][5cm]\hspace{1cm}\fillin[0.95][2cm]
-  \part \CD{.5 * n}\hfill \fillin[double][5cm]\hspace{1cm}\fillin[5.0][2cm]
-  \part \CD{.5 * (float)n}\hfill \fillin[double][5cm]\hspace{1cm}\fillin[5.0][2cm]
-  \part \CD{(int).5 * n}\hfill \fillin[int][5cm]\hspace{1cm}\fillin[0][2cm]
-  \part \CD{(n + 1) / n}\hfill \fillin[int][5cm]\hspace{1cm}\fillin[1][2cm]
-  \part \CD{(n + 1.0) / n}\hfill \fillin[double][5cm]\hspace{1cm}\fillin[1.1][2cm]
-\end{parts}
-\vskip 2em
-\newpage
-\question Que voyez-vous sur la sortie standard ?
+    \begin{parts}
+        \part \CD{x + n \% p} \hfill \fillin[float][5cm]\hspace{1cm}\fillin[5.5][2cm]
+        \part \CD{x + p / n}\hfill \fillin[float][5cm]\hspace{1cm}\fillin[2.5][2cm]
+        \part \CD{(x + p) / n}\hfill \fillin[float][5cm]\hspace{1cm}\fillin[0.95][2cm]
+        \part \CD{.5 * n}\hfill \fillin[double][5cm]\hspace{1cm}\fillin[5.0][2cm]
+        \part \CD{.5 * (float)n}\hfill \fillin[double][5cm]\hspace{1cm}\fillin[5.0][2cm]
+        \part \CD{(int).5 * n}\hfill \fillin[int][5cm]\hspace{1cm}\fillin[0][2cm]
+        \part \CD{(n + 1) / n}\hfill \fillin[int][5cm]\hspace{1cm}\fillin[1][2cm]
+        \part \CD{(n + 1.0) / n}\hfill \fillin[double][5cm]\hspace{1cm}\fillin[1.1][2cm]
+    \end{parts}
+    \vskip 2em
+    \newpage
+    \question Que voyez-vous sur la sortie standard ?
 
-\begin{parts}
-  \part \CD{printf("\%d\n", 42);}  \hfill \fillin[\CD{42}][5cm]
-  \part \CD{printf("u\% 5d\n", 42);}  \hfill \fillin[\CD{u   42}][5cm]
-  \part \CD{printf("\%05d\n", 42);}  \hfill \fillin[\CD{00042}][5cm]
-  \part \CD{printf("\%-5d<", 42);}  \hfill \fillin[\CD{42   <}][5cm]
-  \part \CD{printf("\%-05d\n", i);}  \hfill \fillin[\CD{42000}][5cm]
-  \part \CD{printf("\%0*d\n", 10, i);}  \hfill \fillin[\CD{0000000042}][5cm]
-  \part \CD{printf("\%.1f\n", 3.1415);}  \hfill \fillin[\CD{3.1}][5cm]
-  \part \CD{printf("\%05.1f\n", 3.1415);}  \hfill \fillin[\CD{003.1}][5cm]
-  \part \CD{printf("\%d\%d\%d\n", 42, 23, 42);}  \hfill \fillin[\CD{422342}][5cm]
-  \part \CD{printf("\%d \%d \%d\n", 42, 23, 42);}  \hfill \fillin[\CD{42 23 42}][5cm]
-  \part \CD{printf(">\%c.<", 'a' + 1);}  \hfill \fillin[\CD{>b.<}][5cm]
-\end{parts}
-\vskip 2em
+    \begin{parts}
+        \part \CD{printf("\%d\\n", 42);}  \hfill \fillin[\CD{"42\\n"}][5cm]
+        \part \CD{printf("u\% 5d\\n", 42);}  \hfill \fillin[\CD{"u   42\\n"}][5cm]
+        \part \CD{printf("\%05d\\n", 42);}  \hfill \fillin[\CD{"00042\\n"}][5cm]
+        \part \CD{printf("\%-5d<", 42);}  \hfill \fillin[\CD{"42   <"}][5cm]
+        \part \CD{printf("\%-05d\\n", i);}  \hfill \fillin[\CD{"42   \\n"}][5cm]
+        \part \CD{printf("\%0*d\\n", 10, i);}  \hfill \fillin[\CD{"0000000042\\n"}][5cm]
+        \part \CD{printf("\%.1f\\n", 3.1415);}  \hfill \fillin[\CD{"3.1\\n"}][5cm]
+        \part \CD{printf("\%05.1f\\n", 3.1415);}  \hfill \fillin[\CD{"003.1\\n"}][5cm]
+        \part \CD{printf("\%d\%d\%d\\n", 42, 23, 42);}  \hfill \fillin[\CD{"422342\\n"}][5cm]
+        \part \CD{printf("\%d \%d \%d\\n", 42, 23, 42);}  \hfill \fillin[\CD{"42 23 42\\n"}][5cm]
+        \part \CD{printf(">\%c.<", 'a' + 1);}  \hfill \fillin[\CD{">b.<"}][5cm]
+    \end{parts}
+    \vskip 2em
 
-% \question Considérons le cas d’un système de vision industrielle qui inspecte des pièces fabriquées au sein d'une ligne d’assemblage. Le programme de ce système de vision comporte certaines variables internes permettant de mémoriser le décompte des pièces analysées. Ces variables sont les suivantes :
+    % \question Considérons le cas d’un système de vision industrielle qui inspecte des pièces fabriquées au sein d'une ligne d’assemblage. Le programme de ce système de vision comporte certaines variables internes permettant de mémoriser le décompte des pièces analysées. Ces variables sont les suivantes :
 
-% \begin{lstlisting}
-%   int nb_parts = 2000;
-%   int nb_parts_bad = 200;
-%   double percent_good = (nb_parts - nb_parts_bad) / nb_parts;
-% \end{lstlisting}
+    % \begin{lstlisting}
+    %   int nb_parts = 2000;
+    %   int nb_parts_bad = 200;
+    %   double percent_good = (nb_parts - nb_parts_bad) / nb_parts;
+    % \end{lstlisting}
 
-% \begin{parts}
-%   \part Quel résultats espérait le développeur ?
-%   \ifprintanswers
-%   \begin{solution}
-%   Avec 200 pièces mauvaises sur 2000 pièces produites, le programmeur attendait un résultat de 0.9, signifiant 90 \% de pièces bonnes.
-%   \end{solution}
-%   \else
-%   \fillwithdottedlines{3cm}
-%   \fi
+    % \begin{parts}
+    %   \part Quel résultats espérait le développeur ?
+    %   \ifprintanswers
+    %   \begin{solution}
+    %   Avec 200 pièces mauvaises sur 2000 pièces produites, le programmeur attendait un résultat de 0.9, signifiant 90 \% de pièces bonnes.
+    %   \end{solution}
+    %   \else
+    %   \fillwithdottedlines{3cm}
+    %   \fi
 
-%   \part Qu'obtient-il dans la pratique ?
-%   \ifprintanswers
-%   \begin{solution}
-%   0.0
-%   \end{solution}
-%   \else
-%   \fillwithdottedlines{1cm}
-%   \fi
-%   \part Expliquez les défaut constaté ?
-%   \ifprintanswers
-%   \begin{solution}
-%     Le calcul effectue la division entière 1800 / 2000, qui donne comme résultat 0. Ensuite, le résultat est transformé en float et donne 0.0
-%   \end{solution}
-%   \else
-%   \fillwithdottedlines{1cm}
-%   \fi
-%   \part Que corriger pour obtenir un résultat correct ?
-%   \ifprintanswers
-%   \begin{solution}
-%     \begin{lstlisting}
-% int nb_parts = 2000;
-% int nb_parts_bad = 200;
-% double percent_good = (double)(nb_parts - nb_parts_bad) / nb_parts;
-%     \end{lstlisting}
-%   \end{solution}
-%   \else
-%   \fillwithdottedlines{1cm}
-%   \fi
-% \end{parts}
+    %   \part Qu'obtient-il dans la pratique ?
+    %   \ifprintanswers
+    %   \begin{solution}
+    %   0.0
+    %   \end{solution}
+    %   \else
+    %   \fillwithdottedlines{1cm}
+    %   \fi
+    %   \part Expliquez les défaut constaté ?
+    %   \ifprintanswers
+    %   \begin{solution}
+    %     Le calcul effectue la division entière 1800 / 2000, qui donne comme résultat 0. Ensuite, le résultat est transformé en float et donne 0.0
+    %   \end{solution}
+    %   \else
+    %   \fillwithdottedlines{1cm}
+    %   \fi
+    %   \part Que corriger pour obtenir un résultat correct ?
+    %   \ifprintanswers
+    %   \begin{solution}
+    %     \begin{lstlisting}
+    % int nb_parts = 2000;
+    % int nb_parts_bad = 200;
+    % double percent_good = (double)(nb_parts - nb_parts_bad) / nb_parts;
+    %     \end{lstlisting}
+    %   \end{solution}
+    %   \else
+    %   \fillwithdottedlines{1cm}
+    %   \fi
+    % \end{parts}
 
-\question Quels sont les valeurs des variables modifiées ?
+    \question Quels sont les valeurs des variables modifiées ?
 
-\begin{lstlisting}
+    \begin{lstlisting}
   int i = 0;
   int j = 0;
   int r = 0;
   char c = '\0';
 \end{lstlisting}
 
-\begin{parts}
-  \part \CD{r = sscanf("42", "\%d", &i);} \hfill \fillin[i = 42, r = 1][8cm]
-  \part \CD{r = sscanf("4 8", "\%d", &i);} \hfill \fillin[i = 4, r = 1][8cm]
-  \part \CD{r = sscanf("4 8", "\%d \%d", &i, &j);} \hfill \fillin[\CD{i = 4, j = 8, r = 2}][8cm]
-  \part \CD{r = sscanf("4 8", "\%d\%d", &i, &j);} \hfill \fillin[\CD{i = 4, j = 8, r = 2}][8cm]
-  \part \CD{r = sscanf("15 16", "\%d\%c\%d", &i, &c, &j);} \hfill \fillin[\CD{i = 15, c = ' ', j = 16, r = 3}][8cm]
-  \part \CD{r = sscanf("1568", "\%1d\%2d", &i, &j);} \hfill \fillin[\CD{i = 1, j = 56, r = 2}][8cm]
-  \part \CD{r = sscanf("1568", "\%c\%c", &i, &j);} \hfill \fillin[\CD{i = 0x30, j = 0x35, r = 2}][8cm]
-  \part \CD{r = sscanf("1568", "\%*c\%c", &i);} \hfill \fillin[\CD{i = 0x35, r = 1}][8cm]
-\end{parts}
-\vskip 2em
+    \begin{parts}
+        \part \CD{r = sscanf("42", "\%d", &i);} \hfill \fillin[\CD{i = 42, r = 1}][8cm]
+        \part \CD{r = sscanf("4 8", "\%d", &i);} \hfill \fillin[\CD{i = 4, r = 1}][8cm]
+        \part \CD{r = sscanf("4 8", "\%d \%d", &i, &j);} \hfill \fillin[\CD{i = 4, j = 8, r = 2}][8cm]
+        \part \CD{r = sscanf("4 8", "\%d\%d", &i, &j);} \hfill \fillin[\CD{i = 4, j = 8, r = 2}][8cm]
+        \part \CD{r = sscanf("15 16", "\%d\%c\%d", &i, &c, &j);} \hfill \fillin[\CD{i = 15, c = ' ', j = 16, r = 3}][8cm]
+        \part \CD{r = sscanf("1568", "\%1d\%2d", &i, &j);} \hfill \fillin[\CD{i = 1, j = 56, r = 2}][8cm]
+        \part \CD{r = sscanf("1568", "\%c\%c", &i, &j);} \hfill \fillin[\CD{i = 0x30, j = 0x35, r = 2}][8cm]
+        \part \CD{r = sscanf("1568", "\%*c\%c", &i);} \hfill \fillin[\CD{i = 0x35, r = 1}][8cm]
+    \end{parts}
+    \vskip 2em
 
 \end{questions}
 
