@@ -197,37 +197,37 @@ Lorsque le nombre d'itérations est connu à l'avance, la boucle \CD{for} est la
 \begin{parts}
 \part
 \begin{lstlisting}
-for (i = 'a'; i < 'd'; printf("\%i-", ++i));
+for (i = 'a'; i < 'd'; printf("%i-", ++i));
 \end{lstlisting}
 \answerline[98-99-100-]
 \part
 \begin{lstlisting}
-for (i = 'a'; i < 'd'; printf("\%c-", ++i));
+for (i = 'a'; i < 'd'; printf("%c-", ++i));
 \end{lstlisting}
 \answerline[b-c-d-]
 \part
 \begin{lstlisting}
-for (i = 'a'; i++ < 'd'; printf("\%c-", i ));
+for (i = 'a'; i++ < 'd'; printf("%c-", i ));
 \end{lstlisting}
 \answerline[b-c-d]
 \part
 \begin{lstlisting}
-for (i = 'a'; i <= 'a' + 25; printf("\%c-", i++ ));
+for (i = 'a'; i <= 'a' + 25; printf("%c-", i++ ));
 \end{lstlisting}
 \answerline[a-b-c-d-...z-]
 \part
 \begin{lstlisting}
-for (i = 1 / 3; i ; printf("\%i\n", i++ ));
+for (i = 1 / 3; i ; printf("%i\n", i++ ));
 \end{lstlisting}
 \answerline[(rien)]
 \part
 \begin{lstlisting}
-for (i = 0; i != 1  ; printf("\%i", i += 1 / 3 ));
+for (i = 0; i != 1  ; printf("%i", i += 1 / 3 ));
 \end{lstlisting}
 \answerline[0000 ...]
 \part
 \begin{lstlisting}
-for (i = 12, k = 1; k++ < 5 ; printf("\%i ", i-- ));
+for (i = 12, k = 1; k++ < 5 ; printf("%i ", i-- ));
 \end{lstlisting}
 \answerline[12 11 10 9 ]
 \end{parts}
@@ -256,7 +256,7 @@ while ( i < 11 ) { i += 2; printf("%i-", i); }
 \answerline[2-4-6-8-10-12-]
 \part
 \begin{lstlisting}
-for (i = 'a'; i <= 'a' + 25; printf("\%c-", i++ ));
+for (i = 'a'; i <= 'a' + 25; printf("%c-", i++ ));
 \end{lstlisting}
 \answerline[a-b-c-d-...z-]
 \part
