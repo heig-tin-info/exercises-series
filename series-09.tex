@@ -1,0 +1,256 @@
+\documentclass[french,a4paper,addpoints,11pt]{exam}
+\usepackage{hexercises}
+\usepackage{mathtools, nccmath}
+\title{Pointeurs et tableaux}
+\seriesno{\texttt{0x09}}
+\department{TIN}
+\classroom{INFO1-TIN}
+
+\setlength\answerlinelength{10 cm}
+\setlength\answerskip{3ex}
+\setlength\answerclearance{1.1ex}
+\CorrectChoiceEmphasis{}
+\renewcommand{\thepartno}{\alph{partno}}
+\renewcommand{\partlabel}{\thepartno.}
+\renewcommand{\arraystretch}{1.75} % expand the cells vertically
+
+\begin{document}
+\maketitle
+\thispagestyle{headandfoot}
+
+Pour vous préparer aux examens écrits, on vous propose de réaliser les exercices suivants sur papier avec un crayon et une gomme. Vous pouvez utiliser des feuilles de brouillon.
+
+\begin{questions}
+
+\question Que fait ce programme ?
+
+\begin{solutionordottedlines}[6cm]
+\lstinputlisting{upper.c}
+\end{solutionordottedlines}
+
+\question Sans utiliser \CD{strlen}, écrire une fonction qui calcule la longueur d'une chaîne de caractère.
+
+\begin{solutionordottedlines}[5cm]
+\begin{lstlisting}
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char *argv[]) {
+    for (int i = 0; i < argc; ++i) { // Itère sur les arguments
+        char buffer[100]; // Crée un espace de travail modifiable
+        // Si l'argument dépasse la taille du buffer on l'ignore
+        if (strlen(argv[i]) > 100) {
+            printf("Argument trop long: ignore\n");
+            continue;
+        }
+        // Copie l'argument dans le buffer
+        strncpy(buffer, argv[i], 100);
+
+        // Transforme les minuscules en majuscules
+        for (int j = 0; j < strlen(buffer); ++j)
+            if (buffer[j] >= 'a' && buffer[j] <= 'z')
+                buffer[j] -= 'a' - 'A';
+
+        // Affiche le contenu du buffer
+        char *p = buffer;
+        while (*p != '\0') {
+            printf("%c", *p);
+            p++;
+        }
+        puts("");
+    }
+}
+\end{lstlisting}
+\end{solutionordottedlines}
+
+\question Questions sur les tableaux
+
+Considérez ces déclarations:
+
+\begin{lstlisting}
+    int a[10];
+    int b[10][10];
+    int c[] = {1, 2, 3, 4, 5};
+    int d[] = "Hello";
+    int *e[10];
+    int (*f)[10];
+\end{lstlisting}
+
+\begin{parts}
+
+\part Quelle est la taille en mémoire de chaque déclaration ?
+
+\begin{solutionordottedlines}[3cm]
+\begin{lstlisting}
+int a[10]; // 10 * sizeof(int) = 40
+int b[10][10]; // 10 * 10 * sizeof(int) = 400
+int c[] = {1, 2, 3, 4, 5}; // 5 * sizeof(int) = 20
+int d[] = "Hello"; // (5 + 1) * sizeof(char) = 6
+
+// Déclare e comme un tableau de 10 pointeurs vers int
+int *e[10]; // 10 * sizeof(int *) = 80
+
+// Déclare f comme un pointeur vers un tableau de 10 entiers
+int (*f)[10]; // sizeof(int *) = 8
+\end{lstlisting}
+\end{solutionordottedlines}
+
+\part Quelle est la différence entre \CD{sizeof(a)}, \CD{sizeof(*a)} et \CD{sizeof(a[1])} pour le tableau déclaré plus haut ?
+
+\begin{solutionordottedlines}[3cm]
+\begin{lstlisting}
+sizeof(a) = 40 // Taille du tableau, car sa taille est connue
+sizeof(*a) = sizeof(int) = 4 // Taille du premier élément du tableau
+sizeof(a[1]) = sizeof(int) = 4 // Taille du deuxième élément du tableau
+\end{lstlisting}
+\end{solutionordottedlines}
+
+\part Quelle est la différence entre \CD{sizeof(d)}, \CD{strlen(d)} ? Et comment est-ce que \CD{strlen} fonctionne ?
+
+\begin{solutionordottedlines}[3cm]
+\begin{lstlisting}
+sizeof(d) = 6 // Taille du tableau en mémoire (5 octets plus la sentinelle)
+strlen(d) = 5 // Taille de la chaîne de caractères, sans la sentinelle
+\end{lstlisting}
+
+La fonction \CD{strlen} itère sur la chaîne de caractères jusqu'à trouver la sentinelle \CD{'\textbackslash 0'}.
+\end{solutionordottedlines}
+
+\part Pouvez-vous implémenter le comportement de \CD{strlen} ?
+
+\begin{solutionordottedlines}[3cm]
+\begin{lstlisting}
+size_t strlen(char *str) {
+    size_t size = 0;
+    while(str[++size] != '\0') {}
+    return size;
+}
+\end{lstlisting}
+\end{solutionordottedlines}
+
+\part Comment afficher le contenu de \CD{b} sous forme de matrice ligne colonne ?
+
+\begin{solutionordottedlines}[6cm]
+\begin{lstlisting}
+for (int i = 0; i < 10; i++) {
+    for (int j = 0; j < 10; j++)
+        printf("%d ", b[i][j]);
+    printf("\n");
+}
+\end{lstlisting}
+\end{solutionordottedlines}
+
+\end{parts}
+
+\question Pointeurs et fonctions
+
+\begin{parts}
+
+\part Quelle est la différence entre \CD{int *p} et \CD{int* p} ?
+
+\begin{solutionordottedlines}[2cm]
+Il n'y en a pas, les deux sont équivalents. Rappelez-vous que le C ne considère pas les espaces comme significatifs.
+\end {solutionordottedlines}
+
+\part Quelle est la différence entre \CD{int *p} et \CD{int p[10]} ?
+
+\begin{solutionordottedlines}[3cm]
+
+\CD{int *p} est un pointeur vers un entier, la variable prend en mémoire la taille d'une adresse soit 64 bits sur une architecture 64 bits. Elle ne définit pas un tableau mais contient uniquement une adresse.
+
+\CD{int p[10]} déclare un tableau non initialisé de 10 entiers. La différence est que \CD{p} peut être modifié pour pointer vers un autre entier, alors que \CD{p[10]} est une constante qui ne peut pas être modifiée, seul le contenu du tableau peut être modifié.
+\end {solutionordottedlines}
+
+\part Pour la déclaration \CD{int a[10]}, si j'écrit \CD{a[10] = 42}, est-ce que le compilateur va générer une erreur ? Et que se passe-t-il ?
+
+\begin{solutionordottedlines}[3cm]
+Le compilateur ne génère pas d'erreur, mais le comportement est indéfini. Cela veut dire que le compilateur peut générer un code qui fonctionne, ou qui ne fonctionne pas, ou qui fonctionne parfois et pas d'autres fois. C'est une erreur de programmation car on accède à un élément qui n'existe pas.
+
+En effet \CD{a[10]} est un raccourci pour \CD{*(a + 10)}, et \CD{a + 10} est une adresse qui n'est pas dans le tableau car on accède au onzième élément alors que le tableau n'en contient que dix. On appelle ça du jardinage mémoire et le risque est une erreur de segmentation.
+\end{solutionordottedlines}
+
+\end{parts}
+
+\question Passage par adresse et par valeur
+
+\begin{parts}
+
+\part Que signifie ce prototype de fonction \CD{void f(int *p)} ?
+
+\begin{solutionordottedlines}[2cm]
+La fonction \CD{f} reçoit un pointeur vers un entier en paramètre. C'est à dire qu'elle reçoit l'adresse d'une variable de type entier et peut donc modifier cette variable à la source. Si la variable p était passée directement \CD{void f(int p)}, la fonction recevrait une copie de la variable et ne pourrait pas la modifier. Enfin, elle pourrait modifier la valeur sur le \emph{stack} mais pas la valeur de la variable originale.
+\end{solutionordottedlines}
+
+\part Que signifie ce prototype de fonction \CD{void f(int a[])}, comparez avec la question précédente.
+
+\begin{solutionordottedlines}[2cm]
+C'est la même chose. L'écriture \CD{int a[]} est un raccourci pour \CD{int *a}.
+\end{solutionordottedlines}
+
+\part Considérez le code suivant:
+
+\lstinputlisting{ptr.c}
+
+Est-ce que ce code est fonctionnel ? Que voyons-nous à l'écran?
+
+\begin{solutionordottedlines}[3cm]
+Le code compile mais n'est pas correct. Il affichera:
+
+\begin{lstlisting}
+40
+8
+\end{lstlisting}
+
+Il affiche la taille en bytes du tableau. Cependant comme seul le pointeur est reçu dans la fonction `f`, la taille du tableau n'est pas connue. Le compilateur considère ainsi `a` comme un pointeur simple et retourne la taille d'un pointeur.
+
+Par ailleurs une alerte de compilation apparaît:
+
+\begin{lstlisting}
+ptr.c: In function 'f':
+ptr.c:5:18: warning: 'sizeof' on array function parameter 'a' will return size of 'int *' [-Wsizeof-array-argument]
+    5 |     return sizeof(a);
+      |                  ^
+\end{lstlisting}
+
+\end{solutionordottedlines}
+
+\part Si le code est modifié avec ce prototype de fonction \CD{void f(int a[10])}, comparez avec la questions précédente.
+
+\begin{solutionordottedlines}[3cm]
+Le comportement est strictement identique car \CD{int a[10]} est un raccourci pour \CD{int *a}. Le passage de la taille du tableau est ignoré par le compilateur.
+\end{solutionordottedlines}
+
+\part Comment convenablement écrire la fonction \CD{f} pour qu'elle s'adapte à n'importe quelle taille de tableau ? (indice, il faut deux paramètres)
+
+\begin{solutionordottedlines}[3cm]
+Il faut passer le tableau ainsi que sa taille en paramètres. Par exemple:
+
+\begin{lstlisting}
+size_t f(int a[], size_t size) {
+    for (int i = 0; i < size; i++)
+        printf("%d\n", a[i]);
+    return size;
+}
+\end{lstlisting}
+
+La fonction retourne la taille du tableau et affiche sur la sortie standard les éléments du tableau.
+
+\part Comment modifier le prototype de `f` pour que le tableau puisse être parcouru mais qu'il ne puisse pas être modifié ?
+
+\begin{solutionordottedlines}[3cm]
+Il faut passer le tableau en lecture seule. Par exemple:
+
+\begin{lstlisting}
+size_t f(const int a[], size_t size) {
+    for (int i = 0; i < size; i++)
+        printf("%d\n", a[i]);
+    return size;
+}
+\end{solutionordottedlines}
+
+\end{parts}
+
+
+\end{questions}
+
+\end{document}
