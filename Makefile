@@ -11,7 +11,6 @@ $(PDFS):%.pdf:%.tex FORCE | build revision.tex
 	latexmk -jobname=build/$(@:.pdf=) "$<"
 
 $(SOLUTIONS):%-solution.pdf:%.tex FORCE | build
-
 	latexmk -jobname=build/$(@:.pdf=) -pdflatex='xelatex %O "\PassOptionsToClass{answers}{exam}\input{%S}"' $<
 
 build:

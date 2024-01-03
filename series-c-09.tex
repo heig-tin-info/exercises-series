@@ -113,7 +113,7 @@ sizeof(d) = 6 // Taille du tableau en mémoire (5 octets plus la sentinelle)
 strlen(d) = 5 // Taille de la chaîne de caractères, sans la sentinelle
 \end{lstlisting}
 
-La fonction \CD{strlen} itère sur la chaîne de caractères jusqu'à trouver la sentinelle \CD{'\textbackslash 0'}.
+La fonction \CD{strlen} itère sur la chaîne de caractères jusqu'à trouver la sentinelle \CD{'\0'}.
 \end{solutionordottedlines}
 
 \part Pouvez-vous implémenter le comportement de \CD{strlen} ?
@@ -234,8 +234,9 @@ size_t f(int a[], size_t size) {
 \end{lstlisting}
 
 La fonction retourne la taille du tableau et affiche sur la sortie standard les éléments du tableau.
+\end{solutionordottedlines}
 
-\part Comment modifier le prototype de `f` pour que le tableau puisse être parcouru mais qu'il ne puisse pas être modifié ?
+\part Comment modifier le prototype de \CD{f} pour que le tableau puisse être parcouru mais qu'il ne puisse pas être modifié ?
 
 \begin{solutionordottedlines}[3cm]
 Il faut passer le tableau en lecture seule. Par exemple:
@@ -246,6 +247,7 @@ size_t f(const int a[], size_t size) {
         printf("%d\n", a[i]);
     return size;
 }
+\end{lstlisting}
 \end{solutionordottedlines}
 
 \end{parts}
