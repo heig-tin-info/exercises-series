@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.ref }}
       - name: Build docker images
@@ -20,7 +20,7 @@ jobs:
       - name: Clean 
         run: docker run -v $GITHUB_WORKSPACE:/srv -w/srv local /bin/bash -c 'find . -type f ! -iname "*.pdf" -delete'
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: pdf
           path: build/
@@ -42,7 +42,7 @@ jobs:
           draft: false
           prerelease: false
       - name: Download artifacts
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v4.1.8
         with:
           name: pdf
           path: dist
