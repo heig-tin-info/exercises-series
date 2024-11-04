@@ -34,7 +34,7 @@
         \part \CD{'\\xp2'} \hfill \fillin[Incorrect, p2 n'est pas hexadécimal][10cm]
         \part \CD{"abc"} \hfill \fillin[Correct][10cm]
         \part \CD{"\\abc\\ndef"} \hfill \fillin[Correct][10cm]
-        \part \CD{"\\'\\"\\"} \hfill \fillin[Correct][10cm]
+        \part \CD{"\\'\\"\\"} \hfill \fillin[Incorrect, la chaîne n'est pas terminée][10cm]
     \end{parts}
     \vskip 2em
 
@@ -67,8 +67,8 @@ x = 2.5;
         \part \CD{printf("u\% 5d\\n", 42);}  \hfill \fillin[\CD{"u   42\\n"}][5cm]
         \part \CD{printf("\%05d\\n", 42);}  \hfill \fillin[\CD{"00042\\n"}][5cm]
         \part \CD{printf("\%-5d<", 42);}  \hfill \fillin[\CD{"42   <"}][5cm]
-        \part \CD{printf("\%-05d\\n", i);}  \hfill \fillin[\CD{"42   \\n"}][5cm]
-        \part \CD{printf("\%0*d\\n", 10, i);}  \hfill \fillin[\CD{"0000000042\\n"}][5cm]
+        \part \CD{printf("\%-05d\\n", 42);}  \hfill \fillin[\CD{"42   \\n"}][5cm]
+        \part \CD{printf("\%0*d\\n", 10, 42);}  \hfill \fillin[\CD{"0000000042\\n"}][5cm]
         \part \CD{printf("\%.1f\\n", 3.1415);}  \hfill \fillin[\CD{"3.1\\n"}][5cm]
         \part \CD{printf("\%05.1f\\n", 3.1415);}  \hfill \fillin[\CD{"003.1\\n"}][5cm]
         \part \CD{printf("\%d\%d\%d\\n", 42, 23, 42);}  \hfill \fillin[\CD{"422342\\n"}][5cm]
