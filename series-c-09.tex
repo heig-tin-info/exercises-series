@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
     int a[10];
     int b[10][10];
     int c[] = {1, 2, 3, 4, 5};
-    int d[] = "Hello";
+    char d[] = "Hello";
     int *e[10];
     int (*f)[10];
 \end{lstlisting}
@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
 int a[10]; // 10 * sizeof(int) = 40
 int b[10][10]; // 10 * 10 * sizeof(int) = 400
 int c[] = {1, 2, 3, 4, 5}; // 5 * sizeof(int) = 20
-int d[] = "Hello"; // (5 + 1) * sizeof(char) = 6
+char d[] = "Hello"; // (5 + 1) * sizeof(char) = 6
 
 // Déclare e comme un tableau de 10 pointeurs vers int
 int *e[10]; // 10 * sizeof(int *) = 80

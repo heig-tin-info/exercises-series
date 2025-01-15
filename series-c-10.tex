@@ -1,0 +1,188 @@
+\documentclass[french,a4paper,addpoints,11pt]{exam}
+\usepackage{hexercises}
+\usepackage{mathtools, nccmath}
+\title{Révision, fonctions et programmes}
+\seriesno{\texttt{0x10}}
+\department{TIN}
+\classroom{INFO1-TIN}
+
+\setlength\answerlinelength{10 cm}
+\setlength\answerskip{3ex}
+\setlength\answerclearance{1.1ex}
+\CorrectChoiceEmphasis{}
+\renewcommand{\thepartno}{\alph{partno}}
+\renewcommand{\partlabel}{\thepartno.}
+\renewcommand{\arraystretch}{1.75} % expand the cells vertically
+
+\renewcommand{\choiceshook}{%
+    \setlength{\leftmargin}{20pt}%
+}
+
+\begin{document}
+\maketitle
+\thispagestyle{headandfoot}
+
+\begin{questions}
+
+\titledquestion{Choix multiples}
+
+\begin{parts}
+\part Cocher les propositions vraies concernant \CD{strncmp} ?
+
+\begin{choices}
+\CorrectChoice La fonction compare deux chaînes de caractères jusqu'à un certain nombre de caractères.
+\choice La fonction compare deux chaînes de caractères jusqu'à la fin.
+\choice La fonction retourne 1 si les chaînes sont égales.
+\CorrectChoice La fonction peut s'appeler avec \CD{strncmp("abc", "ab", 2)}.
+\end{choices}
+
+\part Quel est le rôle de l'opérateur \CD{^} ?
+\begin{multicols}{2}
+\begin{choices}
+\choice Puissance comme dans \CD{10^3}.
+\CorrectChoice Ou exclusif.
+\choice Ou inclusif.
+\choice Et logique.
+\choice Modulo.
+\choice Inversion bit à bit.
+\end{choices}
+\end{multicols}
+
+\part Quelles sont les déclarations de tableaux valides ?
+\begin{multicols}{2}
+\begin{choices}
+\choice \CD{int a[] = 0;}
+\CorrectChoice \CD{int a[10];}
+\CorrectChoice \CD{int a[10] = {1, 2, 3, 4, 5};}
+\CorrectChoice \CD{int a[] = {1, 2, 3, 4, 5};}
+\choice \CD{int a[10] = 0;}
+\choice \CD{int a[3]; a = {1,2,3};}
+\end{choices}
+\end{multicols}
+
+\part Cocher ce qui est vrai concernant \CD{int *p} et \CD{int p[10]} ?
+\begin{choices}
+\CorrectChoice \CD{int *p} est un pointeur vers un entier, \CD{int p[10]} est un tableau de 10 entiers.
+\CorrectChoice La taille de \CD{int *p} est la taille d'une adresse, la taille de \CD{int p[10]} est la taille de 10 entiers soit 40 octets.
+\choice \CD{int *p} est un tableau de 10 entiers, \CD{int p[10]} est un pointeur vers un entier.
+\CorrectChoice Les deux peuvent être passés à une fonction pour être modifiés.
+\CorrectChoice L'accès à l'élément 2 s'écrit dans les deux cas \CD{p[2]}.
+\end{choices}
+
+\end{parts}
+
+\titledquestion{Fonctions}
+
+\begin{parts}
+
+\part Écrire une fonction \CD{vowel} qui prend en paramètre une chaîne de caractère et qui retourne le nombre de voyelles dans la chaîne.
+
+\begin{solution}
+\begin{lstlisting}
+int vowel(char *str) {
+    int count = 0;
+    while (*str != '\0') {
+        char c = tolower(*str);
+        if (c == 'a' || c == 'e' || c == 'i' ||
+            c == 'o' || c == 'u' || c == 'y')
+            count++;
+        str++;
+    }
+    return count;
+}
+\end{lstlisting}
+\end{solution}
+
+\part Écrire une fonction \CD{max_interval} qui calcule l'intervalle le plus grand dans un tableau d'entiers passé en paramètre. Le second paramètre est la taille du tableau.
+
+\begin{solution}
+\begin{lstlisting}
+int max_interval(int *a, size_t size) {
+    int max = 0;
+    for (size_t i = 0; i < size; i++) {
+        for (size_t j = i + 1; j < size; j++) {
+            int interval = a[j] - a[i];
+            if (interval > max)
+                max = interval;
+        }
+    }
+    return max;
+}
+\end{lstlisting}
+\end{solution}
+
+\part Écrire une fonction \CD{is_palindrome} qui retourne vrai si une chaîne de caractères est un palindrome, faux sinon. La chaîne est passée en paramètre.
+
+\begin{solution}
+\begin{lstlisting}
+bool is_palindrome(char *str) {
+    size_t size = strlen(str);
+    for (size_t i = 0; i < size / 2; i++) {
+        if (str[i] != str[size - i - 1])
+            return false;
+    }
+    return true;
+}
+\end{lstlisting}
+\end{solution}
+
+\part Écrire une fonction qui prend en paramètre deux tableaux d'entiers et qui s'assure que l'un est bien dans l'ordre inverse que l'autre. La fonction prend en paramètre les deux tableaux et leur taille qui est commune.
+
+\begin{solution}
+\begin{lstlisting}
+bool is_reverse(int *a, int *b, size_t size) {
+    for (size_t i = 0; i < size; i++) {
+        if (a[i] != b[size - i - 1])
+            return false;
+    }
+    return true;
+}
+\end{lstlisting}
+\end{solution}
+
+\part Écrire un une fonction qui rempli un tableau à deux dimensions de taille 10x10 avec des valeurs aléatoires entre 0 et 100. La fonction prend en paramètre le tableau, le nombre de lignes et le nombre de colonnes.
+
+\begin{solution}
+\begin{lstlisting}
+void fill_random(int a[10][10]) {
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++)
+            a[i][j] = rand() % 101;
+    }
+}
+\end{lstlisting}
+\end{solution}
+
+\end{parts}
+
+\question Écrire un programme complet qui lit sur les arguments \CD{--min=X} et \CD{--max=Y} où X et Y sont des entiers positifs. Le programme appelle une fonction \CD{compute(x, y)} avec les valeurs capturées sur les arguments. Cette fonction retourne vraie si elle s'est exécutée correctement, sinon faux.
+
+\begin{solution}
+\begin{lstlisting}
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+extern bool compute(int x, int y);
+
+int main(int argc, char* argv[]) {
+    int x, y;
+    for (int arg = 1; arg < argc; arg++) {
+        if (strncmp(argv[arg], "--min=", 6) == 0) {
+            x = atoi(argv[arg + 1]);
+            continue;
+        }
+        if (strncmp(argv[arg], "--max=", 6) == 0) {
+            y = atoi(argv[arg + 1]);
+            continue;
+        }
+        printf("Usage: %s --min=X --max=Y\n", argv[0]);
+        return 1;
+    }
+    return compute(x, y);
+}
+\end{lstlisting}
+\end{solution}
+
+\end{questions}
+\end{document}
