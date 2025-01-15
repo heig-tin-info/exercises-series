@@ -75,7 +75,7 @@ short i = 'A' > 'B' ? 'C' : 'D';
 \part Que valent \CD{i}, \CD{j} et \CD{k} ? \hfill \fillin[i: 1, j: 0, k: 5][5cm]
 \begin{lstlisting}
 short i = 0, j = 1, k;
-k = k = 5, i++ >= j ? i++ : --j;
+k = (k = 5, i++) >= j ? i++ : --j;
 \end{lstlisting}
 
 \part Que valent \CD{i}, \CD{j} et \CD{k} ? \hfill \fillin[i: 3, j: 1, k: 8][5cm]
@@ -148,24 +148,25 @@ x ^= 1 << n;
 int32_t reverse(int32_t num);
 \end{lstlisting}
 
-Exemple : 123 donne 321. 208478933 donne 339874802.
+Exemple : 123 donne 321 et 208478933 donne 339874802.
 
 \ifprintanswers
 \begin{solution}
 \begin{lstlisting}
 int32_t reverse(int32_t num) {
-  unsigned int count = sizeof(num) * 8 - 1;
-  int32_t reversed = num;
+  int32_t reversed = 0;
 
-  num >>= 1;
-  while(num)
-  {
-     reversed <<= 1;
-     reversed |= num & 1;
-     num >>= 1;
-     count--;
+  while (num != 0) {
+    // Extraire le dernier chiffre
+    int32_t digit = num % 10;
+
+    // Ajouter ce chiffre à la valeur retournée
+    reversed = reversed * 10 + digit;
+
+    // Retirer le dernier chiffre
+    num /= 10;
   }
-  reversed <<= count;
+
   return reversed;
 }
 \end{lstlisting}
