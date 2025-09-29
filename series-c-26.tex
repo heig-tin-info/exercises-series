@@ -84,7 +84,7 @@ assert(r != NULL);
 \part Redimensionnez la variable \CD{r} pour y stocker jusqu'à 100 points.
 \begin{solution}
 \begin{lstlisting}
-void *tmp = realloc(sizeof(Record) + sizeof(Point) * 100, 1);
+void *tmp = realloc(r, sizeof(Record) + sizeof(Point) * 100);
 assert(tmp != NULL);
 r = tmp;
 \end{lstlisting}
@@ -118,13 +118,13 @@ int resize(Measurements *meas, size_t n) {
   if (n < meas->elements)
     return 1;
   if (meas->data == NULL) {
-    meas->data = malloc(sizeof(Measurements.data[0]));
+    meas->data = malloc(sizeof(Measurements.data[0]) * n);
     if (meas->data == NULL) return 2;
     meas->capacity = n;
     return 0;
   }
   meas->capacity = n;
-  void *tmp = realloc(meas->data, sizeof(Measurements.data[0]) * meas->capacity;
+  void *tmp = realloc(meas->data, sizeof(Measurements.data[0]) * meas->capacity);
   if (tmp == NULL) return 3;
   meas->data = tmp;
   return 0;
@@ -146,9 +146,9 @@ typedef struct measurements {
 int resize(Measurements **meas, size_t n) {
   if ((*meas) == NULL) {
     (*meas) = malloc(sizeof(Measurements) + n * sizeof(Measurements.data[0]));
+    if ((*meas) == NULL) return 2;
     (*meas)->capacity = n;
     (*meas)->elements = 0;
-    if ((*meas) == NULL) return 2;
     return 0;
   }
   if (n < (*meas)->elements)
@@ -176,7 +176,7 @@ La grille est stockée dans un pointeur sur un tableau à deux dimensions, dont 
 \begin{lstlisting}
 const int columns = 10;
 assert(columns < UINT8_MAX);
-uint8_t (*grid)[][columns] = calloc(sizeof(uint8_t), columns * columns);
+uint8_t (*grid)[columns] = calloc(columns, sizeof(uint8_t[columns]));
 assert(grid != NULL);
 \end{lstlisting}
 \end{solution}
