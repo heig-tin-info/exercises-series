@@ -43,7 +43,9 @@ void to_upper(char *str) {
 \begin{lstlisting}
 size_t strlen(char *str) {
     size_t size = 0;
-    while(str[++size] != '\0') {}
+    while(str[size] != '\0') {
+        size++;
+    }
     return size;
 }
 \end{lstlisting}
@@ -72,7 +74,7 @@ void swap(int *a, int *b)
 \end{lstlisting}
 \end{solutionordottedlines}
 
-\question Écrire une fonction qui reçois trois valeurs réelle en paramètres et qui les trie dans l'ordre croissant. Par exemple si vous avez $a=15, b=23, c=4$ après l'appel de fonction, ces valeurs vaudront : $a=4, b=15, c=23$. Vous pouvez utiliser la fonction \CD{swap} écrite plus haut pour échanger les valeurs.
+\question Écrire une fonction qui reçoit trois valeurs réelles en paramètres et qui les trie dans l'ordre croissant. Par exemple si vous avez $a=15, b=23, c=4$ après l'appel de fonction, ces valeurs vaudront : $a=4, b=15, c=23$. Vous pouvez utiliser la fonction \CD{swap} écrite plus haut pour échanger les valeurs.
 
 \begin{solutionordottedlines}[7cm]
 \begin{lstlisting}

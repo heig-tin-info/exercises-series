@@ -15,3 +15,5 @@ Séries d'exercices pour Info1 et Info2
 * [Série 06](series-c-06.tex) Opérateurs et embranchements
 * [Série 07](series-c-07.tex) Chaînes de caractères
 * [Série 08](series-c-08.tex) Programmation et algorithmique
+* [Série 09](series-c-09.tex) Pointeurs et tableaux
+* [Série 10](series-c-10.tex) Révision, fonctions et programmes

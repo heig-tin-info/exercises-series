@@ -114,7 +114,9 @@ La fonction \CD{strlen} itère sur la chaîne de caractères jusqu'à trouver la
 \begin{lstlisting}
 size_t strlen(char *str) {
     size_t size = 0;
-    while(str[++size] != '\0') {}
+    while(str[size] != '\0') {
+        size++;
+    }
     return size;
 }
 \end{lstlisting}
