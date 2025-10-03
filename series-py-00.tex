@@ -1,0 +1,104 @@
+\documentclass[french,a4paper,addpoints,11pt]{exam}
+\usepackage{hexercises}
+
+\title{Introduction à Python}
+\seriesno{\texttt{Py00}}
+\department{TIN}
+\classroom{INFO1-TIN}
+
+\setlength\answerlinelength{10 cm}
+\setlength\answerskip{3ex}
+\setlength\answerclearance{1.1ex}
+\CorrectChoiceEmphasis{}
+\renewcommand{\thepartno}{\alph{partno}}
+\renewcommand{\partlabel}{\thepartno.}
+\renewcommand{\arraystretch}{1.75}
+
+\begin{document}
+\maketitle
+\thispagestyle{headandfoot}
+
+\begin{questions}
+
+\question Quelques généralités.
+\begin{parts}
+    \part Qui est l'inventeur du langage Python ?
+    \answerline[Guido van Rossum]
+
+    \part Dans quelle année la première version publique du langage a-t-elle été publiée ?
+    \answerline[1991]
+
+    \part Citez au moins deux paradigmes de programmation que Python supporte.
+    \answerline[Impératif, Orienté objet, Fonctionnel]
+
+    \part Quelle implémentation de référence de Python est la plus utilisée ?
+    \answerline[CPython]
+
+    \part La traduction du code source Python en bytecode exécuté par l'interpréteur se fait lors de la \fillin[compilation] du fichier en \texttt{.pyc}.
+
+    \part Quel est l'outil officiel pour installer des paquets Python depuis le Python Package Index ?
+    \answerline[pip]
+
+    \part Quel site communautaire dédié à la programmation propose une catégorie spécifique pour Python parmi les choix suivants ?
+    \begin{checkboxes}
+        \choice \url{https://www.djangoproject.com}
+        \CorrectChoice \url{https://stackoverflow.com/}
+        \choice \url{https://docs.python.org/}
+        \choice \url{https://numpy.org}
+        \choice \url{https://puzzling.stackexchange.com/}
+    \end{checkboxes}
+\end{parts}
+
+\question
+Associez chaque type natif Python à un exemple de valeur valide.
+\begin{center}
+    \begin{tabular}{p{0.35\linewidth}p{0.55\linewidth}}
+        Type & Exemple \\ \hline
+        \fillin[\texttt{int}] & \texttt{42} \\
+        \fillin[\texttt{float}] & \texttt{3.14} \\
+        \fillin[\texttt{str}] & \texttt{"Bonjour"} \\
+        \fillin[\texttt{bool}] & \texttt{True} \\
+        \fillin[\texttt{list}] & \texttt{[1, 2, 3]} \\
+        \fillin[\texttt{tuple}] & \texttt{("x", "y")} \\
+        \fillin[\texttt{dict}] & \texttt{\{"cle": 1\}} \\
+    \end{tabular}
+\end{center}
+
+\question
+Complétez les fragments de code suivants.
+\begin{parts}
+    \part Complétez la déclaration d'une fonction qui retourne la longueur d'une chaîne.
+    \begin{verbatim}
+    def longueur(texte):
+        return \fillin[len(texte)]
+    \end{verbatim}
+
+    \part Complétez une boucle qui parcourt les éléments d'une liste.
+    \begin{verbatim}
+    fruits = ["pomme", "poire", "banane"]
+    for \fillin[fruit] in fruits:
+        print(\fillin[fruit])
+    \end{verbatim}
+
+    \part Complétez l'utilisation d'une compréhension de liste produisant les carrés de 0 à 4.
+    \begin{verbatim}
+    carres = [\fillin[i ** 2] for i in range(\fillin[5])]
+    \end{verbatim}
+\end{parts}
+
+\question
+Expliquez les termes suivants en une ou deux phrases.
+\begin{parts}
+    \part Interpréteur Python
+    \answerline[Programme qui lit et exécute le bytecode Python en gérant la mémoire et l'environnement d'exécution.]
+
+    \part Typage dynamique
+    \answerline[Système où le type d'une variable est déterminé à l'exécution et peut varier au cours du programme.]
+
+    \part Module
+    \answerline[Fichier ou ensemble de fichiers contenant du code Python réutilisable importé via l'instruction \texttt{import}.]
+\end{parts}
+
+\end{questions}
+
+\end{document}
