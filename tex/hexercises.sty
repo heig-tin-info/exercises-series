@@ -69,6 +69,12 @@
 \DeclareRobustCommand*\seriesno[1]{\gdef\@seriesno{#1}}
 \DeclareRobustCommand*\classroom[1]{\gdef\@classroom{#1}}
 
+\makeatletter
+\providecommand\input@path{}
+\g@addto@macro\input@path{{../../}{../}{./}}
+\makeatother
+\graphicspath{{../../assets/}{../assets/}{assets/}}
+
 \input{revision}
 
 \def\@maketitle{%
