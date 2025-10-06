@@ -1,0 +1,43 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hexercises-common}[2024/06/02 Shared helpers for HEIG exercises]
+
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage{listings}
+\RequirePackage{multicol}
+\RequirePackage{graphicx}
+\RequirePackage{xpatch}
+\RequirePackage{realboxes}
+\RequirePackage{textcomp}
+\RequirePackage[ttdefault=true]{AnonymousPro}
+\RequirePackage{parskip}
+\RequirePackage{fontspec}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[french]{babel}
+
+\makeatletter
+\providecommand\input@path{}
+\g@addto@macro\input@path{{../../}{../}{./}}
+\makeatother
+\graphicspath{{../../assets/}{../assets/}{assets/}}
+
+\lstset{
+  language=c,
+  breaklines=true,
+  keywordstyle=\bfseries\color{black},
+  basicstyle=\ttfamily\color{black}\fontsize{9pt}{10pt}\selectfont,
+  keepspaces=true,
+  showspaces=false,
+  showtabs=true,
+  upquote=true,
+  aboveskip=2pt,
+  belowskip=2pt,
+  framexleftmargin=2pt,
+}
+
+\newcommand{\hexercisesInlineColor}{GitHubGray}
+\newcommand{\sethexercisesinlinecolor}[1]{\renewcommand{\hexercisesInlineColor}{#1}}
+
+\makeatletter
+\xpretocmd\lstinline{\Colorbox{\hexercisesInlineColor}\bgroup\appto\lst@DeInit{\egroup}}{}{}
+\makeatother
+
