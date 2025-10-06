@@ -17,6 +17,7 @@
 \usepackage[ttdefault=true]{AnonymousPro}
 \usepackage{parskip}
 \usepackage{fontspec}
+\usepackage{heiglogo}
 
 \usepackage{tikz}
 
@@ -77,16 +78,13 @@
 
 \input{revision}
 
+\makeatletter
 \def\@maketitle{%
   \newpage
-  \begin{tikzpicture}[remember picture,overlay,shift={(current page.north west)}]
-  \node[anchor=north west,xshift=2.1cm,yshift=-1.5cm]{
-      \includegraphics[width=1.7cm]{assets/heig-vd-black.pdf}
-  };
-  \end{tikzpicture}
+  \logo[height=1.5cm]
   \null
   \begin{center}%
-    {\LARGE Série d'exercices \@seriesno \par}%
+    {\LARGE Série d'exercice \@seriesno \par}%
     \ifprintanswers Solution \fi
 
     {\LARGE \bfseries\@title \par}%
@@ -99,6 +97,8 @@
   \par
   \noindent\rule{\textwidth}{0.4pt}\vskip 1em}
 
+\makeatother
+
 \newcommand{\CD}[1]{\lstinline{#1}}
 
 \qformat{\textbf{Exercice \thequestion}\hfill}
@@ -107,3 +107,11 @@
   \labelwidth=-\labelsep}
 
 \firstpagefooter{\revision}{}{Page \thepage\ sur \numpages}
+
+\makeatletter
+\AtBeginDocument{%
+  \@ifclassloaded{exam}{%
+    \renewcommand{\maketitle}{\@maketitle}%
+  }{}%
+}
+\makeatother

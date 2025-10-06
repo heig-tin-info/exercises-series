@@ -8,16 +8,19 @@ LATEXMK_FLAGS := -lualatex -interaction=nonstopmode -halt-on-error -silent
 
 all: $(PDFS) $(SOLUTIONS)
 
-build/series/%.pdf: tex/series/%.tex revision.tex
+build/series/%.pdf: tex/series/%.tex revision.tex heiglogo.sty
 	@mkdir -p $(@D)
 	latexmk $(LATEXMK_FLAGS) -output-directory=$(@D) $<
 
-build/series/%-solution.pdf: tex/series/%.tex revision.tex
+build/series/%-solution.pdf: tex/series/%.tex revision.tex heiglogo.sty
 	@mkdir -p $(@D)
 	latexmk $(LATEXMK_FLAGS) \
 		-output-directory=$(@D) \
 		-jobname=$(notdir $(basename $(@:.pdf=))) \
 		-pdflatex='lualatex %O "\PassOptionsToClass{answers}{exam}\input{%S}"' $<
+
+heiglogo.sty:
+	wget https://github.com/HEIG-VD/logos/releases/download/v0.5.0/heiglogo.sty -O tex/series/$@
 
 clean:
 	latexmk -C
