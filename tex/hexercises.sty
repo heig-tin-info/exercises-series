@@ -1,44 +1,25 @@
-\usepackage[a4paper, total={165mm,250mm}]{geometry}
-\usepackage{listings}
-\usepackage{multicol}
-\usepackage{graphicx}
-\usepackage[dvipsnames]{xcolor}
-\usepackage{regexpatch}
-\usepackage{realboxes}
-\usepackage{textcomp}
-\usepackage{xfrac}
-\usepackage{tikzpagenodes}
-\usepackage{inconsolata}
-\usepackage[framemethod=tikz]{mdframed}
-\usepackage{booktabs}
-\usepackage{hyperref}
-\usepackage[T1]{fontenc}
-\usepackage[french]{babel}
-\usepackage[ttdefault=true]{AnonymousPro}
-\usepackage{parskip}
-\usepackage{fontspec}
-\usepackage{heiglogo}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hexercises}[2024/06/02 HEIG exercise template]
 
-\usepackage{tikz}
+\RequirePackage{hexercises-common}
+\RequirePackage[a4paper, total={165mm,250mm}]{geometry}
+\RequirePackage{regexpatch}
+\RequirePackage{xfrac}
+\RequirePackage{tikzpagenodes}
+\RequirePackage{inconsolata}
+\RequirePackage[framemethod=tikz]{mdframed}
+\RequirePackage{booktabs}
+\RequirePackage{hyperref}
+\RequirePackage{heiglogo}
+\RequirePackage{tikz}
 
 \setlength{\parskip}{0em}
 
 \definecolor{GitHubGray}{rgb}{0.9,0.9,0.9}
 
 \lstset{
-    language=c,
-    breaklines=true,
-    keywordstyle=\bfseries\color{black},
-    basicstyle=\ttfamily\color{black}\fontsize{9pt}{10pt}\selectfont,
     emphstyle={\em \color{gray}},
-    keepspaces=true,
-    showspaces=false,
-    showtabs=true,
     tabsize=2,
-    upquote=true,
-    aboveskip=2pt,
-    belowskip=2pt,
-    framexleftmargin=2pt,
     extendedchars=true,
     inputencoding=utf8,
     literate=
@@ -63,18 +44,12 @@
   innerbottommargin=3pt
 }
 
-\xpretocmd\lstinline{\Colorbox{GitHubGray}\bgroup\appto\lst@DeInit{\egroup}}{}{}
+\sethexercisesinlinecolor{GitHubGray}
 
 \DeclareRobustCommand*\school[1]{\gdef\@school{#1}}
 \DeclareRobustCommand*\department[1]{\gdef\@department{#1}}
 \DeclareRobustCommand*\seriesno[1]{\gdef\@seriesno{#1}}
 \DeclareRobustCommand*\classroom[1]{\gdef\@classroom{#1}}
-
-\makeatletter
-\providecommand\input@path{}
-\g@addto@macro\input@path{{../../}{../}{./}}
-\makeatother
-\graphicspath{{../../assets/}{../assets/}{assets/}}
 
 \input{revision}
 
@@ -96,7 +71,6 @@
   \end{center}%
   \par
   \noindent\rule{\textwidth}{0.4pt}\vskip 1em}
-
 \makeatother
 
 \newcommand{\CD}[1]{\lstinline{#1}}
@@ -115,3 +89,4 @@
   }{}%
 }
 \makeatother
+

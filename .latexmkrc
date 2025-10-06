@@ -14,8 +14,8 @@ $luainputs .= ':' . $ENV{LUAINPUTS} if defined $ENV{LUAINPUTS} && length $ENV{LU
 $luainputs .= ':';
 $ENV{LUAINPUTS} = $luainputs;
 
-$latex = 'lualatex %O %S';
-$pdflatex = 'lualatex %O %S';
-$pdf_mode = 1;
-$dvi_mode = 0;
-$postscript_mode = 0;
+our $latex = 'lualatex %O %S';
+our $pdflatex = 'lualatex %O %S';
+our $pdf_mode = 1;
+our $dvi_mode = 0;
+our $postscript_mode = 0;
