@@ -18,6 +18,7 @@ Séries d'exercices pour Info1 et Info2
 * [Série 09](tex/series/c/series-c-09.tex) Pointeurs et tableaux
 * [Série 10](tex/series/c/series-c-10.tex) Révision, fonctions et programmes
 * [Série 10 Rocket](tex/series/c/series-c-10-rocket.tex) Lanceur Spatial
+* [Série 10 Freinage](tex/series/c/series-c-10-freinage.tex) Freinage automobile avec traînée
 * [Série 20](tex/series/c/series-c-20.tex) Révision du cours Info1
 * [Série 21](tex/series/c/series-c-21.tex) Les fichiers
 * [Série 22](tex/series/c/series-c-22.tex) Les structures de données
