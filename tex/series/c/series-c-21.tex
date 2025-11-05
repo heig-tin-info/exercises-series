@@ -1,4 +1,6 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage{mathtools, nccmath}
 \title{Les fichiers}
 \course{INFO2-TIN}
@@ -22,27 +24,27 @@
 
 \part Quelle est la fonction utilisée pour positionner manuellement le curseur dans un fichier ?
 \begin{checkboxes}
-    \choice \cinline{fopen}
-    \choice \cinline{fgets}
-    \CorrectChoice \cinline{fseek}
-    \choice \cinline{fputc}
-    \choice \cinline{feof}
+    \choice \cinline!fopen!
+    \choice \cinline!fgets!
+    \CorrectChoice \cinline!fseek!
+    \choice \cinline!fputc!
+    \choice \cinline!feof!
 \end{checkboxes}
 
-\part Quel est le mode à transmettre à l'appel \cinline{fopen("f.txt", mode)} pour ouvrir un fichier existant en mode binaire en lecture écriture ?
+\part Quel est le mode à transmettre à l'appel \cinline!fopen("f.txt", mode)! pour ouvrir un fichier existant en mode binaire en lecture écriture ?
 \begin{checkboxes}
-    \choice \cinline{"r"}
-    \choice \cinline{"w"}
-    \CorrectChoice \cinline{"ab+"}
-    \choice \cinline{"aw"}
-    \choice \cinline{"w+"}
+    \choice \cinline!"r"!
+    \choice \cinline!"w"!
+    \CorrectChoice \cinline!"ab+"!
+    \choice \cinline!"aw"!
+    \choice \cinline!"w+"!
 \end{checkboxes}
 \end{parts}
 
-\question Vous disposez d'un pointeur sur un fichier ouvert en lecture \cinline{fp} et vous souhaitez connaître la taille de ce fichier. Écrire une fonction \cinline{size_t fsize(FILE *fp)} qui retourne la taille du fichier.
+\question Vous disposez d'un pointeur sur un fichier ouvert en lecture \cinline!fp! et vous souhaitez connaître la taille de ce fichier. Écrire une fonction \cinline!size_t fsize(FILE *fp)! qui retourne la taille du fichier.
 
 \begin{solutionordottedlines}[7cm]
-\begin{lstlisting}
+\begin{code}[c]
 size_t fsize(FILE *fp) {
     if (fp == NULL) return 0;
     size_t size = 0;
@@ -51,13 +53,13 @@ size_t fsize(FILE *fp) {
     fseek(fp, 0, SEEK_SET);
     return size;
 }
-\end{lstlisting}
+\end{code}
 \end{solutionordottedlines}
 
 \question Écrire un programme qui prend le nom d'un fichier texte en argument ainsi qu'un texte à rechercher. Votre programme doit afficher le numéro de toute ligne du fichier contenant le texte recherché.
 
 \begin{solutionordottedlines}[10cm]
-\begin{lstlisting}
+\begin{code}[c]
 int main(int argc, char *argv[]) {
     assert(argc == 3);
     char *filename = argv[1];
@@ -73,13 +75,13 @@ int main(int argc, char *argv[]) {
         }
     }
 }
-\end{lstlisting}
+\end{code}
 \end{solutionordottedlines}
 
 \question Écrire un programme qui retourne la taille de la ligne la plus longue dans un fichier texte. Le programme prend soit un nom de fichier passé en arguments, soit utilise l'entrée standard.
 
 \begin{solutionordottedlines}[10cm]
-\begin{lstlisting}
+\begin{code}[c]
 int main(int argc, char *argv[]) {
     char *filename = argc > 1 ? argv[1] : stdin;
     FILE *fp = fopen(filename, "r");
@@ -98,7 +100,7 @@ int main(int argc, char *argv[]) {
         count++;
     }
 }
-\end{lstlisting}
+\end{code}
 \end{solutionordottedlines}
 
 \end{questions}

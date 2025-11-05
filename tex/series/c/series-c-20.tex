@@ -1,4 +1,6 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage{mathtools, nccmath}
 \title{Révision du cours Info1}
 \course{INFO2-TIN}
@@ -11,45 +13,45 @@
 
 \question Considérez les déclarations suivantes :
 
-\begin{lstlisting}
+\begin{code}[c]
 char c = 3;    short s = 7;
 int i = 3;     long l = 4;
 float f = 3.3; double d = 7.7;
-\end{lstlisting}
+\end{code}
 
 Pour chacune des expressions ci-dessous, indiquez leur type et leur valeur.
 
-\textbf{Exemple :} \cinline{2 / 3 * c}, réponse : \cinline{(int)0}.
+\textbf{Exemple :} \cinline!2 / 3 * c!, réponse : \cinline!(int)0!.
 
 \begin{parts}
-    \part \cinline{c / 2}
+    \part \cinline!c / 2!
     \answerline[\canswer{(int)1}]
 
-    \part \cinline{s + c / 10}
+    \part \cinline!s + c / 10!
     \answerline[\canswer{(int)7}]
 
-    \part \cinline{l + i / 2.0}
+    \part \cinline!l + i / 2.0!
     \answerline[\canswer{(double)5.5}]
 
-    \part \cinline{d + f}
+    \part \cinline!d + f!
     \answerline[\canswer{(double)11}]
 
-    \part \cinline{(int)d + f}
+    \part \cinline!(int)d + f!
     \answerline[\canswer{(float)10.3}]
 
-    \part \cinline{(int)d + l}
+    \part \cinline!(int)d + l!
     \answerline[\canswer{(long)11}]
 
-    \part \cinline{c << 2}
+    \part \cinline!c << 2!
     \answerline[\canswer{(int)12}]
 
-    \part \cinline{s & 0xf0}
+    \part \cinline!s & 0xf0!
     \answerline[\canswer{(int)0}]
 
-    \part \cinline{s && 0xf0}
+    \part \cinline!s && 0xf0!
     \answerline[\canswer{(int)1}]
 
-    \part \cinline{d + f == s + l}
+    \part \cinline!d + f == s + l!
     \answerline[\canswer{(int)0}]
 \end{parts}
 
@@ -60,32 +62,32 @@ Dans chacune des structures de contrôle ci-dessous, indiquer la nature de l'err
 
 \part ~\par
 
-\begin{lstlisting}
+\begin{code}[c]
 double x = 100.0;
 size_t i = 0;
 do
     x = x / 2.0;
     i++;
 while (x > 1.0);
-\end{lstlisting}
+\end{code}
 
 \begin{solutionordottedlines}[2cm]
-Il manque les accolades autour du bloc \cinline{do..while}.
+Il manque les accolades autour du bloc \cinline!do..while!.
 \end{solutionordottedlines}
 
 \part ~\par
-\begin{lstlisting}
+\begin{code}[c]
 long x = 100;
 if (x = 0)
     printf("Erreur : la valeur 0 est interdite !\n");
-\end{lstlisting}
+\end{code}
 
 \begin{solutionordottedlines}[2cm]
-Le test d'égalité utilise l'opérateur \cinline{==}. L'opérateur d'affectation \cinline{=} n'est pas valable.
+Le test d'égalité utilise l'opérateur \cinline!==!. L'opérateur d'affectation \cinline!=! n'est pas valable.
 \end{solutionordottedlines}
 
 \part ~\par
-\begin{lstlisting}
+\begin{code}[c]
 double x = 100.0;
 switch (x) {
     case 0:
@@ -94,35 +96,35 @@ switch (x) {
     default:
         print("OK.\n");
 }
-\end{lstlisting}
+\end{code}
 
 \begin{solutionordottedlines}[2cm]
-L'instruction \cinline{switch} n'est pas applicable à un type à virgule flottante.
+L'instruction \cinline!switch! n'est pas applicable à un type à virgule flottante.
 \end{solutionordottedlines}
 
 \part ~\par
-\begin{lstlisting}
+\begin{code}[c]
 for (int i = 0; i < 10; i++);
 {
     printf("%d\n", i);
 }
-\end{lstlisting}
+\end{code}
 
 \begin{solutionordottedlines}[2cm]
 Le point virgule à la fin de l'instruction termine cette dernière. Le bloc formé des accolades n'appartient pas à la boucle.
 \end{solutionordottedlines}
 
 \part ~\par
-\begin{lstlisting}
+\begin{code}[c]
 int i = 0;
 while i < 100
 {
     printf("%d\n", ++i);
 }
-\end{lstlisting}
+\end{code}
 
 \begin{solutionordottedlines}[2cm]
-Il manque des parenthèses autour de la condition de l'instruction \cinline{while}.
+Il manque des parenthèses autour de la condition de l'instruction \cinline!while!.
 \end{solutionordottedlines}
 \end{parts}
 
@@ -131,9 +133,9 @@ Il manque des parenthèses autour de la condition de l'instruction \cinline{whil
 \question
 On s'intéresse ici au passage par adresse. Observez le programme suivant et indiquez ce que vous voyez sur la sortie standard.
 
-\begin{lstlisting}
-#include <stdio.h>
-#include <stdlib.h>
+\begin{code}[c]
+\#include <stdio.h>
+\#include <stdlib.h>
 
 int test(int a, int *b, int *c, int *d) {
     a = *b;
@@ -148,24 +150,24 @@ int main() {
   e = test(a, &b, &c, &d);
   printf("%05d %d %d %d %d", a, b, c, d, e);
 }
-\end{lstlisting}
+\end{code}
 
 \begin{solutionordottedlines}[1cm]
-\cinline{00000 105 102 300 102}
+\cinline!00000 105 102 300 102!
 \end{solutionordottedlines}
 
-\question Algorithme sur les tableaux : écrire une fonction qui reçoit en paramètre un tableau d'entiers et qui retourne la position de la première occurrence d'une valeur dans ce tableau, ou \cinline{-1} si la valeur n'est pas présente. Utiliser la syntaxe pointeur pour le paramètre tableau.
+\question Algorithme sur les tableaux : écrire une fonction qui reçoit en paramètre un tableau d'entiers et qui retourne la position de la première occurrence d'une valeur dans ce tableau, ou \cinline!-1! si la valeur n'est pas présente. Utiliser la syntaxe pointeur pour le paramètre tableau.
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 int index(int *array, size_t size, int value) {
   for (int i = 0; i < size; i++)
       if (array[i] == value)
           return i;
   return -1;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
 \fillwithdottedlines{5cm}
@@ -176,7 +178,7 @@ int index(int *array, size_t size, int value) {
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 double distance(double x1, double y1, double x2, double y2) {
   return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
 }
@@ -190,7 +192,7 @@ double length(double array[][2], size_t size) {
       );
   return length;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
 \fillwithdottedlines{7cm}

@@ -1,4 +1,6 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage{mathtools, nccmath}
 \title{Chaînes de caractères}
 \course{INFO1-TIN}
@@ -13,38 +15,38 @@
 
 \begin{parts}
 \part
-\begin{lstlisting}
-char s[] = 'foo';\end{lstlisting}
+\begin{code}[c]
+char s[] = 'foo';\end{code}
 \answerline[Erreur, guillemet simple]
 
 \part
-\begin{lstlisting}
-char s[42] = "Les carottes sont cuites.";\end{lstlisting}
+\begin{code}[c]
+char s[42] = "Les carottes sont cuites.";\end{code}
 \answerline[L'expression compile et la chaîne est modifiable.]
 
 \part
-\begin{lstlisting}
-char s[2] = "Babel Fish";\end{lstlisting}
+\begin{code}[c]
+char s[2] = "Babel Fish";\end{code}
 \answerline[Erreur : la taille de la chaîne est trop courte]
 
 \part
-\begin{lstlisting}
-char s[] = "foo\0bar\0";\end{lstlisting}
+\begin{code}[c]
+char s[] = "foo\0bar\0";\end{code}
 \answerline[L'expression compile et la chaîne est modificable]
 
 \part
-\begin{lstlisting}
-char *s = "Prix Béton 1981";\end{lstlisting}
+\begin{code}[c]
+char *s = "Prix Béton 1981";\end{code}
 \answerline[L'expression compile mais la chaîne est non modifiable]
 
 \part
-\begin{lstlisting}
-char *s[] = {"foo", "bar", "baz"};\end{lstlisting}
+\begin{code}[c]
+char *s[] = {"foo", "bar", "baz"};\end{code}
 \answerline[Le tableau de chaînes est non modifiable]
 
 \part
-\begin{lstlisting}
-char s[] = {"foo" "bar" "baz"};\end{lstlisting}
+\begin{code}[c]
+char s[] = {"foo" "bar" "baz"};\end{code}
 \answerline[La chaîne compile et est modifiable. Elle vaut \canswer{"foobarbaz"}]
 
 \end{parts}
@@ -53,64 +55,64 @@ char s[] = {"foo" "bar" "baz"};\end{lstlisting}
 \begin{parts}
 
 \part
-\begin{lstlisting}
-int foo() { char s[] = "foo"; return strlen(s); }\end{lstlisting}
+\begin{code}[c]
+int foo() { char s[] = "foo"; return strlen(s); }\end{code}
 \answerline[3]
 
 \part
-\begin{lstlisting}
-int foo() { char s[] = "foo"; return sizeof(s); }\end{lstlisting}
+\begin{code}[c]
+int foo() { char s[] = "foo"; return sizeof(s); }\end{code}
 \answerline[4]
 
 \part
-\begin{lstlisting}
-int foo() { char s[] = "foo"; return s[3]; }\end{lstlisting}
+\begin{code}[c]
+int foo() { char s[] = "foo"; return s[3]; }\end{code}
 \answerline[0]
 
 \part
-\begin{lstlisting}
-int foo() { char s[] = "foo"; return s[4]; }\end{lstlisting}
+\begin{code}[c]
+int foo() { char s[] = "foo"; return s[4]; }\end{code}
 \answerline[On ne peut pas savoir, peut être une \emph{segmentation fault}.]
 
 \part
-\begin{lstlisting}
+\begin{code}[c]
 int foo() { char s[] = "foo\n\t\0bar"; return strlen(s); }
-\end{lstlisting}
+\end{code}
 \answerline[5]
 
 \end{parts}
 
-\question En utilisant la bibliothèque \emph{ctype.h}, écrire une fonction qui transforme une\ chaîne de caractères reçue en majuscules. Le prototype de la fonction est \cinline{void majuscule(char *s)}.
+\question En utilisant la bibliothèque \emph{ctype.h}, écrire une fonction qui transforme une\ chaîne de caractères reçue en majuscules. Le prototype de la fonction est \cinline!void majuscule(char *s)!.
 
 \ifprintanswers
 
-\begin{lstlisting}
+\begin{code}[c]
 void majuscule(char *s) {
   while (*s) {
     *s = toupper(*s);
     s++;
   }
 }
-\end{lstlisting}
+\end{code}
 \fi
 
-\question Soit un texte d'entrée, indiquer la position à laquelle se trouve une sous-chaîne, si elle existe. Sinon retourne -1. Le prototype de la fonction est \cinline{int position(char s[], char sub[])}. Aidez-vous également de la bibliothèque \emph{ctype.h}
+\question Soit un texte d'entrée, indiquer la position à laquelle se trouve une sous-chaîne, si elle existe. Sinon retourne -1. Le prototype de la fonction est \cinline!int position(char s[], char sub[])!. Aidez-vous également de la bibliothèque \emph{ctype.h}
 
 \ifprintanswers
 
-\begin{lstlisting}
+\begin{code}[c]
 int position(char s[], char sub[]) {
   if (strstr(s, sub) == NULL) {
     return -1;
   }
   return strstr(s, sub) - s;
 }
-\end{lstlisting}
+\end{code}
 \fi
 
 \question Que fait cette fonction et que retourne-t-elle ?
 
-\begin{lstlisting}
+\begin{code}[c]
 int mysterious()
 {
     char v[] = "aeiouy";
@@ -125,11 +127,11 @@ int mysterious()
     }
     return c;
 }
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
-La fonction compte le nombre de voyelles dans la chaîne \texttt{s}. Elle retourne la valeur 3.
+La fonction compte le nombre de voyelles dans la chaîne \cinline!s!. Elle retourne la valeur 3.
 \end{solution}
 \else
 \fillwithdottedlines{1cm}
@@ -139,15 +141,15 @@ La fonction compte le nombre de voyelles dans la chaîne \texttt{s}. Elle retour
 \textbf{Difficile : } Il existe trois types de modifications qui peuvent être appliquées à une chaîne de caractère : insérer un caractère, supprimer un caractère, ou remplacer un caractère. Considérant deux chaînes de caractères, écrivez une fonction qui retourne si les deux chaînes ne sont qu'à une modification pr\`es.
 
 \begin{itemize}
-\item \texttt{pale, ple -> true}
-\item \texttt{pales, pale -> true}
-\item \texttt{pale, bale -> true}
-\item \texttt{pale, bake -> false}
+\item \cinline!pale, ple -> true!
+\item \cinline!pales, pale -> true!
+\item \cinline!pale, bale -> true!
+\item \cinline!pale, bake -> false!
 \end{itemize}
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 bool one_away(char s1[], char s2[])
 {
     int i = 0, j = 0, k = 0;
@@ -201,7 +203,7 @@ bool one_away(char s1[], char s2[])
     }
     return 0;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 
 \fi

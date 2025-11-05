@@ -1,4 +1,6 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage{mathtools, nccmath}
 \title{Opérateurs logiques}
 \course{INFO1-TIN}
@@ -16,27 +18,27 @@
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 double x, y;
 int z = ((((x >= 0) && (x <= 20)) && (y > x)) || ((y == 50) && (x == (1 * 2))) || (y == (30 + 30)));
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
-\begin{lstlisting}
+\begin{code}[c]
 double x, y;
 int z = x >= 0 && x <= 20 && y > x || y == 50 && x == 1 * 2 || y == 30 + 30;
-\end{lstlisting}
+\end{code}
 \fi
 
-\part Quelle est la valeur de \cinline{z} évaluées avec les valeurs suivantes ?
+\part Quelle est la valeur de \cinline!z! évaluées avec les valeurs suivantes ?
 
 \begin{parts}
-\part \cinline{x = -1.0; y = 60.0;} \hfill \fillin[1][5cm]
-\part \cinline{x = 0.0 ; y = 1.0;} \hfill \fillin[1][5cm]
-\part \cinline{x = 19.0 ; y = 1.0;} \hfill \fillin[0][5cm]
-\part \cinline{x = 0.0 ; y = 50.0;} \hfill \fillin[1][5cm]
-\part \cinline{x = 2.0 ; y = 50.0;} \hfill \fillin[1][5cm]
-\part \cinline{x = -10.0 ; y = 60.0;} \hfill \fillin[1][5cm]
+\part \cinline!x = -1.0; y = 60.0;! \hfill \fillin[1][5cm]
+\part \cinline!x = 0.0 ; y = 1.0;! \hfill \fillin[1][5cm]
+\part \cinline!x = 19.0 ; y = 1.0;! \hfill \fillin[0][5cm]
+\part \cinline!x = 0.0 ; y = 50.0;! \hfill \fillin[1][5cm]
+\part \cinline!x = 2.0 ; y = 50.0;! \hfill \fillin[1][5cm]
+\part \cinline!x = -10.0 ; y = 60.0;! \hfill \fillin[1][5cm]
 \end{parts}
 
 \end{parts}
@@ -44,59 +46,59 @@ int z = x >= 0 && x <= 20 && y > x || y == 50 && x == 1 * 2 || y == 30 + 30;
 \question Cas particuliers
 
 \begin{parts}
-\part Que vaut \cinline{i} ? \hfill \fillin[\texttt{i} vaut 32768][5cm]
-\begin{lstlisting}
+\part Que vaut \cinline!i! ? \hfill \fillin[\texttt{i} vaut 32768][5cm]
+\begin{code}[c]
 uint16_t i = 32767;
 i++;
-\end{lstlisting}
+\end{code}
 
-\part Que vaut \cinline{i} ? \hfill \fillin[\texttt{i} vaut 0.][5cm]
-\begin{lstlisting}
+\part Que vaut \cinline!i! ? \hfill \fillin[\texttt{i} vaut 0.][5cm]
+\begin{code}[c]
 int16_t i = 0;
 --i; i--; i++; ++i;
-\end{lstlisting}
+\end{code}
 
-\part Que vaut \cinline{i} ? \hfill \fillin[\texttt{i} vaut \texttt{\detokenize{'D'}}, soit 68.][5cm]
-\begin{lstlisting}
+\part Que vaut \cinline!i! ? \hfill \fillin[\texttt{i} vaut \canswer{'D'}, soit 68.][5cm]
+\begin{code}[c]
 short i = 'A' > 'B' ? 'C' : 'D';
-\end{lstlisting}
+\end{code}
 
-\part Que valent \cinline{i}, \cinline{j} et \cinline{k} ? \hfill \fillin[i: 1, j: 0, k: 5][5cm]
-\begin{lstlisting}
+\part Que valent \cinline!i!, \cinline!j! et \cinline!k! ? \hfill \fillin[i: 1, j: 0, k: 5][5cm]
+\begin{code}[c]
 short i = 0, j = 1, k;
 k = (k = 5, i++) >= j ? i++ : --j;
-\end{lstlisting}
+\end{code}
 
-\part Que valent \cinline{i}, \cinline{j} et \cinline{k} ? \hfill \fillin[i: 3, j: 1, k: 8][5cm]
-\begin{lstlisting}
+\part Que valent \cinline!i!, \cinline!j! et \cinline!k! ? \hfill \fillin[i: 3, j: 1, k: 8][5cm]
+\begin{code}[c]
 short i = 2, j = 1, k;
 k = i >= j << 1 ? i++ << 2 : --j << 3;
-\end{lstlisting}
+\end{code}
 
 \end{parts}
 
-\question Calcul de masques : que vaut \cinline{m} en binaire ?
+\question Calcul de masques : que vaut \cinline!m! en binaire ?
 
-\begin{lstlisting}
+\begin{code}[c]
 char m, n = 2;
 char d = 0x55, e = 0xaa;
-\end{lstlisting}
+\end{code}
 
 \begin{parts}
-  \part \cinline{m = 1 << n;} \hfill \fillin[0b00000100][5cm]
-  \part \cinline{m = ~(1 << n);} \hfill \fillin[0b11111011][5cm]
-  \part \cinline{m = d | (1 << n);} \hfill \fillin[0b01010101][5cm]
-  \part \cinline{m = e | (1 << n);} \hfill \fillin[0b10101110][5cm]
-  \part \cinline{m = d ^ (1 << n);} \hfill \fillin[0b01010001][5cm]
-  \part \cinline{m = e ^ (1 << n);} \hfill \fillin[0b10101110][5cm]
-  \part \cinline{m = d & ~(1 << n);} \hfill \fillin[0b01010001][5cm]
-  \part \cinline{m = e & ~(1 << n);} \hfill \fillin[0b10101010][5cm]
+  \part \cinline!m = 1 << n;! \hfill \fillin[0b00000100][5cm]
+  \part \cinline!m = ~(1 << n);! \hfill \fillin[0b11111011][5cm]
+  \part \cinline!m = d | (1 << n);! \hfill \fillin[0b01010101][5cm]
+  \part \cinline!m = e | (1 << n);! \hfill \fillin[0b10101110][5cm]
+  \part \cinline!m = d ^ (1 << n);! \hfill \fillin[0b01010001][5cm]
+  \part \cinline!m = e ^ (1 << n);! \hfill \fillin[0b10101110][5cm]
+  \part \cinline!m = d & ~(1 << n);! \hfill \fillin[0b01010001][5cm]
+  \part \cinline!m = e & ~(1 << n);! \hfill \fillin[0b10101010][5cm]
 \end{parts}
 
 \question Résoudre le problème avec une ligne de code.
 
 \begin{parts}
-\part Mettre à 1 (\emph{set}) le n-ième bit de la variable \cinline{x}.
+\part Mettre à 1 (\emph{set}) le n-ième bit de la variable \cinline!x!.
 
 \ifprintanswers
 \begin{solution}
@@ -106,25 +108,25 @@ x |= 1 << n;
 \fillwithdottedlines{1cm}
 \fi
 
-\part Mettre à 0 (\emph{clear}) le n-ième bit de la variable \cinline{x}.
+\part Mettre à 0 (\emph{clear}) le n-ième bit de la variable \cinline!x!.
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 x &= ~(1 << n);
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
 \fillwithdottedlines{1cm}
 \fi
 
-\part Inverser (\emph{toggle}) le n-ième bit de la variable \cinline{x}.
+\part Inverser (\emph{toggle}) le n-ième bit de la variable \cinline!x!.
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 x ^= 1 << n;
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
 \fillwithdottedlines{1cm}
@@ -133,15 +135,15 @@ x ^= 1 << n;
 
 \question Écrire une fonction en C qui inverse les chiffres d'un entier. Utilisez le prototype suivant :
 
-\begin{lstlisting}
+\begin{code}[c]
 int32_t reverse(int32_t num);
-\end{lstlisting}
+\end{code}
 
 Exemple : 123 donne 321 et 208478933 donne 339874802.
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 int32_t reverse(int32_t num) {
   int32_t reversed = 0;
 
@@ -158,7 +160,7 @@ int32_t reverse(int32_t num) {
 
   return reversed;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
 \fillwithdottedlines{10cm}

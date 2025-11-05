@@ -1,4 +1,6 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage{mathtools, nccmath}
 \title{Types et Formats}
 \course{INFO1-TIN}
@@ -29,7 +31,7 @@
 
     \question
     Quel est le \textbf{type} résultant puis la \textbf{valeur} des expressions suivantes ?
-    \begin{code}{c}
+    \begin{code}[c]
 int n, p;
 float x;
 n = 10;
@@ -68,11 +70,11 @@ x = 2.5;
 
     % \question Considérons le cas d’un système de vision industrielle qui inspecte des pièces fabriquées au sein d'une ligne d’assemblage. Le programme de ce système de vision comporte certaines variables internes permettant de mémoriser le décompte des pièces analysées. Ces variables sont les suivantes :
 
-    % \begin{lstlisting}
+    % \begin{code}[c]
     %   int nb_parts = 2000;
     %   int nb_parts_bad = 200;
     %   double percent_good = (nb_parts - nb_parts_bad) / nb_parts;
-    % \end{lstlisting}
+    % \end{code}
 
     % \begin{parts}
     %   \part Quel résultats espérait le développeur ?
@@ -103,11 +105,11 @@ x = 2.5;
     %   \part Que corriger pour obtenir un résultat correct ?
     %   \ifprintanswers
     %   \begin{solution}
-    %     \begin{lstlisting}
+    %     \begin{code}[c]
     % int nb_parts = 2000;
     % int nb_parts_bad = 200;
     % double percent_good = (double)(nb_parts - nb_parts_bad) / nb_parts;
-    %     \end{lstlisting}
+    %     \end{code}
     %   \end{solution}
     %   \else
     %   \fillwithdottedlines{1cm}
@@ -116,12 +118,12 @@ x = 2.5;
 
     \question Quels sont les valeurs des variables modifiées ?
 
-    \begin{lstlisting}
+    \begin{code}[c]
 int i = 0;
 int j = 0;
 int r = 0;
 char c = '\0';
-\end{lstlisting}
+\end{code}
 
     \begin{parts}
         \part \cinline!r = sscanf("42", "%d", &i);! \hfill \fillin[\canswer{i = 42, r = 1}][8cm]

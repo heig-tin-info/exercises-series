@@ -1,4 +1,6 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage{mathtools, nccmath}
 \title{Opérateurs et embranchements}
 \course{INFO1-TIN}
@@ -9,12 +11,12 @@
 
 \begin{questions}
 
-\question Opérateurs Combinés : en reprenant à chaque fois les valeurs suivntes, calculer les valeurs de \cinline{i}, \cinline{j} et lorsque cela s'applique \cinline{z} après l'exécution des instructions suivantes :
+\question Opérateurs Combinés : en reprenant à chaque fois les valeurs suivntes, calculer les valeurs de \cinline!i!, \cinline!j! et lorsque cela s'applique \cinline!z! après l'exécution des instructions suivantes :
 
-\begin{lstlisting}
+\begin{code}[c]
 int i = 1; j = 3;
 int z;
-\end{lstlisting}
+\end{code}
 
 \begin{center}
 \begin{tabular}{l|*3{c}}
@@ -36,33 +38,33 @@ int z;
 \begin{parts}
 
 \part Simplifiez l'expression suivante
-\begin{lstlisting}
+\begin{code}[c]
 z = (a > b ? a : b) + (a <= b ? a : b) ;
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 z = a + b;
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
 \fillwithdottedlines{1cm}
 \fi
 
-\part Soit variable \cinline{n} est de type \cinline{int}. Écrire une expression unique qui prend la valeur:
+\part Soit variable \cinline!n! est de type \cinline!int!. Écrire une expression unique qui prend la valeur:
 
 \begin{enumerate}
-  \item \cinline{-1} si \cinline{n} est négatif
-  \item \cinline{0} si \cinline{n} est nul
-  \item \cinline{1} si \cinline{n} est positif
+  \item \cinline!-1! si \cinline!n! est négatif
+  \item \cinline!0! si \cinline!n! est nul
+  \item \cinline!1! si \cinline!n! est positif
 \end{enumerate}
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 n < 0 ? -1 : (n == 0) ? 0 : 1
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
 \fillwithdottedlines{1cm}
@@ -74,72 +76,72 @@ n < 0 ? -1 : (n == 0) ? 0 : 1
 \question Opérateurs incorrects
 
 Soit les déclarations suivantes, indiquez pourquoi les propositions suivantes sont incorrectes :
-\begin{lstlisting}
+\begin{code}[c]
 double f, g = 7;
 int i, j = j;
-\end{lstlisting}
+\end{code}
 
 \begin{parts}
 \part
-\begin{lstlisting}
+\begin{code}[c]
 int(f) + 1.9
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
-La coercition de type s'écrit \cinline{(int)f} et non \cinline{int(f)}.
+La coercition de type s'écrit \cinline!(int)f! et non \cinline!int(f)!.
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
 \fi
 
 \part
-\begin{lstlisting}
+\begin{code}[c]
 i = 1 + j = j / 2
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
-L'opérateur \cinline{=} est moins prioritaire que \cinline{+}. En conséquence, cette expression tente d'affecter \cinline{j / 2} à \cinline{1 + j}. Or, une affectation n'est possible que si l'expression à gauche est une variable, ce qui n'est pas le cas ici.
+L'opérateur \cinline!=! est moins prioritaire que \cinline!+!. En conséquence, cette expression tente d'affecter \cinline!j / 2! à \cinline!1 + j!. Or, une affectation n'est possible que si l'expression à gauche est une variable, ce qui n'est pas le cas ici.
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
 \fi
 
 \part
-\begin{lstlisting}
+\begin{code}[c]
 f = g << 2
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
-Le décalage de bits est un opérateur de type \cinline{int}, et non un opérateur de type \cinline{double}.
+Le décalage de bits est un opérateur de type \cinline!int!, et non un opérateur de type \cinline!double!.
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
 \fi
 
 \part
-\begin{lstlisting}
+\begin{code}[c]
 i = ++j++
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
-Cette expression essaie d'exécuter l'opérateur de post-incrémentation à \cinline{(++j)} or cette expression est évalué comme une valeur, et non une variable.
+Cette expression essaie d'exécuter l'opérateur de post-incrémentation à \cinline!(++j)! or cette expression est évalué comme une valeur, et non une variable.
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
 \fi
 
 \part
-\begin{lstlisting}
+\begin{code}[c]
 i++ = ++j
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
-La partie gauche de l'opérateur \cinline{i++} est évaluée comme une valeur, et n'est donc pas assignable. On dit que le membre de gauche n'est pas une \emph{lvalue}.
+La partie gauche de l'opérateur \cinline!i++! est évaluée comme une valeur, et n'est donc pas assignable. On dit que le membre de gauche n'est pas une \emph{lvalue}.
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
@@ -149,17 +151,17 @@ La partie gauche de l'opérateur \cinline{i++} est évaluée comme une valeur, e
 
 \question Indiquez pour chaque groupe d'instruction ci-dessous si l'expression est correcte ou non. Sinon, expliquer pourquoi.
 
-\begin{lstlisting}
+\begin{code}[c]
 int i;
 assert(scanf("%d", &i) == 1);
-\end{lstlisting}
+\end{code}
 
 \begin{parts}
 
 \part
-\begin{lstlisting}
+\begin{code}[c]
 if (!(i < 8) && !(i > 8)) then printf("i vaut 8\n");
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
@@ -170,9 +172,9 @@ Incorrect : une erreur apparaît à la compilation, le mot \emph{then} n'est pas
 \fi
 
 \part
-\begin{lstlisting}
+\begin{code}[c]
 if (!(i < 8) && !(i > 8)) printf("i "); printf("vaut 8\n");
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
@@ -183,9 +185,9 @@ Incorrect : la première instruction est correctement exécutée mais la seconde
 \fi
 
 \part
-\begin{lstlisting}
+\begin{code}[c]
 if !(i < 8) && !(i > 8) printf("i vaut 8\n");
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
@@ -196,9 +198,9 @@ Incorrect : l'expression est mal formée, la condition d'embranchement après le
 \fi
 
 \part
-\begin{lstlisting}
+\begin{code}[c]
 if (!(i < 8) && !(i > 8)) printf("i vaut 8\n");
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
@@ -209,22 +211,22 @@ Correct !
 \fi
 
 \part
-\begin{lstlisting}
+\begin{code}[c]
 if (i = 8) printf("i vaut 8\n");
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
-Incorrect : affiche que \cinline{i} vaut 8 dans tous les cas.
+Incorrect : affiche que \cinline!i! vaut 8 dans tous les cas.
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
 \fi
 
 \part
-\begin{lstlisting}
+\begin{code}[c]
 if (i & (1 << 3)) printf("i vaut 8\n");
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
@@ -235,35 +237,35 @@ Correct !
 \fi
 
 \part
-\begin{lstlisting}
+\begin{code}[c]
 if (i ^ 8) printf("i vaut 8\n");
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
-Incorrect : affiche \emph{i vaut 8} pour tous les cas sauf lorsque \cinline{i} vaut 8 !
+Incorrect : affiche \emph{i vaut 8} pour tous les cas sauf lorsque \cinline!i! vaut 8 !
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
 \fi
 
 \part
-\begin{lstlisting}
+\begin{code}[c]
 if (i - 8) printf("i vaut 8\n");
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
-Incorrect : affiche \emph{i vaut 8} pour tous les cas sauf lorsque \cinline{i} vaut 8 !
+Incorrect : affiche \emph{i vaut 8} pour tous les cas sauf lorsque \cinline!i! vaut 8 !
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
 \fi
 
 \part
-\begin{lstlisting}
+\begin{code}[c]
 if (i == 1 << 3) printf ("i vaut 8\n");
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
@@ -274,9 +276,9 @@ Correct !
 \fi
 
 \part
-\begin{lstlisting}
+\begin{code}[c]
 if (!((i < 8) || (i > 8))) printf("i vaut 8\n");
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
@@ -291,8 +293,8 @@ Correct !
 
 \emph{Notez que selon le standard ISO8899, une expression comportant plusieurs post ou pré incrémentation est indéterminée, néanmoins la logique de l'expression est définie dans la plupart des compilateurs et elle suit la règle enseignée en cours.}
 
-\begin{lstlisting}
-#include <stdio.h>
+\begin{code}[c]
+\#include <stdio.h>
 int main() {
     int x = 2;
     int y = ++x * ++x;
@@ -301,7 +303,7 @@ int main() {
     y = x++ * ++x;
     printf("%d%d", x, y);
 }
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}

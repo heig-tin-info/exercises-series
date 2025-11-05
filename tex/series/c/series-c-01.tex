@@ -1,5 +1,7 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
 \usepackage{mathtools, nccmath}
+
 \title{Numération et Arguments}
 \course{INFO1-TIN}
 \seriesnumber{1}
@@ -24,9 +26,9 @@ Quelques généralités.
 
     \part Le programme suivant est appelé. Combien d'arguments le programme reçoit-il ?
 
-\begin{lstlisting}
-    ./a.out 1 2 3
-\end{lstlisting}
+\begin{code}[c]
+./a.out 1 2 3
+\end{code}
 \answerline[4 arguments]
 
     \part Comment s'appelle le flux qui permet à un programme de recevoir des informations par exemple saisies au clavier ?
@@ -44,13 +46,13 @@ Quelques généralités.
 \part $1 + 51$
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
         11
   00000001 = 0x01 = 1
 + 00110011 = 0x33 = 51
 ----------
   00110100 = 0x34 = 52
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
 \makeemptybox{3cm}
@@ -59,13 +61,13 @@ Quelques généralités.
 \part $51 - 7$
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
  1111  11
   00110011 = 0x33 = 51
 + 11111001 = (~00000111 + 1) = 0xF9 = -7
 ----------
   00101100 = 0x2C = 44
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
 \makeemptybox{3cm}
@@ -73,13 +75,12 @@ Quelques généralités.
 \part $204 + 51$
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
-
+\begin{code}[c]
   11001100 = 0xCC = 204
 + 00110011 = 0x33 = 51
 ----------
   11111111 = 0xFF = 255
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
 \makeemptybox{3cm}
@@ -87,13 +88,13 @@ Quelques généralités.
 \part $204 + 204$
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
      11
   11001100 = 0xCC = 204
 + 11001100 = 0xCC = 204
 ----------
   10011000 = 0x98 = (408-256) = 152
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
 \makeemptybox{3cm}
@@ -104,35 +105,35 @@ Quelques généralités.
 
 \ifprintanswers
 \begin{solution}
-    \begin{lstlisting}
-    int main(int argc, char *argv[]) {
-        printf("Votre nombre est : %d\n", atoi(argv[1]));
-    }
-    \end{lstlisting}
+\begin{code}[c]
+int main(int argc, char *argv[]) {
+    printf("Votre nombre est : %d\n", atoi(argv[1]));
+}
+\end{code}
 \end{solution}
 \else
 \fillwithdottedlines{4cm}
 \fi
 
 \question Écrire un programme qui affiche explicitement la somme de deux nombres.
-Ces deux nombres sont déclarés dans des variables entières nommées \cinline{a} et \cinline{b}.
+Ces deux nombres sont déclarés dans des variables entières nommées \cinline!a! et \cinline!b!.
 
 Voici ce que produit le programme :
 
-\begin{lstlisting}
+\begin{code}[c]
 ./a.out
 42 + 23 = 65
-\end{lstlisting}
+\end{code}
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 int main() {
     int a = 42;
     int b = 23;
     printf("%d + %d = %d", a, b, a + b);
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
 \fillwithdottedlines{4cm}

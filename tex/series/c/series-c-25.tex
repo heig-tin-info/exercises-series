@@ -1,4 +1,6 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage{mathtools, nccmath}
 \usepackage{tabularx}
 \title{La récursivité}
@@ -30,15 +32,15 @@ On considère la suite de Fibonacci, définie par la relation suivante:
 
 \begin{solution}
 Il est nécessaire de rajouter des parenthèses dans la définition de la macro.
-\begin{lstlisting}
+\begin{code}[c]
 int fib(unsigned int n) {
   if (n == 0 || n == 1) return n;
   return fib(n - 1) + fib(n - 2);
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 
-\part Représentez par un arbre les appels de fonction imbriqués lors de l'évaluation pour l'appel de \cinline{fib(7)}.
+\part Représentez par un arbre les appels de fonction imbriqués lors de l'évaluation pour l'appel de \cinline!fib(7)!.
 
 \begin{solution}
     On peut établir le diagramme d'appel suivant:\par
@@ -50,7 +52,7 @@ int fib(unsigned int n) {
 \part Quelle est la complexité en temps (\emph{big-O}) de cette fonction ?
 
 \begin{solution}
-Pour l'appel de \cinline{fib(7)} on peut voir le nombre d'appels suivants.
+Pour l'appel de \cinline!fib(7)! on peut voir le nombre d'appels suivants.
 
 \begin{tabular}{ll}
 $n$ & Appels \\
@@ -103,7 +105,7 @@ O((1+\sqrt{5}/2)^n + ((1-\sqrt{5})/2)^2) = O(1.618^n) \rightarrow O(2^n)
 
 \begin{solution}
 Il est nécessaire de rajouter des parenthèses dans la définition de la macro.
-\begin{lstlisting}
+\begin{code}[c]
 int fib_iterative(unsigned int n) {
   int result, first = 0, second = 1;
   for (i = 0; i < n; i++) {
@@ -117,7 +119,7 @@ int fib_iterative(unsigned int n) {
   }
   return result;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 
 \part Quelle est la complexité en temps de cette fonction itérative ?
@@ -134,8 +136,8 @@ O(n)
 
 \begin{solution}
 La mémoization est une technique permettant de mémoriser les résultats des appels d'une fonction récursive. Ceci permet de réduire la complexité de traitement en utilisant davantage de mémoire.
-\begin{lstlisting}
-#define FIB_CACHE_SIZE 100
+\begin{code}[c]
+\#define FIB_CACHE_SIZE 100
 int fib_cache[FIB_CACHE_SIZE] = {};
 int fib_mem(unsigned int n) {
     assert(n < FIB_CACHE_SIZE);
@@ -145,7 +147,7 @@ int fib_mem(unsigned int n) {
     fib_cache[n] = result;
     return result;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \part Quelle est la complexité de cette nouvelle fonction ?
 
@@ -162,7 +164,7 @@ p(x) = \frac{0\cdot x^0}{0!} + \frac{1\cdot x^1}{1!} + \frac{2\cdot x^2}{2!} + \
 \]
 
 Le calcul de ce polynôme a été programmé de la façon suivante dans cette application :
-\begin{lstlisting}[language=C]
+\begin{code}[c]
 long factoriel(long n)
 {
   return n == 0 ? 1 : n * factoriel(n-1);
@@ -183,7 +185,7 @@ double compute_polynom(double x)
     result += i*power(x, i)/factoriel(i);
   return result;
 }
-\end{lstlisting}
+\end{code}
 
 Cette fonction est appelée des millions de fois pendant le calcul de la simulation numérique, et les temps de calcul obtenus sont beaucoup trop élevés.
 
@@ -199,13 +201,13 @@ Cette fonction est appelée des millions de fois pendant le calcul de la simulat
 \begin{solution}
 Après simplification, on voit que cette fonction peut être calculée de façon beaucoup plus simple et efficace sous la forme suivante :
 
-\begin{lstlisting}
+\begin{code}[c]
 double calcul_polynome2(double x)
 {
   return x * (1.0 + x * (1.0 + x * (0.5 + x * ((1/6.0) + x *
      (1/24.)))));
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \end{parts}
 

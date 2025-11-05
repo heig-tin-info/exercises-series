@@ -1,4 +1,6 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage{mathtools, nccmath}
 \title{Les structures de données}
 \course{INFO2-TIN}
@@ -11,39 +13,38 @@
 
 \question Anniversaires.
 \begin{parts}
-\part Écrire la déclaration d'un type de structure de données \cinline{Date} permettant de mémoriser une date (jour, mois, année).
+\part Écrire la déclaration d'un type de structure de données \cinline!Date! permettant de mémoriser une date (jour, mois, année).
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 typedef struct date {
     uint8_t day;
     uint8_t month;
     uint16_t year;
 } Date;
-\end{lstlisting}
+\end{code}
 \end{solution}
 \fi
 
-\part Écrire une fonction permettant de saisir sur l'entrée standard une date au format ISO8601 (YYYY-MM-DD). Cette date est retournée dans le type \cinline{Date}. La fonction retourne \cinline{0} en cas de succès ou \cinline{1} en cas d'erreur de saisie.
+\part Écrire une fonction permettant de saisir sur l'entrée standard une date au format ISO8601 (YYYY-MM-DD). Cette date est retournée dans le type \cinline!Date!. La fonction retourne \cinline!0! en cas de succès ou \cinline!1! en cas d'erreur de saisie.
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 int read_date(FILE *fp, Date *dt)
 {
     return fscanf(fp, "%hu-%hhu-%hhu",
         &dt->year, &dt->month, &dt->day) != 3;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \fi
-\part Écrire une fonction qui reçoit 2 dates et retourne \cinline{0} si elles sont égales \cinline{1} si \cinline{date1 > date2} ou \cinline{-1} si \cinline{date1 < date2}.
+\part Écrire une fonction qui reçoit 2 dates et retourne \cinline!0! si elles sont égales \cinline!1! si \cinline!date1 > date2! ou \cinline!-1! si \cinline!date1 < date2!.
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
-
+\begin{code}[c]
 /**
  * Convert a YMD date into an integer allowing comparison.
  */
@@ -60,30 +61,30 @@ int compare_date(const Date *a, const Date *b)
         return -1;
     return 0;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \fi
-\part Déclarez un nouveau type basé sur une structure \cinline{Birthday} contenant un nom et une date d'anniversaire (\cinline{Date}).
+\part Déclarez un nouveau type basé sur une structure \cinline!Birthday! contenant un nom et une date d'anniversaire (\cinline!Date!).
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 typedef struct birthday {
     char name[64];
     Date birthday;
 } Birthday;
-\end{lstlisting}
+\end{code}
 \end{solution}
 \fi
-\part Déclarez un tableau de \cinline{Birthday} de taille \cinline{10}. Initialisez la première entrée avec le nom \texttt{John Doe} et la date \texttt{2000-01-01}.
+\part Déclarez un tableau de \cinline!Birthday! de taille \cinline!10!. Initialisez la première entrée avec le nom \cinline!John Doe! et la date \cinline!2000-01-01!.
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 Birthday birthdays[10] = {
     { .name = "John Doe", .date = { .year=2000, .month=1, .day=1 } }
 };
-\end{lstlisting}
+\end{code}
 \end{solution}
 \fi
 
@@ -92,20 +93,20 @@ Birthday birthdays[10] = {
 \question Quelle est la taille en octets des structures suivantes :
 
 \begin{parts}
-    \part \cinline{struct { int32_t a; int32_t b; };}
+    \part \canswer{struct { int32_t a; int32_t b; };}
     \fillin[8 bytes]
-    \part \cinline{struct { char *name; int32_t age; };}
+    \part \canswer{struct { char *name; int32_t age; };}
     \fillin[12 bytes sur une machine 64 bits]
-    \part \cinline{struct { char k[8]; short s[2]; };}
+    \part \canswer{struct { char k[8]; short s[2]; };}
     \fillin[12 bytes]
-    \part \cinline{struct { char a; short b; };}
+    \part \canswer{struct { char a; short b; };}
     \fillin[4 bytes (à cause de l'alignement)]
 \end{parts}
 
-\question Comment dans \cinline{function} afficher sur la sortie standard la valeur de la deuxième entrée \cinline{bar} du cinquième élément ?
+\question Comment dans \cinline!function! afficher sur la sortie standard la valeur de la deuxième entrée \cinline!bar! du cinquième élément ?
 
 \begin{multicols}{2}
-\begin{lstlisting}
+\begin{code}[c]
 typedef struct {
     int32_t foo;
     int32_t bar[8];
@@ -125,14 +126,14 @@ int main() {
     Data data;
     function(&data);
 }
-\end{lstlisting}
+\end{code}
 \end{multicols}
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 printf("%d\n", data->data[4].bar[1]);
-\end{lstlisting}
+\end{code}
 \end{solution}
 \fi
 \question
@@ -142,7 +143,7 @@ Déclarez les types de données et une variable permettant de stocker les caract
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 typedef struct element {
     char name[20];
     char symbol[3];
@@ -151,7 +152,7 @@ typedef struct element {
 } Element;
 
 Element[121] elements;
-\end{lstlisting}
+\end{code}
 \end{solution}
 \fi
 \end{questions}

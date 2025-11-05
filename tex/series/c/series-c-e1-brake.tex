@@ -1,4 +1,6 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage{amsmath}
 \usepackage{siunitx}
 
@@ -45,16 +47,16 @@
 
         \section*{Cahier des charges}
 
-        Écrire un programme \texttt{brake.c} qui lit \textbf{sept arguments} en \texttt{int} ou \texttt{double} depuis la ligne de commande, donnés dans des unités volontairement peu pratiques. On suggère d'utiliser un suffixe dans le nom des variables pour rappeler l'unité, par exemple \texttt{v0\_kmh} pour la vitesse initiale en km/h. Les arguments sont :
+        Écrire un programme \cinline!brake.c! qui lit \textbf{sept arguments} en \cinline!int! ou \cinline!double! depuis la ligne de commande, donnés dans des unités volontairement peu pratiques. On suggère d'utiliser un suffixe dans le nom des variables pour rappeler l'unité, par exemple \cinline!v0\_kmh! pour la vitesse initiale en km/h. Les arguments sont :
 
         \begin{enumerate}
-            \item \texttt{v0\_kmh} : vitesse initiale en \si{\kilo\metre\per\hour};
-            \item \texttt{m\_t} : masse du véhicule en tonnes;
-            \item \texttt{mu\_permille} : coeff. de frottement en \si{\perthousand};
-            \item \texttt{A\_dm2} : surface frontale en \si{\deci\metre\squared};
-            \item \texttt{Cd} : coefficient de traînée (sans dimension);
-            \item \texttt{rho\_gL} : densité de l'air en g/L (indice : \SI{1}{\gram\per\litre} = \SI{1}{\kilogram\per\metre\cubed});
-            \item \texttt{g\_Gal} : accélération gravitationnelle en Gal (\SI{1}{Gal} = \SI{0.01}{\metre\per\second\squared}).
+            \item \cinline!v0\_kmh! : vitesse initiale en \si{\kilo\metre\per\hour};
+            \item \cinline!m\_t! : masse du véhicule en tonnes;
+            \item \cinline!mu\_permille! : coeff. de frottement en \si{\perthousand};
+            \item \cinline!A\_dm2! : surface frontale en \si{\deci\metre\squared};
+            \item \cinline!Cd! : coefficient de traînée (sans dimension);
+            \item \cinline!rho\_gL! : densité de l'air en g/L (indice : \SI{1}{\gram\per\litre} = \SI{1}{\kilogram\per\metre\cubed});
+            \item \cinline!g\_Gal! : accélération gravitationnelle en Gal (\SI{1}{Gal} = \SI{0.01}{\metre\per\second\squared}).
         \end{enumerate}
 
         Le programme doit :
@@ -66,16 +68,16 @@
 
         \section*{Exemple d'exécution}
 
-        \begin{lstlisting}
+        \begin{code}[c]
 $ ./freinage 130 1.4 800 22 0.30 1.225 981
 Temps d'arrêt : 4.594 s
 Distance d'arrêt : 82.881 m
-        \end{lstlisting}
+        \end{code}
 
         \section*{Déroulement conseillé}
         \begin{enumerate}
             \item Réfléchir au problème, aux conversions et aux formules.
-            \item Écrire un squelette de programme avec les inclusions nécessaires et la fonction \texttt{main}.
+            \item Écrire un squelette de programme avec les inclusions nécessaires et la fonction \cinline!main!.
             \item Lire les arguments et vérifier le nombre attendu ; quitter proprement sinon.
             \item Implémenter les conversions et vérifier les valeurs intermédiaires au besoin.
             \item Calculer les grandeurs physiques et valider avec l'exemple fourni.
@@ -83,11 +85,11 @@ Distance d'arrêt : 82.881 m
         \end{enumerate}
 
         \begin{solution}
-\begin{lstlisting}[language=C]
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
+\begin{code}[c]
+\#include <math.h>
+\#include <stdbool.h>
+\#include <stdio.h>
+\#include <stdlib.h>
 
 static bool is_valid(double v0, double m, double mu,
                      double A, double Cd, double rho, double g) {
@@ -131,7 +133,7 @@ int main(int argc, char *argv[]) {
     printf("Distance d'arrêt : %.3f m\n", x_stop);
     return EXIT_SUCCESS;
 }
-\end{lstlisting}
+\end{code}
         \end{solution}
     \end{questions}
         \end{multicols}

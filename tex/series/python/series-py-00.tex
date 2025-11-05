@@ -1,4 +1,6 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \title{Introduction à Python}
 \serieslabel{Py00}
 \course{INFO1-TIN}
@@ -22,7 +24,7 @@
     \part Quelle implémentation de référence de Python est la plus utilisée ?
     \answerline[CPython]
 
-    \part La traduction du code source Python en bytecode exécuté par l'interpréteur se fait lors de la \fillin[compilation] du fichier en \texttt{.pyc}.
+    \part La traduction du code source Python en bytecode exécuté par l'interpréteur se fait lors de la \fillin[compilation] du fichier en \cinline!.pyc!.
 
     \part Quel est l'outil officiel pour installer des paquets Python depuis le Python Package Index ?
     \answerline[pip]
@@ -42,13 +44,13 @@ Associez chaque type natif Python à un exemple de valeur valide.
 \begin{center}
     \begin{tabular}{p{0.35\linewidth}p{0.55\linewidth}}
         Type & Exemple \\ \hline
-        \fillin[\texttt{int}] & \texttt{42} \\
-        \fillin[\texttt{float}] & \texttt{3.14} \\
-        \fillin[\texttt{str}] & \texttt{"Bonjour"} \\
-        \fillin[\texttt{bool}] & \texttt{True} \\
-        \fillin[\texttt{list}] & \texttt{[1, 2, 3]} \\
-        \fillin[\texttt{tuple}] & \texttt{("x", "y")} \\
-        \fillin[\texttt{dict}] & \texttt{\{"cle": 1\}} \\
+        \fillin[\texttt{int}] & \cinline!42! \\
+        \fillin[\texttt{float}] & \cinline!3.14! \\
+        \fillin[\texttt{str}] & \cinline!"Bonjour"! \\
+        \fillin[\texttt{bool}] & \cinline!True! \\
+        \fillin[\texttt{list}] & \cinline![1, 2, 3]! \\
+        \fillin[\texttt{tuple}] & \cinline!("x", "y")! \\
+        \fillin[\texttt{dict}] & \cinline!\{"cle": 1\}! \\
     \end{tabular}
 \end{center}
 
@@ -84,7 +86,7 @@ Expliquez les termes suivants en une ou deux phrases.
     \answerline[Système où le type d'une variable est déterminé à l'exécution et peut varier au cours du programme.]
 
     \part Module
-    \answerline[Fichier ou ensemble de fichiers contenant du code Python réutilisable importé via l'instruction \texttt{import}.]
+    \answerline[Fichier ou ensemble de fichiers contenant du code Python réutilisable importé via l'instruction \cinline!import!.]
 \end{parts}
 
 \end{questions}

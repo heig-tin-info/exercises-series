@@ -1,4 +1,6 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage{mathtools, nccmath}
 \usepackage{tabularx}
 \title{Tableaux dynamiques}
@@ -18,63 +20,63 @@ Les opérations sur un tableau dynamiques sont : \emph{push} pour ajouter un él
 
 Parfois d'autres opérations existent : \emph{delete} pour supprimer un élément à l'indice K et \emph{insert} pour ajouter un élément après l'élément K.
 
-Utilisez ici \cinline{assert} pour le test des erreurs, et ne réduisez pas la taille du tableau, il ne fait que s'agrandir au gré des données le peuplant.
+Utilisez ici \cinline!assert! pour le test des erreurs, et ne réduisez pas la taille du tableau, il ne fait que s'agrandir au gré des données le peuplant.
 \begin{questions}
 
 \question On souhaite implémenter un tableau dynamique, implémentez les fonctions demandées :
 
 \begin{parts}
 
-\part Écrire une structure de donnée représentant un tableau dynamique et permettant de stocker des paires de \cinline{double}.
+\part Écrire une structure de donnée représentant un tableau dynamique et permettant de stocker des paires de \cinline!double!.
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 typedef struct array {
   size_t capacity;
   size_t elements;
   double (*data)[2];
 } Array;
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
-\begin{lstlisting}
+\begin{code}[c]
 void array_init(Array *array)
-\end{lstlisting}
+\end{code}
 \fi
 
 \part Compte tenu de la structure déclarée précédemment, écrire une fonction permettant d'initialiser un tableau. C'est à dire allouer l'espace mémoire nécessaire et renseigner les informations nécessaires. La structure de ce tableau est la suivante :
 
-\begin{lstlisting}
+\begin{code}[c]
 typedef struct array {
   size_t capacity;
   size_t elements;
   double (*data)[2];
 } Array;
-\end{lstlisting}
+\end{code}
 
-\part Écrire la fonction \cinline{array_init}
+\part Écrire la fonction \cinline!array_init!
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 void array_init(Array *array) {
   array->capacity = 1;
   array->elements = 0;
   array->data = malloc(sizeof(double[2]) * array->capacity);
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
-\begin{lstlisting}
+\begin{code}[c]
 void array_init(Array *array);
-\end{lstlisting}
+\end{code}
 \fi
 
-\part Écrire la fonction \cinline{array_push}
+\part Écrire la fonction \cinline!array_push!
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 void array_push(Array *array, double x, double y) {
   if (array->elements == array->capacity) {
     array->capacity *= 2;
@@ -85,38 +87,38 @@ void array_push(Array *array, double x, double y) {
   array->data[array->elements][1] = y;
   array->elements++;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
-\begin{lstlisting}
+\begin{code}[c]
 void array_push(Array *array, double x, double y);
-\end{lstlisting}
+\end{code}
 \fi
 
-\part Écrire la fonction \cinline{array_pop}
+\part Écrire la fonction \cinline!array_pop!
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 void array_pop(Array *array, double *x, double *y) {
   assert(array->elements > 0);
   array->elements--;
   *x = array->data[array->elements][0];
   *y = array->data[array->elements][1];
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
-\begin{lstlisting}
+\begin{code}[c]
 void array_pop(Array *array, double *x, double *y);
-\end{lstlisting}
+\end{code}
 \fi
 
-\part Écrire la fonction \cinline{array_shift}
+\part Écrire la fonction \cinline!array_shift!
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 void array_shift(Array *array, double *x, double *y) {
   assert(array->elements > 0);
   *x = array->data[0][0];
@@ -127,19 +129,19 @@ void array_shift(Array *array, double *x, double *y) {
   }
   array->elements--;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
-\begin{lstlisting}
+\begin{code}[c]
 void array_shift(Array *array, double *x, double *y)
-\end{lstlisting}
+\end{code}
 \fi
 
-\part Écrire la fonction \cinline{array_unshift}
+\part Écrire la fonction \cinline!array_unshift!
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 void array_unshift(Array *array, double x, double y) {
   if (array->elements == array->capacity) {
     array->capacity *= 2;
@@ -153,19 +155,19 @@ void array_unshift(Array *array, double x, double y) {
   array->data[0][1] = y;
   array->elements++;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
-\begin{lstlisting}
+\begin{code}[c]
 void array_unshift(Array *array, double x, double y)
-\end{lstlisting}
+\end{code}
 \fi
 
-\part Écrire la fonction \cinline{array_insert}
+\part Écrire la fonction \cinline!array_insert!
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 void array_insert(Array *array, size_t index, double x, double y) {
   if (array->elements == array->capacity) {
     array->capacity *= 2;
@@ -179,19 +181,19 @@ void array_insert(Array *array, size_t index, double x, double y) {
   array->data[index][1] = y;
   array->elements++;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
-\begin{lstlisting}
+\begin{code}[c]
 void array_insert(Array *array, size_t index, double x, double y);
-\end{lstlisting}
+\end{code}
 \fi
 
-\part Écrire la fonction \cinline{array_delete}
+\part Écrire la fonction \cinline!array_delete!
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 void array_delete(Array *array, size_t index) {
   for (size_t i = index; i < array->elements - 1; i++) {
     array->data[i][0] = array->data[i + 1][0];
@@ -199,12 +201,12 @@ void array_delete(Array *array, size_t index) {
   }
   array->elements--;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
-\begin{lstlisting}
+\begin{code}[c]
 void array_delete(Array *array, size_t index);
-\end{lstlisting}
+\end{code}
 \fi
 
 \part Quelle est la complexité (Big-O) en temps pour l'opération \emph{push} ?

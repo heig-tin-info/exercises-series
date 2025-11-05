@@ -1,4 +1,6 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage{siunitx}
 \title{Lanceur Spatial}
 \course{INFO1-TIN}
@@ -71,9 +73,9 @@
         \end{itemize}
     \end{multicols}
     \begin{solution}
-    \begin{lstlisting}
-#include <stdio.h>
-#include <math.h>
+    \begin{code}[c]
+\#include <stdio.h>
+\#include <math.h>
 
 typedef struct Rocket {
     union {double f;  double fuel_mass;}; // tonnes
@@ -96,11 +98,11 @@ void display_time(struct Time t) {
 
 void display_rocket(Rocket r) {
     printf("Fuel mass: %.2f t\t", r.fuel_mass);
-#ifdef VERBOSE
+\#ifdef VERBOSE
     printf("Rocket mass: %.2f\t", r.rocket_mass);
     printf("Ejection speed: %.2f\t", r.ejection_speed / 1000);
     printf("Ejection mass: %.2f\t", r.ejection_mass);
-#endif
+\#endif
     printf("Altitude: %.2f km\t", r.altitude / 1000);
     printf("Velocity: %.2f km/s\t", r.velocity / 1000);
     printf("\n");
@@ -131,7 +133,7 @@ int main() {
         t += dt;
     };
 }
-    \end{lstlisting}
+    \end{code}
     \end{solution}
     \end{questions}
 

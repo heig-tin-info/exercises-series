@@ -1,4 +1,10 @@
 
+PARALLEL ?= $(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 1)
+
+ifeq ($(filter -j%,$(MAKEFLAGS)),)
+MAKEFLAGS += -j$(PARALLEL)
+endif
+
 TEX_SOURCES := $(sort $(wildcard tex/series/*/*.tex))
 
 PDFS := $(TEX_SOURCES:tex/series/%.tex=build/series/%.pdf)

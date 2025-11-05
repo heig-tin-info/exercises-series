@@ -1,5 +1,6 @@
 \documentclass{worksheet}
-\usepackage{mathtools, nccmath}
+\usepackage[french]{babel}
+
 \title{Variables et identificateurs}
 \course{INFO1-TIN}
 \seriesnumber{2}
@@ -11,25 +12,25 @@
 
 \question Pour chacun des identificateurs suivants, indiquez s'il est correct ou incorrect, et donnez une justification.
 \begin{parts}
-    \part \cinline{2_pi} \hfill \fillin[Incorrect, commence par un chiffre][10cm]
-    \part \cinline{x_2} \hfill \fillin[Correct][10cm]
-    \part \cinline{x__3} \hfill \fillin[Correct][10cm]
-    \part \cinline{x  2} \hfill \fillin[Incorrect, contient des espaces][10cm]
-    \part \cinline{robotPosition} \hfill \fillin[Correct][10cm]
-    \part \cinline{stored_values} \hfill \fillin[Correct][10cm]
-    \part \cinline{-output_current} \hfill \fillin[Incorrect, tiret interdit][10cm]
-    \part \cinline{_alarm_} \hfill \fillin[Correct][10cm]
-    \part \cinline{issue#2} \hfill \fillin[Incorrect, signe dièse interdit][10cm]
-    \part \cinline{int} \hfill \fillin[Incorrect, mot réservé du langage][10cm]
-    \part \cinline{défaillance} \hfill \fillin[Incorrect, mot accentué][10cm]
-    \part \cinline{f'} \hfill \fillin[Incorrect, comporte une apostrophe][10cm]
-    \part \cinline{INT} \hfill \fillin[Correct, mais pas recommandé][10cm]
-    \part \cinline{main} \hfill \fillin[Correct, mais plutôt réservé à la fonction d'entrée][10cm]
+    \part \cinline!2_pi! \hfill \fillin[Incorrect, commence par un chiffre][10cm]
+    \part \cinline!x_2! \hfill \fillin[Correct][10cm]
+    \part \cinline!x__3! \hfill \fillin[Correct][10cm]
+    \part \cinline!x  2! \hfill \fillin[Incorrect, contient des espaces][10cm]
+    \part \cinline!robotPosition! \hfill \fillin[Correct][10cm]
+    \part \cinline!stored_values! \hfill \fillin[Correct][10cm]
+    \part \cinline!-output_current! \hfill \fillin[Incorrect, tiret interdit][10cm]
+    \part \cinline!_alarm_! \hfill \fillin[Correct][10cm]
+    \part \cinline!issue#2! \hfill \fillin[Incorrect, signe dièse interdit][10cm]
+    \part \cinline!int! \hfill \fillin[Incorrect, mot réservé du langage][10cm]
+    \part \cinline!défaillance! \hfill \fillin[Incorrect, mot accentué][10cm]
+    \part \cinline!f'! \hfill \fillin[Incorrect, comporte une apostrophe][10cm]
+    \part \cinline!INT! \hfill \fillin[Correct, mais pas recommandé][10cm]
+    \part \cinline!main! \hfill \fillin[Correct, mais plutôt réservé à la fonction d'entrée][10cm]
 \end{parts}
 \vskip 2em
 \question
 Pour chacune des variables suivantes, indiquer leurs valeurs.
-Les variables non initialisées sont notées avec \cinline{?}. Cela signifie que leur contenu n'est pas prévisible.
+Les variables non initialisées sont notées avec \cinline!?!. Cela signifie que leur contenu n'est pas prévisible.
 \medskip
 \begin{center}
     \begin{tabular}{*5{c}}
@@ -44,16 +45,16 @@ Les variables non initialisées sont notées avec \cinline{?}. Cela signifie que
 \end{center}
 
 \newpage
-\question Écrire une fonction permettant d'échanger les valeurs de \cinline{a} et \cinline{b}. À la fin de cette séquence d'instruction, la valeur initiale de \cinline{a}, doit être dans \cinline{b} et réciproquement.
+\question Écrire une fonction permettant d'échanger les valeurs de \cinline!a! et \cinline!b!. À la fin de cette séquence d'instruction, la valeur initiale de \cinline!a!, doit être dans \cinline!b! et réciproquement.
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 int tmp;
 tmp = a;
 a = b;
 b = tmp;
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
 \makeemptybox{5cm}
@@ -63,13 +64,13 @@ b = tmp;
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 // /* 1. Ouverture de commentaire inutile
 /* Programme exemple */
 // */ 2. Fermeture de commentaire inutile
 
-#include <std_io.h> // 3. S'écrit <stdio.h>
-#jnclude <stdlib.h> // 4. S'écrit #include, et inutile dans ce programme
+\#include <std_io.h> // 3. S'écrit <stdio.h>
+\#jnclude <stdlib.h> // 4. S'écrit \#include, et inutile dans ce programme
 
 INT Main() // 5. S'écrit int, 6. S'écrit main()
 {
@@ -88,16 +89,16 @@ INT Main() // 5. S'écrit int, 6. S'écrit main()
     retturn 1; // 11. Return avec un t, 12. Retourne 0 si pas d'erreur
 }
 } // 13. Une accolade en trop.
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
-\begin{lstlisting}
+\begin{code}[c]
 /*
 /* Programme exemple */
 */
 
-#include <std_io.h>
-#jnclude <stdlib.h>
+\#include <std_io.h>
+\#jnclude <stdlib.h>
 
 INT Main()
 {
@@ -116,7 +117,7 @@ INT Main()
     retturn 1;
 }
 }
-\end{lstlisting}
+\end{code}
 \fi
 
 \newpage
@@ -124,8 +125,8 @@ INT Main()
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
-#include <stdio.h>
+\begin{code}[c]
+\#include <stdio.h>
 
 int main() {
   printf("Application de la loi d'Ohm, calcul du courant.\n");
@@ -147,7 +148,7 @@ int main() {
   printf("Le courant est de %g Ampères\n", voltage / resistor);
   return 0;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
 \makeemptybox{10cm}

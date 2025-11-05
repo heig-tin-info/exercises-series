@@ -1,4 +1,6 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage{mathtools, nccmath}
 \usepackage{tabularx}
 \title{Les pointeurs}
@@ -12,7 +14,7 @@
 
 \question Complétez le tableau suivant en indiquant la valeur des variables après chaque instruction.
 
-Pour indiquer que la variable \texttt{p} contient l'adresse \cinline{k}, on notera \cinline{&a} dans la colonne \texttt{p}.
+Pour indiquer que la variable \cinline!p! contient l'adresse \cinline!k!, on notera \cinline!&a! dans la colonne \cinline!p!.
 
 Pour indiquer qu'une variable est non initialisée ou que son contenu n'est pas connu, la case sera laissée vide.
 
@@ -21,7 +23,7 @@ Pour indiquer qu'une variable est non initialisée ou que son contenu n'est pas 
 \medskip
 \begin{center}
 \begin{tabularx}{\textwidth}{Xccccc}
-Instruction & \texttt{a} & \texttt{b} & \texttt{c} & \texttt{p} & \texttt{q} \\ \hline
+Instruction & \cinline!a! & \cinline!b! & \cinline!c! & \cinline!p! & \cinline!q! \\ \hline
 \canswer{int a = 1;}  & \fillin[1] & \fillin[ ] & \fillin[ ] & \fillin[ ] & \fillin[ ] \\
 \canswer{int b = 2;}  & \fillin[1] & \fillin[2] & \fillin[ ] & \fillin[ ] & \fillin[ ] \\
 \canswer{int c = 3;}  & \fillin[1] & \fillin[2] & \fillin[3] & \fillin[ ] & \fillin[ ] \\
@@ -41,41 +43,41 @@ Instruction & \texttt{a} & \texttt{b} & \texttt{c} & \texttt{p} & \texttt{q} \\ 
 \end{center}
 
 \clearpage
-\question Intéressons-nous à l'arithmétique de pointeurs. On considère \texttt{p} un pointeur qui \emph{pointe} sur un tableau \texttt{a}:
+\question Intéressons-nous à l'arithmétique de pointeurs. On considère \cinline!p! un pointeur qui \emph{pointe} sur un tableau \cinline!a!:
 
-\begin{lstlisting}
+\begin{code}[c]
 int a[] = {4, 8, 15, 16, 23, 42, 66, 104, 162};
 int *p = a;
-\end{lstlisting}
+\end{code}
 
 Quelles sont les valeurs ou adresses que fournissent ces expressions ?
 
 \begin{parts}
 
 \setlength\fillinlinelength{8cm}
-\part \cinline{*p+2}\hfill\fillin[6]
-\part \cinline{*(p+2)}\hfill\fillin[15]
-\part \cinline{&a[4]-3}\hfill\fillin[L'adresse de l'élément \texttt{\detokenize{a[1]}}]
-\part \cinline{a + 3}\hfill\fillin[L'adresse de l'élément \texttt{\detokenize{a[3]}}]
-\part \cinline{&a[7]-p}\hfill\fillin[7]
-\part \cinline{p+(*p-2)}\hfill\fillin[L'adresse de l'élément \texttt{\detokenize{a[2]}}]
-\part \cinline{*(p+*(p+4)-a[3])}\hfill\fillin[104]
-\part \cinline{(p+1)[2]}\hfill\fillin[16]
-\part \cinline{5[p] // wtf}\hfill\fillin[42]
-\part \cinline{(uintptr_t)(p + 3) - (uintptr_t)a}\hfill\fillin[12 (bytes)]
-\part \cinline{(&a)[1][-1]}\hfill\fillin[162]
+\part \cinline!*p+2!\hfill\fillin[6]
+\part \cinline!*(p+2)!\hfill\fillin[15]
+\part \cinline!&a[4]-3!\hfill\fillin[L'adresse de l'élément \canswer{a[1]}]
+\part \cinline!a + 3!\hfill\fillin[L'adresse de l'élément \canswer{a[3]}]
+\part \cinline!&a[7]-p!\hfill\fillin[7]
+\part \cinline!p+(*p-2)!\hfill\fillin[L'adresse de l'élément \canswer{a[2]}]
+\part \cinline!*(p+*(p+4)-a[3])!\hfill\fillin[104]
+\part \cinline!(p+1)[2]!\hfill\fillin[16]
+\part \cinline!5[p] // wtf!\hfill\fillin[42]
+\part \cinline!(uintptr_t)(p + 3) - (uintptr_t)a!\hfill\fillin[12 (bytes)]
+\part \cinline!(&a)[1][-1]!\hfill\fillin[162]
 \end{parts}
 
 \question Écrire une fonction qui respecte le prototype ci-dessous. Cette fonction copie une chaîne de caractère de la source vers la destination.
 
-\begin{lstlisting}
+\begin{code}[c]
 void strcpy(char *dest, const char *src);
-\end{lstlisting}
+\end{code}
 
-Ne pas utiliser de boucle for, ni d'accès tableaux (\cinline{a[b]}). Utilisez une boucle \cinline{while} et l'arithmétique de pointeurs.
+Ne pas utiliser de boucle for, ni d'accès tableaux (\cinline!a[b]!). Utilisez une boucle \cinline!while! et l'arithmétique de pointeurs.
 
 \begin{solutionordottedlines}[8cm]
-\begin{lstlisting}
+\begin{code}[c]
 void strcpy(char *dest, const char *src)
 {
     char *p = dest;
@@ -83,7 +85,7 @@ void strcpy(char *dest, const char *src)
         *p++ = *src++;
     *p = '\0';
 }
-\end{lstlisting}
+\end{code}
 \end{solutionordottedlines}
 
 \end{questions}

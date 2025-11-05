@@ -1,4 +1,6 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage{mathtools, nccmath}
 \title{Révision, fonctions et programmes}
 \course{INFO1-TIN}
@@ -16,19 +18,19 @@
 \titledquestion{Choix multiples}
 
 \begin{parts}
-\part Cocher les propositions vraies concernant \cinline{strncmp} ?
+\part Cocher les propositions vraies concernant \cinline!strncmp! ?
 
 \begin{choices}
 \CorrectChoice La fonction compare deux chaînes de caractères jusqu'à un certain nombre de caractères.
 \choice La fonction compare deux chaînes de caractères jusqu'à la fin.
 \choice La fonction retourne 1 si les chaînes sont égales.
-\CorrectChoice La fonction peut s'appeler avec \cinline{strncmp("abc", "ab", 2)}.
+\CorrectChoice La fonction peut s'appeler avec \cinline!strncmp("abc", "ab", 2)!.
 \end{choices}
 
-\part Quel est le rôle de l'opérateur \cinline{^} ?
+\part Quel est le rôle de l'opérateur \cinline!^! ?
 \begin{multicols}{2}
 \begin{choices}
-\choice Puissance comme dans \cinline{10^3}.
+\choice Puissance comme dans \cinline!10^3!.
 \CorrectChoice Ou exclusif.
 \choice Ou inclusif.
 \choice Et logique.
@@ -40,22 +42,22 @@
 \part Quelles sont les déclarations de tableaux valides ?
 \begin{multicols}{2}
 \begin{choices}
-\choice \cinline{int a[] = 0;}
-\CorrectChoice \cinline{int a[10];}
-\CorrectChoice \cinline{int a[10] = {1, 2, 3, 4, 5};}
-\CorrectChoice \cinline{int a[] = {1, 2, 3, 4, 5};}
-\choice \cinline{int a[10] = 0;}
-\choice \cinline{int a[3]; a = {1,2,3};}
+\choice \cinline!int a[] = 0;!
+\CorrectChoice \cinline!int a[10];!
+\CorrectChoice \cinline!int a[10] = {1, 2, 3, 4, 5};!
+\CorrectChoice \cinline!int a[] = {1, 2, 3, 4, 5};!
+\choice \cinline!int a[10] = 0;!
+\choice \cinline!int a[3]; a = {1,2,3};!
 \end{choices}
 \end{multicols}
 
-\part Cocher ce qui est vrai concernant \cinline{int *p} et \cinline{int p[10]} ?
+\part Cocher ce qui est vrai concernant \cinline!int *p! et \cinline!int p[10]! ?
 \begin{choices}
-\CorrectChoice \cinline{int *p} est un pointeur vers un entier, \cinline{int p[10]} est un tableau de 10 entiers.
-\CorrectChoice La taille de \cinline{int *p} est la taille d'une adresse, la taille de \cinline{int p[10]} est la taille de 10 entiers soit 40 octets.
-\choice \cinline{int *p} est un tableau de 10 entiers, \cinline{int p[10]} est un pointeur vers un entier.
+\CorrectChoice \cinline!int *p! est un pointeur vers un entier, \cinline!int p[10]! est un tableau de 10 entiers.
+\CorrectChoice La taille de \cinline!int *p! est la taille d'une adresse, la taille de \cinline!int p[10]! est la taille de 10 entiers soit 40 octets.
+\choice \cinline!int *p! est un tableau de 10 entiers, \cinline!int p[10]! est un pointeur vers un entier.
 \CorrectChoice Les deux peuvent être passés à une fonction pour être modifiés.
-\CorrectChoice L'accès à l'élément 2 s'écrit dans les deux cas \cinline{p[2]}.
+\CorrectChoice L'accès à l'élément 2 s'écrit dans les deux cas \cinline!p[2]!.
 \end{choices}
 
 \end{parts}
@@ -64,10 +66,10 @@
 
 \begin{parts}
 
-\part Écrire une fonction \cinline{vowel} qui prend en paramètre une chaîne de caractère et qui retourne le nombre de voyelles dans la chaîne.
+\part Écrire une fonction \cinline!vowel! qui prend en paramètre une chaîne de caractère et qui retourne le nombre de voyelles dans la chaîne.
 
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 int vowel(char *str) {
     int count = 0;
     while (*str != '\0') {
@@ -79,13 +81,13 @@ int vowel(char *str) {
     }
     return count;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 
-\part Écrire une fonction \cinline{max_interval} qui calcule l'intervalle le plus grand dans un tableau d'entiers passé en paramètre. Le second paramètre est la taille du tableau.
+\part Écrire une fonction \cinline!max_interval! qui calcule l'intervalle le plus grand dans un tableau d'entiers passé en paramètre. Le second paramètre est la taille du tableau.
 
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 int max_interval(int *a, size_t size) {
     int max = 0;
     for (size_t i = 0; i < size; i++) {
@@ -97,13 +99,13 @@ int max_interval(int *a, size_t size) {
     }
     return max;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 
-\part Écrire une fonction \cinline{is_palindrome} qui retourne vrai si une chaîne de caractères est un palindrome, faux sinon. La chaîne est passée en paramètre.
+\part Écrire une fonction \cinline!is_palindrome! qui retourne vrai si une chaîne de caractères est un palindrome, faux sinon. La chaîne est passée en paramètre.
 
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 bool is_palindrome(char *str) {
     size_t size = strlen(str);
     for (size_t i = 0; i < size / 2; i++) {
@@ -112,13 +114,13 @@ bool is_palindrome(char *str) {
     }
     return true;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 
 \part Écrire une fonction qui prend en paramètre deux tableaux d'entiers et qui s'assure que l'un est bien dans l'ordre inverse que l'autre. La fonction prend en paramètre les deux tableaux et leur taille qui est commune.
 
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 bool is_reverse(int *a, int *b, size_t size) {
     for (size_t i = 0; i < size; i++) {
         if (a[i] != b[size - i - 1])
@@ -126,31 +128,31 @@ bool is_reverse(int *a, int *b, size_t size) {
     }
     return true;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 
 \part Écrire un une fonction qui rempli un tableau à deux dimensions de taille 10x10 avec des valeurs aléatoires entre 0 et 100. La fonction prend en paramètre le tableau, le nombre de lignes et le nombre de colonnes.
 
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 void fill_random(int a[10][10]) {
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++)
             a[i][j] = rand() % 101;
     }
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 
 \end{parts}
 
-\question Écrire un programme complet qui lit sur les arguments \cinline{--min=X} et \cinline{--max=Y} où X et Y sont des entiers positifs. Le programme appelle une fonction \cinline{compute(x, y)} avec les valeurs capturées sur les arguments. Cette fonction retourne vraie si elle s'est exécutée correctement, sinon faux.
+\question Écrire un programme complet qui lit sur les arguments \cinline!--min=X! et \cinline!--max=Y! où X et Y sont des entiers positifs. Le programme appelle une fonction \cinline!compute(x, y)! avec les valeurs capturées sur les arguments. Cette fonction retourne vraie si elle s'est exécutée correctement, sinon faux.
 
 \begin{solution}
-\begin{lstlisting}
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+\begin{code}[c]
+\#include <stdio.h>
+\#include <stdlib.h>
+\#include <stdbool.h>
 
 extern bool compute(int x, int y);
 
@@ -170,7 +172,7 @@ int main(int argc, char* argv[]) {
     }
     return compute(x, y);
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 
 \end{questions}

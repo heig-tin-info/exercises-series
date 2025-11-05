@@ -1,4 +1,6 @@
 \documentclass{worksheet}
+\usepackage[french]{babel}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage{mathtools, nccmath}
 \title{Programmation et algorithmique}
 \course{INFO1-TIN}
@@ -11,10 +13,10 @@ Pour vous préparer aux examens écrits, on vous propose de réaliser les exerci
 
 \begin{questions}
 
-\question Écrire une fonction qui reçoit en paramètre une chaîne de caractères et qui transforme les minuscules en majuscules dans cette chaîne. Ne pas utiliser la fonction standard \cinline{toupper}.
+\question Écrire une fonction qui reçoit en paramètre une chaîne de caractères et qui transforme les minuscules en majuscules dans cette chaîne. Ne pas utiliser la fonction standard \cinline!toupper!.
 
 \begin{solutionordottedlines}[6cm]
-\begin{lstlisting}
+\begin{code}[c]
 void to_upper(char *str) {
     int i = 0;
     while(str[i] != '\0') {
@@ -23,13 +25,13 @@ void to_upper(char *str) {
         i++;
     }
 }
-\end{lstlisting}
+\end{code}
 \end{solutionordottedlines}
 
-\question Sans utiliser \cinline{strlen}, écrire une fonction qui calcule la longueur d'une chaîne de caractère.
+\question Sans utiliser \cinline!strlen!, écrire une fonction qui calcule la longueur d'une chaîne de caractère.
 
 \begin{solutionordottedlines}[5cm]
-\begin{lstlisting}
+\begin{code}[c]
 size_t strlen(char *str) {
     size_t size = 0;
     while(str[size] != '\0') {
@@ -37,61 +39,61 @@ size_t strlen(char *str) {
     }
     return size;
 }
-\end{lstlisting}
+\end{code}
 \end{solutionordottedlines}
 
-\question Écrire une fonction qui retourne une valeur aléatoire entière entre a et b, vous pouvez utiliser la fonction \cinline{rand()}
+\question Écrire une fonction qui retourne une valeur aléatoire entière entre a et b, vous pouvez utiliser la fonction \cinline!rand()!
 
 \begin{solutionordottedlines}[3cm]
-\begin{lstlisting}
+\begin{code}[c]
 int rand_range(int a, int b) {
     return rand() % (b - a + 1) + a;
 }
-\end{lstlisting}
+\end{code}
 \end{solutionordottedlines}
 
 \question Écrire une fonction qui échange deux entiers passés par référence.
 
 \begin{solutionordottedlines}[7cm]
-\begin{lstlisting}
+\begin{code}[c]
 void swap(int *a, int *b)
 {
     int tmp = *a;
     *a = *b;
     *b = tmp;
 }
-\end{lstlisting}
+\end{code}
 \end{solutionordottedlines}
 
-\question Écrire une fonction qui reçoit trois valeurs réelles en paramètres et qui les trie dans l'ordre croissant. Par exemple si vous avez $a=15, b=23, c=4$ après l'appel de fonction, ces valeurs vaudront : $a=4, b=15, c=23$. Vous pouvez utiliser la fonction \cinline{swap} écrite plus haut pour échanger les valeurs.
+\question Écrire une fonction qui reçoit trois valeurs réelles en paramètres et qui les trie dans l'ordre croissant. Par exemple si vous avez $a=15, b=23, c=4$ après l'appel de fonction, ces valeurs vaudront : $a=4, b=15, c=23$. Vous pouvez utiliser la fonction \cinline!swap! écrite plus haut pour échanger les valeurs.
 
 \begin{solutionordottedlines}[7cm]
-\begin{lstlisting}
+\begin{code}[c]
 void sort_3(double *a, double *b, double *c)
 {
     if (*a > *b) swap(a, b);
     if (*a > *c) swap(a, c);
     if (*b > *c) swap(b, c);
 }
-\end{lstlisting}
+\end{code}
 \end{solutionordottedlines}
 
 \question Écrire une fonction qui retourne la moyenne de trois valeurs réelles reçues en paramètres.
 
 \begin{solutionordottedlines}[6cm]
-\begin{lstlisting}
+\begin{code}[c]
 double mean_3(double a, double b, double c)
 {
     return (a + b + c) / 3;
 }
-\end{lstlisting}
+\end{code}
 \end{solutionordottedlines}
 
-\question Écrire une fonction qui affiche \cinline{version} sur la sortie standard si un argument \cinline{--version} est présent dans les arguments du programme. Cette fonction aura le prototype suivant, et la fonction main est donnée
+\question Écrire une fonction qui affiche \cinline!version! sur la sortie standard si un argument \cinline!--version! est présent dans les arguments du programme. Cette fonction aura le prototype suivant, et la fonction main est donnée
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 void parse_arguments(int argc, char *argv[])
 {
     for (int i = 0; i < argc; i++)
@@ -102,16 +104,16 @@ void parse_arguments(int argc, char *argv[])
 int main(int argc, char *argv[]) {
     parse_arguments(argc, argv);
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
-\begin{lstlisting}
+\begin{code}[c]
 void parse_arguments(int argc, char *argv[]);
 
 int main(int argc, char *argv[]) {
     parse_arguments(argc, argv);
 }
-\end{lstlisting}
+\end{code}
 \fillwithdottedlines{8cm}
 \fi
 
@@ -119,7 +121,7 @@ int main(int argc, char *argv[]) {
 
 \ifprintanswers
 \begin{solution}
-\begin{lstlisting}
+\begin{code}[c]
 double min(double array[], size_t size) {
     double min = array[0];
     for (int i = 1; i < size; i++)
@@ -127,12 +129,12 @@ double min(double array[], size_t size) {
             min = array[i];
     return min;
 }
-\end{lstlisting}
+\end{code}
 \end{solution}
 \else
-\begin{lstlisting}
+\begin{code}[c]
 double min(double array[], size_t size);
-\end{lstlisting}
+\end{code}
 \fillwithdottedlines{8cm}
 \fi
 
