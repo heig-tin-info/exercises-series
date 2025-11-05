@@ -12,6 +12,7 @@
 \RequirePackage[many,minted,xparse,skins,breakable]{tcolorbox}
 \RequirePackage{heiglogo}
 \RequirePackage{tikz}
+\RequirePackage{currfile}
 
 \setlength{\parskip}{0em}
 
@@ -48,6 +49,7 @@
 
 \usemintedstyle{bw}
 
+
 \newtcblisting[auto counter,number within=section,
   list inside=mypyg]{code}[3][]{%
   breakable,
@@ -80,10 +82,12 @@
 
 \sethexercisesinlinecolor{GitHubGray}
 
+\makeatletter
 \DeclareRobustCommand*\school[1]{\gdef\@school{#1}}
 \DeclareRobustCommand*\department[1]{\gdef\@department{#1}}
 \DeclareRobustCommand*\seriesno[1]{\gdef\@seriesno{#1}}
 \DeclareRobustCommand*\classroom[1]{\gdef\@classroom{#1}}
+\makeatother
 
 \input{revision}
 

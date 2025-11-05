@@ -15,14 +15,16 @@ build: $(PDFS) $(SOLUTIONS)
 
 build/series/%.pdf: tex/series/%.tex revision.tex heiglogo.sty
 	@mkdir -p $(@D)
-	TEXINPUTS=tex//: latexmk $(LATEXMK_FLAGS) -output-directory=$(@D) $<
+	(cd $(@D) && TEXINPUTS=$(CURDIR)/tex//:$(CURDIR): latexmk $(LATEXMK_FLAGS) -output-directory=. \
+        $(CURDIR)/$<)
 
 build/series/%-solution.pdf: tex/series/%.tex revision.tex heiglogo.sty
 	@mkdir -p $(@D)
-	TEXINPUTS=tex//: latexmk $(LATEXMK_FLAGS) \
-		-output-directory=$(@D) \
-		-jobname=$(notdir $(basename $(@:.pdf=))) \
-		-usepretex='$(LATEXMK_PRETEX)' $<
+	(cd $(@D) && TEXINPUTS=$(CURDIR)/tex//:$(CURDIR): latexmk $(LATEXMK_FLAGS) \
+        -output-directory=. \
+        -jobname=$(notdir $(basename $(@:.pdf=))) \
+        -usepretex='$(LATEXMK_PRETEX)' \
+        $(CURDIR)/$<)
 
 heiglogo.sty:
 	wget https://github.com/HEIG-VD/logos/releases/download/v0.5.0/heiglogo.sty -O tex/series/$@
