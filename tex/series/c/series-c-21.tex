@@ -1,10 +1,8 @@
-\documentclass[french,a4paper,addpoints,11pt]{exam}
-\usepackage{hexercises-series}
+\documentclass{worksheet}
 \usepackage{mathtools, nccmath}
 \title{Les fichiers}
-\seriesno{\texttt{0x21}}
-\department{TIN}
-\classroom{INFO2-TIN}
+\course{INFO2-TIN}
+\seriesnumber{33}
 
 \begin{document}
 \maketitle
@@ -24,24 +22,24 @@
 
 \part Quelle est la fonction utilisée pour positionner manuellement le curseur dans un fichier ?
 \begin{checkboxes}
-    \choice \CD{fopen}
-    \choice \CD{fgets}
-    \CorrectChoice \CD{fseek}
-    \choice \CD{fputc}
-    \choice \CD{feof}
+    \choice \cinline{fopen}
+    \choice \cinline{fgets}
+    \CorrectChoice \cinline{fseek}
+    \choice \cinline{fputc}
+    \choice \cinline{feof}
 \end{checkboxes}
 
-\part Quel est le mode à transmettre à l'appel \CD{fopen("f.txt", mode)} pour ouvrir un fichier existant en mode binaire en lecture écriture ?
+\part Quel est le mode à transmettre à l'appel \cinline{fopen("f.txt", mode)} pour ouvrir un fichier existant en mode binaire en lecture écriture ?
 \begin{checkboxes}
-    \choice \CD{"r"}
-    \choice \CD{"w"}
-    \CorrectChoice \CD{"ab+"}
-    \choice \CD{"aw"}
-    \choice \CD{"w+"}
+    \choice \cinline{"r"}
+    \choice \cinline{"w"}
+    \CorrectChoice \cinline{"ab+"}
+    \choice \cinline{"aw"}
+    \choice \cinline{"w+"}
 \end{checkboxes}
 \end{parts}
 
-\question Vous disposez d'un pointeur sur un fichier ouvert en lecture \CD{fp} et vous souhaitez connaître la taille de ce fichier. Écrire une fonction \CD{size_t fsize(FILE *fp)} qui retourne la taille du fichier.
+\question Vous disposez d'un pointeur sur un fichier ouvert en lecture \cinline{fp} et vous souhaitez connaître la taille de ce fichier. Écrire une fonction \cinline{size_t fsize(FILE *fp)} qui retourne la taille du fichier.
 
 \begin{solutionordottedlines}[7cm]
 \begin{lstlisting}

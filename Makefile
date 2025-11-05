@@ -4,20 +4,25 @@ TEX_SOURCES := $(sort $(wildcard tex/series/*/*.tex))
 PDFS := $(TEX_SOURCES:tex/series/%.tex=build/series/%.pdf)
 SOLUTIONS := $(TEX_SOURCES:tex/series/%.tex=build/series/%-solution.pdf)
 
-LATEXMK_FLAGS := -lualatex -interaction=nonstopmode -halt-on-error -silent
+LATEXMK_FLAGS := -lualatex -interaction=nonstopmode -halt-on-error -shell-escape
+LATEXMK_PRETEX := \PassOptionsToClass{answers}{exam}\AtBeginDocument{\printanswers}
 
-all: $(PDFS) $(SOLUTIONS)
+.PHONY: all build clean
+
+all: clean build
+
+build: $(PDFS) $(SOLUTIONS)
 
 build/series/%.pdf: tex/series/%.tex revision.tex heiglogo.sty
 	@mkdir -p $(@D)
-	latexmk $(LATEXMK_FLAGS) -output-directory=$(@D) $<
+	TEXINPUTS=tex//: latexmk $(LATEXMK_FLAGS) -output-directory=$(@D) $<
 
 build/series/%-solution.pdf: tex/series/%.tex revision.tex heiglogo.sty
 	@mkdir -p $(@D)
-	latexmk $(LATEXMK_FLAGS) \
+	TEXINPUTS=tex//: latexmk $(LATEXMK_FLAGS) \
 		-output-directory=$(@D) \
 		-jobname=$(notdir $(basename $(@:.pdf=))) \
-		-pdflatex='lualatex %O "\PassOptionsToClass{answers}{exam}\input{%S}"' $<
+		-usepretex='$(LATEXMK_PRETEX)' $<
 
 heiglogo.sty:
 	wget https://github.com/HEIG-VD/logos/releases/download/v0.5.0/heiglogo.sty -O tex/series/$@

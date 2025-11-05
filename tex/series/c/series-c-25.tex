@@ -1,11 +1,9 @@
-\documentclass[french,a4paper,addpoints,11pt,answers]{exam}
-\usepackage{hexercises-series}
+\documentclass{worksheet}
 \usepackage{mathtools, nccmath}
 \usepackage{tabularx}
 \title{La récursivité}
-\seriesno{\texttt{0x25}}
-\department{TIN}
-\classroom{INFO2-TIN}
+\course{INFO2-TIN}
+\seriesnumber{37}
 
 \begin{document}
 \maketitle
@@ -40,7 +38,7 @@ int fib(unsigned int n) {
 \end{lstlisting}
 \end{solution}
 
-\part Représentez par un arbre les appels de fonction imbriqués lors de l'évaluation pour l'appel de \CD{fib(7)}.
+\part Représentez par un arbre les appels de fonction imbriqués lors de l'évaluation pour l'appel de \cinline{fib(7)}.
 
 \begin{solution}
     On peut établir le diagramme d'appel suivant:\par
@@ -52,7 +50,7 @@ int fib(unsigned int n) {
 \part Quelle est la complexité en temps (\emph{big-O}) de cette fonction ?
 
 \begin{solution}
-Pour l'appel de \CD{fib(7)} on peut voir le nombre d'appels suivants.
+Pour l'appel de \cinline{fib(7)} on peut voir le nombre d'appels suivants.
 
 \begin{tabular}{ll}
 $n$ & Appels \\
@@ -164,7 +162,28 @@ p(x) = \frac{0\cdot x^0}{0!} + \frac{1\cdot x^1}{1!} + \frac{2\cdot x^2}{2!} + \
 \]
 
 Le calcul de ce polynôme a été programmé de la façon suivante dans cette application :
-\lstinputlisting{polynome.c}
+\begin{lstlisting}[language=C]
+long factoriel(long n)
+{
+  return n == 0 ? 1 : n * factoriel(n-1);
+}
+
+double power(double x, int n)
+{
+  double result = 1.0;
+  for (int i = 0; i < n; i++)
+    result *= x;
+  return result;
+}
+
+double compute_polynom(double x)
+{
+  double result = 0;
+  for (int i = 0; i <= 5; i++)
+    result += i*power(x, i)/factoriel(i);
+  return result;
+}
+\end{lstlisting}
 
 Cette fonction est appelée des millions de fois pendant le calcul de la simulation numérique, et les temps de calcul obtenus sont beaucoup trop élevés.
 

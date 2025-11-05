@@ -3,19 +3,21 @@
 
 \RequirePackage{hexercises-common}
 \RequirePackage[a4paper, total={165mm,250mm}]{geometry}
-\RequirePackage{regexpatch}
 \RequirePackage{xfrac}
 \RequirePackage{tikzpagenodes}
 \RequirePackage{inconsolata}
 \RequirePackage[framemethod=tikz]{mdframed}
 \RequirePackage{booktabs}
 \RequirePackage{hyperref}
+\RequirePackage[many,minted,xparse,skins,breakable]{tcolorbox}
 \RequirePackage{heiglogo}
 \RequirePackage{tikz}
 
 \setlength{\parskip}{0em}
 
 \definecolor{GitHubGray}{rgb}{0.9,0.9,0.9}
+
+
 
 \lstset{
     emphstyle={\em \color{gray}},
@@ -43,6 +45,38 @@
   linewidth=0.3pt,
   innerbottommargin=3pt
 }
+
+\usemintedstyle{bw}
+
+\newtcblisting[auto counter,number within=section,
+  list inside=mypyg]{code}[3][]{%
+  breakable,
+  listing only,
+  enhanced,
+  colback=white,
+  pad at break*=1mm,
+  toptitle=0.15em,
+  bottomtitle=0.1em,
+  boxrule=0.15mm,
+  arc=3pt,
+  minted language=#2,
+  top=1mm,
+  bottom=1mm,
+  left=0pt,
+  right=0pt,
+  boxsep=0pt,
+  minted options={%
+      tabsize=4,
+      breaklines,
+      xleftmargin=0.4em,
+      fontsize=\footnotesize,
+      highlightcolor=gray!30,
+      ignorelexererrors,
+      #3
+    },
+  #1
+}
+
 
 \sethexercisesinlinecolor{GitHubGray}
 
@@ -73,7 +107,23 @@
   \noindent\rule{\textwidth}{0.4pt}\vskip 1em}
 \makeatother
 
-\newcommand{\CD}[1]{\lstinline{#1}}
+\newcommand{\icode}{%
+  \tcboxverb[
+    on line,
+    boxsep=1pt,
+    left=3pt,
+    right=3pt,
+    top=1pt,
+    bottom=1pt,
+    colback=black!3,
+    colframe=black!20,
+    arc=2pt,
+    tcbox raise base,
+  ]%
+}
+
+\DeclareRobustCommand{\cinline}{\icode}
+\NewDocumentCommand{\canswer}{m}{\texttt{\detokenize{#1}}}
 
 \qformat{\textbf{Exercice \thequestion}\hfill}
 
@@ -89,4 +139,3 @@
   }{}%
 }
 \makeatother
-

@@ -1,10 +1,8 @@
-\documentclass[french,a4paper,addpoints,11pt]{exam}
-\usepackage{hexercises-series}
+\documentclass{worksheet}
 \usepackage{mathtools, nccmath}
 \title{Boucles}
-\seriesno{\texttt{0x04}}
-\department{TIN}
-\classroom{INFO1-TIN}
+\course{INFO1-TIN}
+\seriesnumber{4}
 
 \begin{document}
 \maketitle
@@ -60,7 +58,7 @@ double percent_good = (double)(nb_parts - nb_parts_bad) / nb_parts;
 \end{parts}
 
 \question Indiquer si les affirmations suivantes sont justes ou fausses.
-Dans les cas où elles sont fausses, expliquer ce qui serait correct pour une instruction \CD{do..while} :
+Dans les cas où elles sont fausses, expliquer ce qui serait correct pour une instruction \cinline{do..while} :
 \begin{parts}
 \part Les instructions de la boucle sont toujours exécutées au moins une fois.
 
@@ -102,11 +100,11 @@ Correct
 \fillwithdottedlines{1cm}
 \fi
 
-\part Les instructions de la boucle ne peuvent pas être une autre boucle \CD{do..while}.
+\part Les instructions de la boucle ne peuvent pas être une autre boucle \cinline{do..while}.
 
 \ifprintanswers
 \begin{solution}
-Incorrect. Une boucle do while peut se trouver à l'intérieur d'une boucle \CD{do..while}.
+Incorrect. Une boucle do while peut se trouver à l'intérieur d'une boucle \cinline{do..while}.
 \end{solution}
 \else
 \fillwithdottedlines{1cm}
@@ -116,7 +114,7 @@ Incorrect. Une boucle do while peut se trouver à l'intérieur d'une boucle \CD{
 
 \question
 \begin{parts}
-\part Écrire un programme qui affiche les nombres entiers de 1 à 100 en employant une boucle \CD{for}.
+\part Écrire un programme qui affiche les nombres entiers de 1 à 100 en employant une boucle \cinline{for}.
 
 \ifprintanswers
 \begin{solution}
@@ -133,7 +131,7 @@ int main() {
 \fillwithdottedlines{5cm}
 \fi
 
-\part Écrire ce même programme en utilisant une boucle \CD{while}
+\part Écrire ce même programme en utilisant une boucle \cinline{while}
 
 \ifprintanswers
 \begin{solution}
@@ -151,7 +149,7 @@ int main() {
 \fillwithdottedlines{5cm}
 \fi
 
-\part Même question avec une boucle \CD{do..while}
+\part Même question avec une boucle \cinline{do..while}
 
 \ifprintanswers
 \begin{solution}
@@ -174,7 +172,7 @@ int main() {
 
 \ifprintanswers
 \begin{solution}
-Lorsque le nombre d'itérations est connu à l'avance, la boucle \CD{for} est la plus adaptée.
+Lorsque le nombre d'itérations est connu à l'avance, la boucle \cinline{for} est la plus adaptée.
 \end{solution}
 \else
 \fillwithdottedlines{3cm}
@@ -183,7 +181,7 @@ Lorsque le nombre d'itérations est connu à l'avance, la boucle \CD{for} est la
 \end{parts}
 
 \clearpage
-\question Boucles \CD{for} : renseignez ce qu'affiche ces boucles.
+\question Boucles \cinline{for} : renseignez ce qu'affiche ces boucles.
 \begin{parts}
 \part
 \begin{lstlisting}
@@ -223,7 +221,7 @@ for (i = 12, k = 1; k++ < 5 ; printf("%i ", i-- ));
 \end{parts}
 
 \clearpage
-\question Boucles \CD{while} : renseignez ce qu'affiche ces boucles.
+\question Boucles \cinline{while} : renseignez ce qu'affiche ces boucles.
 \begin{parts}
 \part
 \begin{lstlisting}

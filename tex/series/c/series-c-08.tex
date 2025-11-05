@@ -1,10 +1,8 @@
-\documentclass[french,a4paper,addpoints,11pt]{exam}
-\usepackage{hexercises-series}
+\documentclass{worksheet}
 \usepackage{mathtools, nccmath}
 \title{Programmation et algorithmique}
-\seriesno{\texttt{0x08}}
-\department{TIN}
-\classroom{INFO1-TIN}
+\course{INFO1-TIN}
+\seriesnumber{8}
 
 \begin{document}
 \maketitle
@@ -13,7 +11,7 @@ Pour vous préparer aux examens écrits, on vous propose de réaliser les exerci
 
 \begin{questions}
 
-\question Écrire une fonction qui reçoit en paramètre une chaîne de caractères et qui transforme les minuscules en majuscules dans cette chaîne. Ne pas utiliser la fonction standard \CD{toupper}.
+\question Écrire une fonction qui reçoit en paramètre une chaîne de caractères et qui transforme les minuscules en majuscules dans cette chaîne. Ne pas utiliser la fonction standard \cinline{toupper}.
 
 \begin{solutionordottedlines}[6cm]
 \begin{lstlisting}
@@ -28,7 +26,7 @@ void to_upper(char *str) {
 \end{lstlisting}
 \end{solutionordottedlines}
 
-\question Sans utiliser \CD{strlen}, écrire une fonction qui calcule la longueur d'une chaîne de caractère.
+\question Sans utiliser \cinline{strlen}, écrire une fonction qui calcule la longueur d'une chaîne de caractère.
 
 \begin{solutionordottedlines}[5cm]
 \begin{lstlisting}
@@ -42,7 +40,7 @@ size_t strlen(char *str) {
 \end{lstlisting}
 \end{solutionordottedlines}
 
-\question Écrire une fonction qui retourne une valeur aléatoire entière entre a et b, vous pouvez utiliser la fonction \CD{rand()}
+\question Écrire une fonction qui retourne une valeur aléatoire entière entre a et b, vous pouvez utiliser la fonction \cinline{rand()}
 
 \begin{solutionordottedlines}[3cm]
 \begin{lstlisting}
@@ -65,7 +63,7 @@ void swap(int *a, int *b)
 \end{lstlisting}
 \end{solutionordottedlines}
 
-\question Écrire une fonction qui reçoit trois valeurs réelles en paramètres et qui les trie dans l'ordre croissant. Par exemple si vous avez $a=15, b=23, c=4$ après l'appel de fonction, ces valeurs vaudront : $a=4, b=15, c=23$. Vous pouvez utiliser la fonction \CD{swap} écrite plus haut pour échanger les valeurs.
+\question Écrire une fonction qui reçoit trois valeurs réelles en paramètres et qui les trie dans l'ordre croissant. Par exemple si vous avez $a=15, b=23, c=4$ après l'appel de fonction, ces valeurs vaudront : $a=4, b=15, c=23$. Vous pouvez utiliser la fonction \cinline{swap} écrite plus haut pour échanger les valeurs.
 
 \begin{solutionordottedlines}[7cm]
 \begin{lstlisting}
@@ -89,7 +87,7 @@ double mean_3(double a, double b, double c)
 \end{lstlisting}
 \end{solutionordottedlines}
 
-\question Écrire une fonction qui affiche \CD{version} sur la sortie standard si un argument \CD{--version} est présent dans les arguments du programme. Cette fonction aura le prototype suivant, et la fonction main est donnée
+\question Écrire une fonction qui affiche \cinline{version} sur la sortie standard si un argument \cinline{--version} est présent dans les arguments du programme. Cette fonction aura le prototype suivant, et la fonction main est donnée
 
 \ifprintanswers
 \begin{solution}

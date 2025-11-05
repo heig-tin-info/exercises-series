@@ -1,10 +1,8 @@
-\documentclass[french,a4paper,addpoints,11pt]{exam}
-\usepackage{hexercises-series}
+\documentclass{worksheet}
 \usepackage{mathtools, nccmath}
 \title{Variables et identificateurs}
-\seriesno{\texttt{0x02}}
-\department{TIN}
-\classroom{INFO1-TIN}
+\course{INFO1-TIN}
+\seriesnumber{2}
 
 \begin{document}
 \maketitle
@@ -13,40 +11,40 @@
 
 \question Pour chacun des identificateurs suivants, indiquez s'il est correct ou incorrect, et donnez une justification.
 \begin{parts}
-    \part \CD{2_pi} \hfill \fillin[Incorrect, commence par un chiffre][10cm]
-    \part \CD{x_2} \hfill \fillin[Correct][10cm]
-    \part \CD{x__3} \hfill \fillin[Correct][10cm]
-    \part \CD{x  2} \hfill \fillin[Incorrect, contient des espaces][10cm]
-    \part \CD{robotPosition} \hfill \fillin[Correct][10cm]
-    \part \CD{stored_values} \hfill \fillin[Correct][10cm]
-    \part \CD{-output_current} \hfill \fillin[Incorrect, tiret interdit][10cm]
-    \part \CD{_alarm_} \hfill \fillin[Correct][10cm]
-    \part \CD{issue#2} \hfill \fillin[Incorrect, signe dièse interdit][10cm]
-    \part \CD{int} \hfill \fillin[Incorrect, mot réservé du langage][10cm]
-    \part \CD{défaillance} \hfill \fillin[Incorrect, mot accentué][10cm]
-    \part \CD{f'} \hfill \fillin[Incorrect, comporte une apostrophe][10cm]
-    \part \CD{INT} \hfill \fillin[Correct, mais pas recommandé][10cm]
-    \part \CD{main} \hfill \fillin[Correct, mais plutôt réservé à la fonction d'entrée][10cm]
+    \part \cinline{2_pi} \hfill \fillin[Incorrect, commence par un chiffre][10cm]
+    \part \cinline{x_2} \hfill \fillin[Correct][10cm]
+    \part \cinline{x__3} \hfill \fillin[Correct][10cm]
+    \part \cinline{x  2} \hfill \fillin[Incorrect, contient des espaces][10cm]
+    \part \cinline{robotPosition} \hfill \fillin[Correct][10cm]
+    \part \cinline{stored_values} \hfill \fillin[Correct][10cm]
+    \part \cinline{-output_current} \hfill \fillin[Incorrect, tiret interdit][10cm]
+    \part \cinline{_alarm_} \hfill \fillin[Correct][10cm]
+    \part \cinline{issue#2} \hfill \fillin[Incorrect, signe dièse interdit][10cm]
+    \part \cinline{int} \hfill \fillin[Incorrect, mot réservé du langage][10cm]
+    \part \cinline{défaillance} \hfill \fillin[Incorrect, mot accentué][10cm]
+    \part \cinline{f'} \hfill \fillin[Incorrect, comporte une apostrophe][10cm]
+    \part \cinline{INT} \hfill \fillin[Correct, mais pas recommandé][10cm]
+    \part \cinline{main} \hfill \fillin[Correct, mais plutôt réservé à la fonction d'entrée][10cm]
 \end{parts}
 \vskip 2em
 \question
 Pour chacune des variables suivantes, indiquer leurs valeurs.
-Les variables non initialisées sont notées avec \CD{?}. Cela signifie que leur contenu n'est pas prévisible.
+Les variables non initialisées sont notées avec \cinline{?}. Cela signifie que leur contenu n'est pas prévisible.
 \medskip
 \begin{center}
     \begin{tabular}{*5{c}}
-    Instruction & \CD{a} & \CD{b} & \CD{c} & \CD{d} \\ \hline
-    \CD{a = 5;} & \fillin[5] & \fillin[?] & \fillin[?] & \fillin[?] \\
-    \CD{b = c;} & \fillin[5] & \fillin[?] & \fillin[?] & \fillin[?] \\
-    \CD{c = a;} & \fillin[5] & \fillin[?] & \fillin[5] & \fillin[?] \\
-    \CD{a = a + 1;} & \fillin[6] & \fillin[?] & \fillin[5] & \fillin[?] \\
-    \CD{b = a * (c + 1);} & \fillin[6] & \fillin[36] & \fillin[5] & \fillin[?] \\
-    \CD{d = b \% 2;} & \fillin[6] & \fillin[36] & \fillin[5] & \fillin[0] \\
+    Instruction & \canswer{a} & \canswer{b} & \canswer{c} & \canswer{d} \\ \hline
+    \canswer{a = 5;} & \fillin[5] & \fillin[?] & \fillin[?] & \fillin[?] \\
+    \canswer{b = c;} & \fillin[5] & \fillin[?] & \fillin[?] & \fillin[?] \\
+    \canswer{c = a;} & \fillin[5] & \fillin[?] & \fillin[5] & \fillin[?] \\
+    \canswer{a = a + 1;} & \fillin[6] & \fillin[?] & \fillin[5] & \fillin[?] \\
+    \canswer{b = a * (c + 1);} & \fillin[6] & \fillin[36] & \fillin[5] & \fillin[?] \\
+    \canswer{d = b \% 2;} & \fillin[6] & \fillin[36] & \fillin[5] & \fillin[0] \\
     \end{tabular}
 \end{center}
 
 \newpage
-\question Écrire une fonction permettant d'échanger les valeurs de \CD{a} et \CD{b}. À la fin de cette séquence d'instruction, la valeur initiale de \CD{a}, doit être dans \CD{b} et réciproquement.
+\question Écrire une fonction permettant d'échanger les valeurs de \cinline{a} et \cinline{b}. À la fin de cette séquence d'instruction, la valeur initiale de \cinline{a}, doit être dans \cinline{b} et réciproquement.
 
 \ifprintanswers
 \begin{solution}

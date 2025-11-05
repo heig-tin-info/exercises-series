@@ -1,11 +1,9 @@
-\documentclass[french,a4paper,addpoints,11pt]{exam}
-\usepackage{hexercises-series}
+\documentclass{worksheet}
 \usepackage{mathtools, nccmath}
 \usepackage{tabularx}
 \title{Les pointeurs}
-\seriesno{\texttt{0x23}}
-\department{TIN}
-\classroom{INFO2-TIN}
+\course{INFO2-TIN}
+\seriesnumber{35}
 
 \begin{document}
 \maketitle
@@ -14,7 +12,7 @@
 
 \question Complétez le tableau suivant en indiquant la valeur des variables après chaque instruction.
 
-Pour indiquer que la variable \CD{p} contient l'adresse \CD{k}, on notera \CD{&a} dans la colonne \CD{p}.
+Pour indiquer que la variable \texttt{p} contient l'adresse \cinline{k}, on notera \cinline{&a} dans la colonne \texttt{p}.
 
 Pour indiquer qu'une variable est non initialisée ou que son contenu n'est pas connu, la case sera laissée vide.
 
@@ -23,27 +21,27 @@ Pour indiquer qu'une variable est non initialisée ou que son contenu n'est pas 
 \medskip
 \begin{center}
 \begin{tabularx}{\textwidth}{Xccccc}
-Instruction & \CD{a} & \CD{b} & \CD{c} & \CD{p} & \CD{q} \\ \hline
-\CD{int a = 1;}  & \fillin[1] & \fillin[ ] & \fillin[ ] & \fillin[ ] & \fillin[ ] \\
-\CD{int b = 2;}  & \fillin[1] & \fillin[2] & \fillin[ ] & \fillin[ ] & \fillin[ ] \\
-\CD{int c = 3;}  & \fillin[1] & \fillin[2] & \fillin[3] & \fillin[ ] & \fillin[ ] \\
-\CD{int *p = &a;} & \fillin[1] & \fillin[2] & \fillin[3] & \fillin[\&a] & \fillin[ ] \\
-\CD{int *q = &c;} & \fillin[1] & \fillin[2] & \fillin[3] & \fillin[\&a] & \fillin[\&c] \\
-\CD{*p=(*q)++;}  & \fillin[3] & \fillin[2] & \fillin[4] & \fillin[\&a] & \fillin[\&c] \\
-\CD{p = q;}  & \fillin[3] & \fillin[2] & \fillin[4] & \fillin[\&c] & \fillin[\&c] \\
-\CD{q=&b;}  & \fillin[3] & \fillin[2] & \fillin[4] & \fillin[\&c] & \fillin[\&b] \\
-\CD{*p-=*q;}  & \fillin[3] & \fillin[2] & \fillin[2] & \fillin[\&c] & \fillin[\&b] \\
-\CD{++*q;}  & \fillin[3] & \fillin[3] & \fillin[2] & \fillin[\&c] & \fillin[\&b] \\
-\CD{*p*=*q;}  & \fillin[3] & \fillin[3] & \fillin[6] & \fillin[\&c] & \fillin[\&b] \\
-\CD{a=++*q**p;}  & \fillin[24] & \fillin[4] & \fillin[6] & \fillin[\&c] & \fillin[\&b] \\
-\CD{p=&a;}  & \fillin[24] & \fillin[4] & \fillin[6] & \fillin[\&a] & \fillin[\&b] \\
-\CD{*q=*p/=*q;}  & \fillin[6] & \fillin[6] & \fillin[6] & \fillin[\&a] & \fillin[\&b] \\
-\CD{int *r[3] = {&a, &b, &c};}  & \fillin[6] & \fillin[6] & \fillin[6] & \fillin[\&a] & \fillin[\&b] \\
+Instruction & \texttt{a} & \texttt{b} & \texttt{c} & \texttt{p} & \texttt{q} \\ \hline
+\canswer{int a = 1;}  & \fillin[1] & \fillin[ ] & \fillin[ ] & \fillin[ ] & \fillin[ ] \\
+\canswer{int b = 2;}  & \fillin[1] & \fillin[2] & \fillin[ ] & \fillin[ ] & \fillin[ ] \\
+\canswer{int c = 3;}  & \fillin[1] & \fillin[2] & \fillin[3] & \fillin[ ] & \fillin[ ] \\
+\canswer{int *p = &a;} & \fillin[1] & \fillin[2] & \fillin[3] & \fillin[\&a] & \fillin[ ] \\
+\canswer{int *q = &c;} & \fillin[1] & \fillin[2] & \fillin[3] & \fillin[\&a] & \fillin[\&c] \\
+\canswer{*p=(*q)++;}  & \fillin[3] & \fillin[2] & \fillin[4] & \fillin[\&a] & \fillin[\&c] \\
+\canswer{p = q;}  & \fillin[3] & \fillin[2] & \fillin[4] & \fillin[\&c] & \fillin[\&c] \\
+\canswer{q=&b;}  & \fillin[3] & \fillin[2] & \fillin[4] & \fillin[\&c] & \fillin[\&b] \\
+\canswer{*p-=*q;}  & \fillin[3] & \fillin[2] & \fillin[2] & \fillin[\&c] & \fillin[\&b] \\
+\canswer{++*q;}  & \fillin[3] & \fillin[3] & \fillin[2] & \fillin[\&c] & \fillin[\&b] \\
+\canswer{*p*=*q;}  & \fillin[3] & \fillin[3] & \fillin[6] & \fillin[\&c] & \fillin[\&b] \\
+\canswer{a=++*q**p;}  & \fillin[24] & \fillin[4] & \fillin[6] & \fillin[\&c] & \fillin[\&b] \\
+\canswer{p=&a;}  & \fillin[24] & \fillin[4] & \fillin[6] & \fillin[\&a] & \fillin[\&b] \\
+\canswer{*q=*p/=*q;}  & \fillin[6] & \fillin[6] & \fillin[6] & \fillin[\&a] & \fillin[\&b] \\
+\canswer{int *r[3] = {&a, &b, &c};}  & \fillin[6] & \fillin[6] & \fillin[6] & \fillin[\&a] & \fillin[\&b] \\
 \end{tabularx}
 \end{center}
 
 \clearpage
-\question Intéressons-nous à l'arithmétique de pointeurs. On considère \CD{p} un pointeur qui \emph{pointe} sur un tableau \CD{a}:
+\question Intéressons-nous à l'arithmétique de pointeurs. On considère \texttt{p} un pointeur qui \emph{pointe} sur un tableau \texttt{a}:
 
 \begin{lstlisting}
 int a[] = {4, 8, 15, 16, 23, 42, 66, 104, 162};
@@ -55,17 +53,17 @@ Quelles sont les valeurs ou adresses que fournissent ces expressions ?
 \begin{parts}
 
 \setlength\fillinlinelength{8cm}
-\part \CD{*p+2}\hfill\fillin[6]
-\part \CD{*(p+2)}\hfill\fillin[15]
-\part \CD{&a[4]-3}\hfill\fillin[L'adresse de l'élément \CD{a[1]}]
-\part \CD{a + 3}\hfill\fillin[L'adresse de l'élément \CD{a[3]}]
-\part \CD{&a[7]-p}\hfill\fillin[7]
-\part \CD{p+(*p-2)}\hfill\fillin[L'adresse de l'élément \CD{a[2]}]
-\part \CD{*(p+*(p+4)-a[3])}\hfill\fillin[104]
-\part \CD{(p+1)[2]}\hfill\fillin[16]
-\part \CD{5[p] // wtf}\hfill\fillin[42]
-\part \CD{(uintptr_t)(p + 3) - (uintptr_t)a}\hfill\fillin[12 (bytes)]
-\part \CD{(&a)[1][-1]}\hfill\fillin[162]
+\part \cinline{*p+2}\hfill\fillin[6]
+\part \cinline{*(p+2)}\hfill\fillin[15]
+\part \cinline{&a[4]-3}\hfill\fillin[L'adresse de l'élément \texttt{\detokenize{a[1]}}]
+\part \cinline{a + 3}\hfill\fillin[L'adresse de l'élément \texttt{\detokenize{a[3]}}]
+\part \cinline{&a[7]-p}\hfill\fillin[7]
+\part \cinline{p+(*p-2)}\hfill\fillin[L'adresse de l'élément \texttt{\detokenize{a[2]}}]
+\part \cinline{*(p+*(p+4)-a[3])}\hfill\fillin[104]
+\part \cinline{(p+1)[2]}\hfill\fillin[16]
+\part \cinline{5[p] // wtf}\hfill\fillin[42]
+\part \cinline{(uintptr_t)(p + 3) - (uintptr_t)a}\hfill\fillin[12 (bytes)]
+\part \cinline{(&a)[1][-1]}\hfill\fillin[162]
 \end{parts}
 
 \question Écrire une fonction qui respecte le prototype ci-dessous. Cette fonction copie une chaîne de caractère de la source vers la destination.
@@ -74,7 +72,7 @@ Quelles sont les valeurs ou adresses que fournissent ces expressions ?
 void strcpy(char *dest, const char *src);
 \end{lstlisting}
 
-Ne pas utiliser de boucle for, ni d'accès tableaux (\CD{a[b]}). Utilisez une boucle \CD{while} et l'arithmétique de pointeurs.
+Ne pas utiliser de boucle for, ni d'accès tableaux (\cinline{a[b]}). Utilisez une boucle \cinline{while} et l'arithmétique de pointeurs.
 
 \begin{solutionordottedlines}[8cm]
 \begin{lstlisting}

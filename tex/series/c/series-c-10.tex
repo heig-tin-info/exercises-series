@@ -1,10 +1,8 @@
-\documentclass[french,a4paper,addpoints,11pt]{exam}
-\usepackage{hexercises-series}
+\documentclass{worksheet}
 \usepackage{mathtools, nccmath}
 \title{Révision, fonctions et programmes}
-\seriesno{\texttt{0x10}}
-\department{TIN}
-\classroom{INFO1-TIN}
+\course{INFO1-TIN}
+\seriesnumber{16}
 
 \renewcommand{\choiceshook}{%
     \setlength{\leftmargin}{20pt}%
@@ -18,19 +16,19 @@
 \titledquestion{Choix multiples}
 
 \begin{parts}
-\part Cocher les propositions vraies concernant \CD{strncmp} ?
+\part Cocher les propositions vraies concernant \cinline{strncmp} ?
 
 \begin{choices}
 \CorrectChoice La fonction compare deux chaînes de caractères jusqu'à un certain nombre de caractères.
 \choice La fonction compare deux chaînes de caractères jusqu'à la fin.
 \choice La fonction retourne 1 si les chaînes sont égales.
-\CorrectChoice La fonction peut s'appeler avec \CD{strncmp("abc", "ab", 2)}.
+\CorrectChoice La fonction peut s'appeler avec \cinline{strncmp("abc", "ab", 2)}.
 \end{choices}
 
-\part Quel est le rôle de l'opérateur \CD{^} ?
+\part Quel est le rôle de l'opérateur \cinline{^} ?
 \begin{multicols}{2}
 \begin{choices}
-\choice Puissance comme dans \CD{10^3}.
+\choice Puissance comme dans \cinline{10^3}.
 \CorrectChoice Ou exclusif.
 \choice Ou inclusif.
 \choice Et logique.
@@ -42,22 +40,22 @@
 \part Quelles sont les déclarations de tableaux valides ?
 \begin{multicols}{2}
 \begin{choices}
-\choice \CD{int a[] = 0;}
-\CorrectChoice \CD{int a[10];}
-\CorrectChoice \CD{int a[10] = {1, 2, 3, 4, 5};}
-\CorrectChoice \CD{int a[] = {1, 2, 3, 4, 5};}
-\choice \CD{int a[10] = 0;}
-\choice \CD{int a[3]; a = {1,2,3};}
+\choice \cinline{int a[] = 0;}
+\CorrectChoice \cinline{int a[10];}
+\CorrectChoice \cinline{int a[10] = {1, 2, 3, 4, 5};}
+\CorrectChoice \cinline{int a[] = {1, 2, 3, 4, 5};}
+\choice \cinline{int a[10] = 0;}
+\choice \cinline{int a[3]; a = {1,2,3};}
 \end{choices}
 \end{multicols}
 
-\part Cocher ce qui est vrai concernant \CD{int *p} et \CD{int p[10]} ?
+\part Cocher ce qui est vrai concernant \cinline{int *p} et \cinline{int p[10]} ?
 \begin{choices}
-\CorrectChoice \CD{int *p} est un pointeur vers un entier, \CD{int p[10]} est un tableau de 10 entiers.
-\CorrectChoice La taille de \CD{int *p} est la taille d'une adresse, la taille de \CD{int p[10]} est la taille de 10 entiers soit 40 octets.
-\choice \CD{int *p} est un tableau de 10 entiers, \CD{int p[10]} est un pointeur vers un entier.
+\CorrectChoice \cinline{int *p} est un pointeur vers un entier, \cinline{int p[10]} est un tableau de 10 entiers.
+\CorrectChoice La taille de \cinline{int *p} est la taille d'une adresse, la taille de \cinline{int p[10]} est la taille de 10 entiers soit 40 octets.
+\choice \cinline{int *p} est un tableau de 10 entiers, \cinline{int p[10]} est un pointeur vers un entier.
 \CorrectChoice Les deux peuvent être passés à une fonction pour être modifiés.
-\CorrectChoice L'accès à l'élément 2 s'écrit dans les deux cas \CD{p[2]}.
+\CorrectChoice L'accès à l'élément 2 s'écrit dans les deux cas \cinline{p[2]}.
 \end{choices}
 
 \end{parts}
@@ -66,7 +64,7 @@
 
 \begin{parts}
 
-\part Écrire une fonction \CD{vowel} qui prend en paramètre une chaîne de caractère et qui retourne le nombre de voyelles dans la chaîne.
+\part Écrire une fonction \cinline{vowel} qui prend en paramètre une chaîne de caractère et qui retourne le nombre de voyelles dans la chaîne.
 
 \begin{solution}
 \begin{lstlisting}
@@ -84,7 +82,7 @@ int vowel(char *str) {
 \end{lstlisting}
 \end{solution}
 
-\part Écrire une fonction \CD{max_interval} qui calcule l'intervalle le plus grand dans un tableau d'entiers passé en paramètre. Le second paramètre est la taille du tableau.
+\part Écrire une fonction \cinline{max_interval} qui calcule l'intervalle le plus grand dans un tableau d'entiers passé en paramètre. Le second paramètre est la taille du tableau.
 
 \begin{solution}
 \begin{lstlisting}
@@ -102,7 +100,7 @@ int max_interval(int *a, size_t size) {
 \end{lstlisting}
 \end{solution}
 
-\part Écrire une fonction \CD{is_palindrome} qui retourne vrai si une chaîne de caractères est un palindrome, faux sinon. La chaîne est passée en paramètre.
+\part Écrire une fonction \cinline{is_palindrome} qui retourne vrai si une chaîne de caractères est un palindrome, faux sinon. La chaîne est passée en paramètre.
 
 \begin{solution}
 \begin{lstlisting}
@@ -146,7 +144,7 @@ void fill_random(int a[10][10]) {
 
 \end{parts}
 
-\question Écrire un programme complet qui lit sur les arguments \CD{--min=X} et \CD{--max=Y} où X et Y sont des entiers positifs. Le programme appelle une fonction \CD{compute(x, y)} avec les valeurs capturées sur les arguments. Cette fonction retourne vraie si elle s'est exécutée correctement, sinon faux.
+\question Écrire un programme complet qui lit sur les arguments \cinline{--min=X} et \cinline{--max=Y} où X et Y sont des entiers positifs. Le programme appelle une fonction \cinline{compute(x, y)} avec les valeurs capturées sur les arguments. Cette fonction retourne vraie si elle s'est exécutée correctement, sinon faux.
 
 \begin{solution}
 \begin{lstlisting}

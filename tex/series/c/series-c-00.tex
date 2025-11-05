@@ -1,10 +1,7 @@
-\documentclass[french,a4paper,addpoints,11pt]{exam}
-\usepackage{hexercises-series}
-
+\documentclass{worksheet}
 \title{Introduction}
-\seriesno{\texttt{0x00}}
-\department{TIN}
-\classroom{INFO1-TIN}
+\course{INFO1-TIN}
+\seriesnumber{0}
 
 \begin{document}
 \maketitle
@@ -48,28 +45,28 @@ Quelques généralités.
 \end{parts}
 
 \newpage
-\question Complétez la table suivante avec les valeurs qui conviennent. Utilisez la convention d'écriture C, soit le préfixe \CD{0} pour l'octal, le \CD{0b} pour le binaire et le \CD{0x} pour l'hexadécimal.
+\question Complétez la table suivante avec les valeurs qui conviennent. Utilisez la convention d'écriture C, soit le préfixe \cinline{0} pour l'octal, le \cinline{0b} pour le binaire et le \cinline{0x} pour l'hexadécimal.
 
 \medskip
 \begin{center}
 \begin{tabular}{*4{c}}
 Binaire & Octal & Décimal & Hexadécimal \\ \hline
-\CD{0b0000} & \fillin[000] & \fillin[0] & \fillin[0x0] \\
-\CD{0b0001} & \fillin[001] & \fillin[1] & \fillin[0x1] \\
-\CD{0b0010} & \fillin[002] & \fillin[2] & \fillin[0x2] \\
-\fillin[0b0011] & \CD{003} & \fillin[3] & \fillin[0x3] \\
-\CD{0b0100} & \fillin[004] & \fillin[4] & \fillin[0x4] \\
-\CD{0b0101} & \fillin[005] & \fillin[5] & \fillin[0x5] \\
-\CD{0b0110} & \fillin[006] & \fillin[6] & \fillin[0x6] \\
-\CD{0b0111} & \fillin[007] & \fillin[7] & \fillin[0x7] \\
-\CD{0b1000} & \fillin[010] & \fillin[8] & \fillin[0x8] \\
-\CD{0b1001} & \fillin[011] & \fillin[9] & \fillin[0x9] \\
-\fillin[0b1010] & \fillin[012] & \CD{10} & \fillin[0xA] \\
-\CD{0b1011} & \fillin[013] & \fillin[11] & \fillin[0xB] \\
-\fillin[0b1100] & \fillin[014] & \fillin[12] & \CD{0xC} \\
-\CD{0b1101} & \fillin[015] & \fillin[13] & \fillin[0xD] \\
-\CD{0b1110} & \fillin[016] & \fillin[14] & \fillin[0xE] \\
-\CD{0b1111} & \fillin[017] & \fillin[15] & \fillin[0xF] \\
+\canswer{0b0000} & \fillin[000] & \fillin[0] & \fillin[0x0] \\
+\canswer{0b0001} & \fillin[001] & \fillin[1] & \fillin[0x1] \\
+\canswer{0b0010} & \fillin[002] & \fillin[2] & \fillin[0x2] \\
+\fillin[0b0011] & \canswer{003} & \fillin[3] & \fillin[0x3] \\
+\canswer{0b0100} & \fillin[004] & \fillin[4] & \fillin[0x4] \\
+\canswer{0b0101} & \fillin[005] & \fillin[5] & \fillin[0x5] \\
+\canswer{0b0110} & \fillin[006] & \fillin[6] & \fillin[0x6] \\
+\canswer{0b0111} & \fillin[007] & \fillin[7] & \fillin[0x7] \\
+\canswer{0b1000} & \fillin[010] & \fillin[8] & \fillin[0x8] \\
+\canswer{0b1001} & \fillin[011] & \fillin[9] & \fillin[0x9] \\
+\fillin[0b1010] & \fillin[012] & \canswer{10} & \fillin[0xA] \\
+\canswer{0b1011} & \fillin[013] & \fillin[11] & \fillin[0xB] \\
+\fillin[0b1100] & \fillin[014] & \fillin[12] & \canswer{0xC} \\
+\canswer{0b1101} & \fillin[015] & \fillin[13] & \fillin[0xD] \\
+\canswer{0b1110} & \fillin[016] & \fillin[14] & \fillin[0xE] \\
+\canswer{0b1111} & \fillin[017] & \fillin[15] & \fillin[0xF] \\
 
 \end{tabular}
 \end{center}
@@ -97,11 +94,11 @@ Complétez le tableau ci-dessous qui comporte dans chaque ligne une valeur 8-bit
 \begin{center}
     \begin{tabular}{*5{c}}
     Binaire & Octal & Décimal non signé & Décimal signé & Hexadécimal \\ \hline
-    \CD{0b00000001} & \fillin[0001] & \fillin[1] & \fillin[1] & \fillin[0x1] \\
-    \fillin[\CD{0b11111111}] & \fillin[0377] & \fillin[255] & $-1$ & \fillin[0xFF] \\
-    \fillin[\CD{0b11111001}] & \fillin[0371] & \fillin[249] & \fillin[$-7$] & \CD{0xF9} \\
-    \CD{0b10101011} & \fillin[0253] & \fillin[171] & \fillin[-85] & \fillin[0xAB] \\
-    \fillin[\CD{0b00001100}] & \CD{014} & \fillin[12] & \fillin[12] & \fillin[0xC] \\
+    \canswer{0b00000001} & \fillin[0001] & \fillin[1] & \fillin[1] & \fillin[0x1] \\
+    \fillin[\canswer{0b11111111}] & \fillin[0377] & \fillin[255] & $-1$ & \fillin[0xFF] \\
+    \fillin[\canswer{0b11111001}] & \fillin[0371] & \fillin[249] & \fillin[$-7$] & \canswer{0xF9} \\
+    \canswer{0b10101011} & \fillin[0253] & \fillin[171] & \fillin[-85] & \fillin[0xAB] \\
+    \fillin[\canswer{0b00001100}] & \canswer{014} & \fillin[12] & \fillin[12] & \fillin[0xC] \\
     \end{tabular}
 \end{center}
 

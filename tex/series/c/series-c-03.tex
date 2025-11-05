@@ -1,10 +1,8 @@
-\documentclass[french,a4paper,addpoints,11pt]{exam}
-\usepackage{hexercises-series}
+\documentclass{worksheet}
 \usepackage{mathtools, nccmath}
 \title{Types et Formats}
-\seriesno{\texttt{0x03}}
-\department{TIN}
-\classroom{INFO1-TIN}
+\course{INFO1-TIN}
+\seriesnumber{3}
 
 \begin{document}
 \maketitle
@@ -13,58 +11,58 @@
 
     \question Pour chacune des constantes littérales de type caractère suivantes indiquez si elles sont correctes ou non.
     \begin{parts}
-        \part \CD{'a'} \hfill \fillin[Correct][10cm]
-        \part \CD{'A'} \hfill \fillin[Correct][10cm]
-        \part \CD{'ab'} \hfill \fillin[Incorrect, seulement 1 caractère][10cm]
-        \part \CD{'\\x41'} \hfill \fillin[Correct][10cm]
-        \part \CD{'\\041'} \hfill \fillin[Correct][10cm]
-        \part \CD{'\\0x41'} \hfill \fillin[Incorrect. Pour l'exadécimal c'est \CD{'\\x41'}][10cm]
-        \part \CD{'\\n'} \hfill \fillin[Correct][10cm]
-        \part \CD{'\\w'} \hfill \fillin[Incorrect][10cm]
-        \part \CD{'\\t'} \hfill \fillin[Correct (tabulation)][10cm]
-        \part \CD{'\\xp2'} \hfill \fillin[Incorrect, p2 n'est pas hexadécimal][10cm]
-        \part \CD{"abc"} \hfill \fillin[Correct][10cm]
-        \part \CD{"\\abc\\ndef"} \hfill \fillin[Correct][10cm]
-        \part \CD{"\\'\\"\\"} \hfill \fillin[Incorrect, la chaîne n'est pas terminée][10cm]
+        \part \cinline!'a'! \hfill \fillin[Correct][10cm]
+        \part \cinline!'A'! \hfill \fillin[Correct][10cm]
+        \part \cinline!'ab'! \hfill \fillin[Incorrect, seulement 1 caractère][10cm]
+        \part \cinline!'\x41'! \hfill \fillin[Correct][10cm]
+        \part \cinline!'\041'! \hfill \fillin[Correct][10cm]
+        \part \cinline!'\0x41'! \hfill \fillin[Incorrect. Pour l'exadécimal c'est \canswer{'\x41'}][10cm]
+        \part \cinline!'\n'! \hfill \fillin[Correct][10cm]
+        \part \cinline!'\w'! \hfill \fillin[Incorrect][10cm]
+        \part \cinline!'\t'! \hfill \fillin[Correct (tabulation)][10cm]
+        \part \cinline!'\xp2'! \hfill \fillin[Incorrect, p2 n'est pas hexadécimal][10cm]
+        \part \cinline!"abc"! \hfill \fillin[Correct][10cm]
+        \part \cinline!"\abc\ndef"! \hfill \fillin[Correct][10cm]
+        \part \cinline!"\\'\"\\\""! \hfill \fillin[Incorrect, la chaîne n'est pas terminée][10cm]
     \end{parts}
     \vskip 2em
 
     \question
     Quel est le \textbf{type} résultant puis la \textbf{valeur} des expressions suivantes ?
-    \begin{lstlisting}
+    \begin{code}{c}{}
 int n, p;
 float x;
 n = 10;
 p = 7;
 x = 2.5;
-\end{lstlisting}
+\end{code}
 
     \begin{parts}
-        \part \CD{x + n \% p} \hfill \fillin[float][5cm]\hspace{1cm}\fillin[5.5][2cm]
-        \part \CD{x + p / n}\hfill \fillin[float][5cm]\hspace{1cm}\fillin[2.5][2cm]
-        \part \CD{(x + p) / n}\hfill \fillin[float][5cm]\hspace{1cm}\fillin[0.95][2cm]
-        \part \CD{.5 * n}\hfill \fillin[double][5cm]\hspace{1cm}\fillin[5.0][2cm]
-        \part \CD{.5 * (float)n}\hfill \fillin[double][5cm]\hspace{1cm}\fillin[5.0][2cm]
-        \part \CD{(int).5 * n}\hfill \fillin[int][5cm]\hspace{1cm}\fillin[0][2cm]
-        \part \CD{(n + 1) / n}\hfill \fillin[int][5cm]\hspace{1cm}\fillin[1][2cm]
-        \part \CD{(n + 1.0) / n}\hfill \fillin[double][5cm]\hspace{1cm}\fillin[1.1][2cm]
+        \part \cinline!x + n % p! \hfill \fillin[float][5cm]\hspace{1cm}\fillin[5.5][2cm]
+        \part \cinline!x + p / n!\hfill \fillin[float][5cm]\hspace{1cm}\fillin[2.5][2cm]
+        \part \cinline!(x + p) / n!\hfill \fillin[float][5cm]\hspace{1cm}\fillin[0.95][2cm]
+        \part \cinline!.5 * n!\hfill \fillin[double][5cm]\hspace{1cm}\fillin[5.0][2cm]
+        \part \cinline!.5 * (float)n!\hfill \fillin[double][5cm]\hspace{1cm}\fillin[5.0][2cm]
+        \part \cinline!(int).5 * n!\hfill \fillin[int][5cm]\hspace{1cm}\fillin[0][2cm]
+        \part \cinline!(n + 1) / n!\hfill \fillin[int][5cm]\hspace{1cm}\fillin[1][2cm]
+        \part \cinline!(n + 1.0) / n!\hfill \fillin[double][5cm]\hspace{1cm}\fillin[1.1][2cm]
     \end{parts}
     \vskip 2em
     \newpage
     \question Que voyez-vous sur la sortie standard ?
 
     \begin{parts}
-        \part \CD{printf("\%d\\n", 42);}  \hfill \fillin[\CD{"42\\n"}][5cm]
-        \part \CD{printf("u\% 5d\\n", 42);}  \hfill \fillin[\CD{"u   42\\n"}][5cm]
-        \part \CD{printf("\%05d\\n", 42);}  \hfill \fillin[\CD{"00042\\n"}][5cm]
-        \part \CD{printf("\%-5d<", 42);}  \hfill \fillin[\CD{"42   <"}][5cm]
-        \part \CD{printf("\%-05d\\n", 42);}  \hfill \fillin[\CD{"42   \\n"}][5cm]
-        \part \CD{printf("\%0*d\\n", 10, 42);}  \hfill \fillin[\CD{"0000000042\\n"}][5cm]
-        \part \CD{printf("\%.1f\\n", 3.1415);}  \hfill \fillin[\CD{"3.1\\n"}][5cm]
-        \part \CD{printf("\%05.1f\\n", 3.1415);}  \hfill \fillin[\CD{"003.1\\n"}][5cm]
-        \part \CD{printf("\%d\%d\%d\\n", 42, 23, 42);}  \hfill \fillin[\CD{"422342\\n"}][5cm]
-        \part \CD{printf("\%d \%d \%d\\n", 42, 23, 42);}  \hfill \fillin[\CD{"42 23 42\\n"}][5cm]
-        \part \CD{printf(">\%c.<", 'a' + 1);}  \hfill \fillin[\CD{">b.<"}][5cm]
+        \part \cinline!printf("%d\n", 42);!  \hfill \fillin[\canswer{"42\n"}][5cm]
+        \part \cinline!printf("u% 5d\n", 42);!  \hfill \fillin[\canswer{"u   42\n"}][5cm]
+        \part \cinline!printf("%05d\n", 42);!  \hfill \fillin[\canswer{"00042\n"}][5cm]
+        \part \cinline!printf("%-5d<", 42);!  \hfill \fillin[\canswer{"42   <"}][5cm]
+        \part \cinline!printf("%-05d\n", 42);!  \hfill \fillin[\canswer{"42   \n"}][5cm]
+        \part \cinline!printf("%0*d\n", 10, 42);!  \hfill \fillin[\canswer{"0000000042\n"}][5cm]
+        \part \cinline!printf("%.1f\n", 3.1415);!  \hfill \fillin[\canswer{"3.1\n"}][5cm]
+        \part \cinline!printf("%05.1f\n", 3.1415);!  \hfill \fillin[\canswer{"003.1\n"}][5cm]
+        \part \cinline!printf("%d%d%d\n", 42, 23, 42);!  \hfill \fillin[\canswer{"422342\n"}][5cm]
+        \part \cinline!printf("%d %d %d\n", 42, 23, 42);!  \hfill \fillin[\canswer{"42 23 42\n"}][5cm]
+        \part \cinline!printf(">%c.<", 'a' + 1);!  \hfill \fillin[\canswer{">b.<"}][5cm]
     \end{parts}
     \vskip 2em
 
@@ -80,7 +78,7 @@ x = 2.5;
     %   \part Quel résultats espérait le développeur ?
     %   \ifprintanswers
     %   \begin{solution}
-    %   Avec 200 pièces mauvaises sur 2000 pièces produites, le programmeur attendait un résultat de 0.9, signifiant 90 \% de pièces bonnes.
+    %   Avec 200 pièces mauvaises sur 2000 pièces produites, le programmeur attendait un résultat de 0.9, signifiant 90 % de pièces bonnes.
     %   \end{solution}
     %   \else
     %   \fillwithdottedlines{3cm}
@@ -126,14 +124,14 @@ char c = '\0';
 \end{lstlisting}
 
     \begin{parts}
-        \part \CD{r = sscanf("42", "\%d", &i);} \hfill \fillin[\CD{i = 42, r = 1}][8cm]
-        \part \CD{r = sscanf("4 8", "\%d", &i);} \hfill \fillin[\CD{i = 4, r = 1}][8cm]
-        \part \CD{r = sscanf("4 8", "\%d \%d", &i, &j);} \hfill \fillin[\CD{i = 4, j = 8, r = 2}][8cm]
-        \part \CD{r = sscanf("4 8", "\%d\%d", &i, &j);} \hfill \fillin[\CD{i = 4, j = 8, r = 2}][8cm]
-        \part \CD{r = sscanf("15 16", "\%d\%c\%d", &i, &c, &j);} \hfill \fillin[\CD{i = 15, c = ' ', j = 16, r = 3}][8cm]
-        \part \CD{r = sscanf("1568", "\%1d\%2d", &i, &j);} \hfill \fillin[\CD{i = 1, j = 56, r = 2}][8cm]
-        \part \CD{r = sscanf("1568", "\%c\%c", &i, &j);} \hfill \fillin[\CD{i = 0x30, j = 0x35, r = 2}][8cm]
-        \part \CD{r = sscanf("1568", "\%*c\%c", &i);} \hfill \fillin[\CD{i = 0x35, r = 1}][8cm]
+        \part \cinline!r = sscanf("42", "%d", &i);! \hfill \fillin[\canswer{i = 42, r = 1}][8cm]
+        \part \cinline!r = sscanf("4 8", "%d", &i);! \hfill \fillin[\canswer{i = 4, r = 1}][8cm]
+        \part \cinline!r = sscanf("4 8", "%d %d", &i, &j);! \hfill \fillin[\canswer{i = 4, j = 8, r = 2}][8cm]
+        \part \cinline!r = sscanf("4 8", "%d%d", &i, &j);! \hfill \fillin[\canswer{i = 4, j = 8, r = 2}][8cm]
+        \part \cinline!r = sscanf("15 16", "%d%c%d", &i, &c, &j);! \hfill \fillin[\canswer{i = 15, c = ' ', j = 16, r = 3}][8cm]
+        \part \cinline!r = sscanf("1568", "%1d%2d", &i, &j);! \hfill \fillin[\canswer{i = 1, j = 56, r = 2}][8cm]
+        \part \cinline!r = sscanf("1568", "%c%c", &i, &j);! \hfill \fillin[\canswer{i = 0x30, j = 0x35, r = 2}][8cm]
+        \part \cinline!r = sscanf("1568", "%*c%c", &i);! \hfill \fillin[\canswer{i = 0x35, r = 1}][8cm]
     \end{parts}
     \vskip 2em
 

@@ -1,10 +1,8 @@
-\documentclass[french,a4paper,addpoints,11pt]{exam}
-\usepackage{hexercises-series}
+\documentclass{worksheet}
 \usepackage{mathtools, nccmath}
 \title{Révision du cours Info1}
-\seriesno{\texttt{0x20}}
-\department{TIN}
-\classroom{INFO2-TIN}
+\course{INFO2-TIN}
+\seriesnumber{32}
 
 \begin{document}
 \maketitle
@@ -21,38 +19,38 @@ float f = 3.3; double d = 7.7;
 
 Pour chacune des expressions ci-dessous, indiquez leur type et leur valeur.
 
-\textbf{Exemple :} \CD{2 / 3 * c}, réponse : \CD{(int)0}.
+\textbf{Exemple :} \cinline{2 / 3 * c}, réponse : \cinline{(int)0}.
 
 \begin{parts}
-    \part \CD{c / 2}
-    \answerline[\CD{(int)1}]
+    \part \cinline{c / 2}
+    \answerline[\canswer{(int)1}]
 
-    \part \CD{s + c / 10}
-    \answerline[\CD{(int)7}]
+    \part \cinline{s + c / 10}
+    \answerline[\canswer{(int)7}]
 
-    \part \CD{l + i / 2.0}
-    \answerline[\CD{(double)5.5}]
+    \part \cinline{l + i / 2.0}
+    \answerline[\canswer{(double)5.5}]
 
-    \part \CD{d + f}
-    \answerline[\CD{(double)11}]
+    \part \cinline{d + f}
+    \answerline[\canswer{(double)11}]
 
-    \part \CD{(int)d + f}
-    \answerline[\CD{(float)10.3}]
+    \part \cinline{(int)d + f}
+    \answerline[\canswer{(float)10.3}]
 
-    \part \CD{(int)d + l}
-    \answerline[\CD{(long)11}]
+    \part \cinline{(int)d + l}
+    \answerline[\canswer{(long)11}]
 
-    \part \CD{c << 2}
-    \answerline[\CD{(int)12}]
+    \part \cinline{c << 2}
+    \answerline[\canswer{(int)12}]
 
-    \part \CD{s & 0xf0}
-    \answerline[\CD{(int)0}]
+    \part \cinline{s & 0xf0}
+    \answerline[\canswer{(int)0}]
 
-    \part \CD{s && 0xf0}
-    \answerline[\CD{(int)1}]
+    \part \cinline{s && 0xf0}
+    \answerline[\canswer{(int)1}]
 
-    \part \CD{d + f == s + l}
-    \answerline[\CD{(int)0}]
+    \part \cinline{d + f == s + l}
+    \answerline[\canswer{(int)0}]
 \end{parts}
 
 \question
@@ -72,7 +70,7 @@ while (x > 1.0);
 \end{lstlisting}
 
 \begin{solutionordottedlines}[2cm]
-Il manque les accolades autour du bloc \CD{do..while}.
+Il manque les accolades autour du bloc \cinline{do..while}.
 \end{solutionordottedlines}
 
 \part ~\par
@@ -83,7 +81,7 @@ if (x = 0)
 \end{lstlisting}
 
 \begin{solutionordottedlines}[2cm]
-Le test d'égalité utilise l'opérateur \CD{==}. L'opérateur d'affectation \CD{=} n'est pas valable.
+Le test d'égalité utilise l'opérateur \cinline{==}. L'opérateur d'affectation \cinline{=} n'est pas valable.
 \end{solutionordottedlines}
 
 \part ~\par
@@ -99,7 +97,7 @@ switch (x) {
 \end{lstlisting}
 
 \begin{solutionordottedlines}[2cm]
-L'instruction \CD{switch} n'est pas applicable à un type à virgule flottante.
+L'instruction \cinline{switch} n'est pas applicable à un type à virgule flottante.
 \end{solutionordottedlines}
 
 \part ~\par
@@ -124,7 +122,7 @@ while i < 100
 \end{lstlisting}
 
 \begin{solutionordottedlines}[2cm]
-Il manque des parenthèses autour de la condition de l'instruction \CD{while}.
+Il manque des parenthèses autour de la condition de l'instruction \cinline{while}.
 \end{solutionordottedlines}
 \end{parts}
 
@@ -153,10 +151,10 @@ int main() {
 \end{lstlisting}
 
 \begin{solutionordottedlines}[1cm]
-\CD{00000 105 102 300 102}
+\cinline{00000 105 102 300 102}
 \end{solutionordottedlines}
 
-\question Algorithme sur les tableaux : écrire une fonction qui reçoit en paramètre un tableau d'entiers et qui retourne la position de la première occurrence d'une valeur dans ce tableau, ou \CD{-1} si la valeur n'est pas présente. Utiliser la syntaxe pointeur pour le paramètre tableau.
+\question Algorithme sur les tableaux : écrire une fonction qui reçoit en paramètre un tableau d'entiers et qui retourne la position de la première occurrence d'une valeur dans ce tableau, ou \cinline{-1} si la valeur n'est pas présente. Utiliser la syntaxe pointeur pour le paramètre tableau.
 
 \ifprintanswers
 \begin{solution}

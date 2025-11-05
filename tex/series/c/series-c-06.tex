@@ -1,17 +1,15 @@
-\documentclass[french,a4paper,addpoints,11pt]{exam}
-\usepackage{hexercises-series}
+\documentclass{worksheet}
 \usepackage{mathtools, nccmath}
 \title{Opérateurs et embranchements}
-\seriesno{\texttt{0x06}}
-\department{TIN}
-\classroom{INFO1-TIN}
+\course{INFO1-TIN}
+\seriesnumber{6}
 
 \begin{document}
 \maketitle
 
 \begin{questions}
 
-\question Opérateurs Combinés : en reprenant à chaque fois les valeurs suivntes, calculer les valeurs de \CD{i}, \CD{j} et lorsque cela s'applique \CD{z} après l'exécution des instructions suivantes :
+\question Opérateurs Combinés : en reprenant à chaque fois les valeurs suivntes, calculer les valeurs de \cinline{i}, \cinline{j} et lorsque cela s'applique \cinline{z} après l'exécution des instructions suivantes :
 
 \begin{lstlisting}
 int i = 1; j = 3;
@@ -20,17 +18,17 @@ int z;
 
 \begin{center}
 \begin{tabular}{l|*3{c}}
-  Expression & \CD{i} & \CD{j} & \CD{z} \\ \hline
-  \CD{i += j} & \fillin[4] & \fillin[3] & \fillin[?] \\
-  \CD{i += -j} & \fillin[-2] & \fillin[3] & \fillin[?] \\
-  \CD{i -= j} & \fillin[-2] & \fillin[3] & \fillin[?] \\
-  \CD{i -= -j} & \fillin[4] & \fillin[3] & \fillin[?] \\
-  \CD{i *= j} & \fillin[3] & \fillin[3] & \fillin[?] \\
-  \CD{i *= -j} & \fillin[-3] & \fillin[3] & \fillin[?] \\
-  \CD{i /= j} & \fillin[0] & \fillin[3] & \fillin[?] \\
-  \CD{z = i * j == 6} & \fillin[1] & \fillin[3] & \fillin[0] \\
-  \CD{z = i++ * j == 6} & \fillin[2] & \fillin[3] & \fillin[0] \\
-  \CD{z = ++i * j == 6} & \fillin[2] & \fillin[3] & \fillin[1] \\
+  Expression & \canswer{i} & \canswer{j} & \canswer{z} \\ \hline
+  \canswer{i += j} & \fillin[4] & \fillin[3] & \fillin[?] \\
+  \canswer{i += -j} & \fillin[-2] & \fillin[3] & \fillin[?] \\
+  \canswer{i -= j} & \fillin[-2] & \fillin[3] & \fillin[?] \\
+  \canswer{i -= -j} & \fillin[4] & \fillin[3] & \fillin[?] \\
+  \canswer{i *= j} & \fillin[3] & \fillin[3] & \fillin[?] \\
+  \canswer{i *= -j} & \fillin[-3] & \fillin[3] & \fillin[?] \\
+  \canswer{i /= j} & \fillin[0] & \fillin[3] & \fillin[?] \\
+  \canswer{z = i * j == 6} & \fillin[1] & \fillin[3] & \fillin[0] \\
+  \canswer{z = i++ * j == 6} & \fillin[2] & \fillin[3] & \fillin[0] \\
+  \canswer{z = ++i * j == 6} & \fillin[2] & \fillin[3] & \fillin[1] \\
 \end{tabular}
 \end{center}
 
@@ -52,12 +50,12 @@ z = a + b;
 \fillwithdottedlines{1cm}
 \fi
 
-\part Soit variable \CD{n} est de type \CD{int}. Écrire une expression unique qui prend la valeur:
+\part Soit variable \cinline{n} est de type \cinline{int}. Écrire une expression unique qui prend la valeur:
 
 \begin{enumerate}
-  \item \CD{-1} si \CD{n} est négatif
-  \item \CD{0} si \CD{n} est nul
-  \item \CD{1} si \CD{n} est positif
+  \item \cinline{-1} si \cinline{n} est négatif
+  \item \cinline{0} si \cinline{n} est nul
+  \item \cinline{1} si \cinline{n} est positif
 \end{enumerate}
 
 \ifprintanswers
@@ -89,7 +87,7 @@ int(f) + 1.9
 
 \ifprintanswers
 \begin{solution}
-La coercition de type s'écrit \CD{(int)f} et non \CD{int(f)}.
+La coercition de type s'écrit \cinline{(int)f} et non \cinline{int(f)}.
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
@@ -102,7 +100,7 @@ i = 1 + j = j / 2
 
 \ifprintanswers
 \begin{solution}
-L'opérateur \CD{=} est moins prioritaire que \CD{+}. En conséquence, cette expression tente d'affecter \CD{j / 2} à \CD{1 + j}. Or, une affectation n'est possible que si l'expression à gauche est une variable, ce qui n'est pas le cas ici.
+L'opérateur \cinline{=} est moins prioritaire que \cinline{+}. En conséquence, cette expression tente d'affecter \cinline{j / 2} à \cinline{1 + j}. Or, une affectation n'est possible que si l'expression à gauche est une variable, ce qui n'est pas le cas ici.
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
@@ -115,7 +113,7 @@ f = g << 2
 
 \ifprintanswers
 \begin{solution}
-Le décalage de bits est un opérateur de type \CD{int}, et non un opérateur de type \CD{double}.
+Le décalage de bits est un opérateur de type \cinline{int}, et non un opérateur de type \cinline{double}.
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
@@ -128,7 +126,7 @@ i = ++j++
 
 \ifprintanswers
 \begin{solution}
-Cette expression essaie d'exécuter l'opérateur de post-incrémentation à \CD{(++j)} or cette expression est évalué comme une valeur, et non une variable.
+Cette expression essaie d'exécuter l'opérateur de post-incrémentation à \cinline{(++j)} or cette expression est évalué comme une valeur, et non une variable.
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
@@ -141,7 +139,7 @@ i++ = ++j
 
 \ifprintanswers
 \begin{solution}
-La partie gauche de l'opérateur \CD{i++} est évaluée comme une valeur, et n'est donc pas assignable. On dit que le membre de gauche n'est pas une \emph{lvalue}.
+La partie gauche de l'opérateur \cinline{i++} est évaluée comme une valeur, et n'est donc pas assignable. On dit que le membre de gauche n'est pas une \emph{lvalue}.
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
@@ -217,7 +215,7 @@ if (i = 8) printf("i vaut 8\n");
 
 \ifprintanswers
 \begin{solution}
-Incorrect : affiche que \CD{i} vaut 8 dans tous les cas.
+Incorrect : affiche que \cinline{i} vaut 8 dans tous les cas.
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
@@ -243,7 +241,7 @@ if (i ^ 8) printf("i vaut 8\n");
 
 \ifprintanswers
 \begin{solution}
-Incorrect : affiche \emph{i vaut 8} pour tous les cas sauf lorsque \CD{i} vaut 8 !
+Incorrect : affiche \emph{i vaut 8} pour tous les cas sauf lorsque \cinline{i} vaut 8 !
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}
@@ -256,7 +254,7 @@ if (i - 8) printf("i vaut 8\n");
 
 \ifprintanswers
 \begin{solution}
-Incorrect : affiche \emph{i vaut 8} pour tous les cas sauf lorsque \CD{i} vaut 8 !
+Incorrect : affiche \emph{i vaut 8} pour tous les cas sauf lorsque \cinline{i} vaut 8 !
 \end{solution}
 \else
 \fillwithdottedlines{1.5cm}

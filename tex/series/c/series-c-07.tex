@@ -1,10 +1,8 @@
-\documentclass[french,a4paper,addpoints,11pt]{exam}
-\usepackage{hexercises-series}
+\documentclass{worksheet}
 \usepackage{mathtools, nccmath}
 \title{Chaînes de caractères}
-\seriesno{\texttt{0x07}}
-\department{TIN}
-\classroom{INFO1-TIN}
+\course{INFO1-TIN}
+\seriesnumber{7}
 
 \begin{document}
 \maketitle
@@ -47,7 +45,7 @@ char *s[] = {"foo", "bar", "baz"};\end{lstlisting}
 \part
 \begin{lstlisting}
 char s[] = {"foo" "bar" "baz"};\end{lstlisting}
-\answerline[La chaîne compile et est modifiable. Elle vaut \CD{"foobarbaz"}]
+\answerline[La chaîne compile et est modifiable. Elle vaut \canswer{"foobarbaz"}]
 
 \end{parts}
 
@@ -82,7 +80,7 @@ int foo() { char s[] = "foo\n\t\0bar"; return strlen(s); }
 
 \end{parts}
 
-\question En utilisant la bibliothèque \emph{ctype.h}, écrire une fonction qui transforme une\ chaîne de caractères reçue en majuscules. Le prototype de la fonction est \CD{void majuscule(char *s)}.
+\question En utilisant la bibliothèque \emph{ctype.h}, écrire une fonction qui transforme une\ chaîne de caractères reçue en majuscules. Le prototype de la fonction est \cinline{void majuscule(char *s)}.
 
 \ifprintanswers
 
@@ -96,7 +94,7 @@ void majuscule(char *s) {
 \end{lstlisting}
 \fi
 
-\question Soit un texte d'entrée, indiquer la position à laquelle se trouve une sous-chaîne, si elle existe. Sinon retourne -1. Le prototype de la fonction est \CD{int position(char s[], char sub[])}. Aidez-vous également de la bibliothèque \emph{ctype.h}
+\question Soit un texte d'entrée, indiquer la position à laquelle se trouve une sous-chaîne, si elle existe. Sinon retourne -1. Le prototype de la fonction est \cinline{int position(char s[], char sub[])}. Aidez-vous également de la bibliothèque \emph{ctype.h}
 
 \ifprintanswers
 

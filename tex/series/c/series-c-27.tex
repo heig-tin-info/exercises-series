@@ -1,11 +1,9 @@
-\documentclass[french,a4paper,addpoints,11pt]{exam}
-\usepackage{hexercises-series}
+\documentclass{worksheet}
 \usepackage{mathtools, nccmath}
 \usepackage{tabularx}
 \title{Tableaux dynamiques}
-\seriesno{\texttt{0x27}}
-\department{TIN}
-\classroom{INFO2-TIN}
+\course{INFO2-TIN}
+\seriesnumber{39}
 
 \begin{document}
 \maketitle
@@ -20,14 +18,14 @@ Les opérations sur un tableau dynamiques sont : \emph{push} pour ajouter un él
 
 Parfois d'autres opérations existent : \emph{delete} pour supprimer un élément à l'indice K et \emph{insert} pour ajouter un élément après l'élément K.
 
-Utilisez ici \CD{assert} pour le test des erreurs, et ne réduisez pas la taille du tableau, il ne fait que s'agrandir au gré des données le peuplant.
+Utilisez ici \cinline{assert} pour le test des erreurs, et ne réduisez pas la taille du tableau, il ne fait que s'agrandir au gré des données le peuplant.
 \begin{questions}
 
 \question On souhaite implémenter un tableau dynamique, implémentez les fonctions demandées :
 
 \begin{parts}
 
-\part Écrire une structure de donnée représentant un tableau dynamique et permettant de stocker des paires de \CD{double}.
+\part Écrire une structure de donnée représentant un tableau dynamique et permettant de stocker des paires de \cinline{double}.
 \ifprintanswers
 \begin{solution}
 \begin{lstlisting}
@@ -54,7 +52,7 @@ typedef struct array {
 } Array;
 \end{lstlisting}
 
-\part Écrire la fonction \CD{array_init}
+\part Écrire la fonction \cinline{array_init}
 
 \ifprintanswers
 \begin{solution}
@@ -72,7 +70,7 @@ void array_init(Array *array);
 \end{lstlisting}
 \fi
 
-\part Écrire la fonction \CD{array_push}
+\part Écrire la fonction \cinline{array_push}
 
 \ifprintanswers
 \begin{solution}
@@ -95,7 +93,7 @@ void array_push(Array *array, double x, double y);
 \end{lstlisting}
 \fi
 
-\part Écrire la fonction \CD{array_pop}
+\part Écrire la fonction \cinline{array_pop}
 
 \ifprintanswers
 \begin{solution}
@@ -114,7 +112,7 @@ void array_pop(Array *array, double *x, double *y);
 \end{lstlisting}
 \fi
 
-\part Écrire la fonction \CD{array_shift}
+\part Écrire la fonction \cinline{array_shift}
 
 \ifprintanswers
 \begin{solution}
@@ -137,7 +135,7 @@ void array_shift(Array *array, double *x, double *y)
 \end{lstlisting}
 \fi
 
-\part Écrire la fonction \CD{array_unshift}
+\part Écrire la fonction \cinline{array_unshift}
 
 \ifprintanswers
 \begin{solution}
@@ -163,7 +161,7 @@ void array_unshift(Array *array, double x, double y)
 \end{lstlisting}
 \fi
 
-\part Écrire la fonction \CD{array_insert}
+\part Écrire la fonction \cinline{array_insert}
 
 \ifprintanswers
 \begin{solution}
@@ -189,7 +187,7 @@ void array_insert(Array *array, size_t index, double x, double y);
 \end{lstlisting}
 \fi
 
-\part Écrire la fonction \CD{array_delete}
+\part Écrire la fonction \cinline{array_delete}
 
 \ifprintanswers
 \begin{solution}
