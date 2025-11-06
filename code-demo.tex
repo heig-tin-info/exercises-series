@@ -1,0 +1,205 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[french]{babel}
+\usepackage{fontspec}
+\usepackage{microtype}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[xparse,many,skins,breakable]{tcolorbox}
+\tcbuselibrary{minted}
+\usepackage{minted}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{inconsolata}
+\usepackage{xparse}
+
+\directlua{luaotfload.add_fallback
+  ("fontfallback",
+  {
+      "NotoColorEmoji:mode=harf;",
+      "NotoNaskhArabic:mode=harf;",
+      "NotoSerifHebrew:mode=harf;",
+      "NotoSerifDevanagari:mode=harf;",
+      "NotoSerifTamil:mode=harf;",
+      "NotoSerifTibetan:mode=harf;",
+      "NotoSerifCJKkr:mode=harf;",
+      "NotoSans:mode=harf;",
+      "NotoSansSymbols2-Regular:mode=harf;",
+      "NotoSansMath-Regular:mode=harf;",
+      "NotoMusic-Regular:mode=harf;",
+    }
+  )}
+
+\setmainfont{Latin Modern Roman}[
+  Ligatures=TeX,
+  SmallCapsFont = Latin Modern Roman Caps,
+  RawFeature = {fallback=fontfallback},
+]
+
+\setsansfont{Latin Modern Sans}[
+  RawFeature={fallback=fontfallback}
+]
+
+\setmonofont{FreeMono}[
+  Scale=0.9,
+  ItalicFont={* Oblique},
+  BoldFont={* Bold},
+  BoldItalicFont={* Bold Oblique},
+  RawFeature={fallback=fontfallback}
+]
+
+\setstretch{1.1}
+
+\usemintedstyle{bw}
+
+\setminted{
+    tabsize=4,
+    breaklines,
+    xleftmargin=0.4em,
+    fontsize=\footnotesize,
+    highlightcolor=gray!30,
+    ignorelexererrors
+}
+
+\tcbuselibrary{minted}
+
+\NewTCBListing{code}{ !O{text} !O{} !O{} }{%
+  listing engine=minted,
+  breakable, listing only, enhanced,
+  colback=white, pad at break*=1mm,
+  toptitle=0.15em, bottomtitle=0.1em,
+  boxrule=0.15mm, arc=3pt,
+  top=1mm, bottom=1mm, left=0pt, right=0pt,
+  boxsep=0pt, colback=black!3, colframe=black!80,
+  minted language=#1,
+  minted options={#2},
+  #3
+}
+
+\tcbset{
+  cinline/.style={
+    on line,
+    tcbox raise base,
+    boxsep=1pt,
+    left=3pt,
+    right=3pt,
+    top=1pt,
+    bottom=1pt,
+    colback=black!3,
+    colframe=black!20,
+    arc=2pt,
+    tcbox raise base,
+  },
+}
+
+% \cinline[<lang>][<minted opts>] |code|
+% \cinline[<lang>][<minted opts>]!code!   % (brace form also supported; see note)
+\ExplSyntaxOn
+\NewDocumentCommand{\cinline}{ o o +v }{%
+  \IfNoValueTF{#1}{%
+    % --- no language: literal text, no minted ---
+    \tcbox[cinline]{\texttt{\detokenize{#3}}}%
+  }{%
+    \IfBlankTF{#1}{%
+      % --- empty language []: also literal ---
+      \tcbox[cinline]{\texttt{\detokenize{#3}}}%
+    }{%
+      % --- minted inline ---
+      \IfNoValueTF{#2}{%
+        \tcbox[cinline]{\mintinline{#1}{#3}}%
+      }{%
+        \tcbox[cinline]{\mintinline[#2]{#1}{#3}}%
+      }%
+    }%
+  }%
+}
+\ExplSyntaxOff
+
+\title{Code environment demo}
+\author{HEIG-VD -- Série d'exercices}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+Ce document autonome sert \'a v\'erifier le rendu des environnements \cinline!\string\code! et \cinline!\string\cinline!. Les extraits sont inspir\'es des s\'eries d'exercices en C, C++ et Python afin de couvrir plusieurs langages.
+
+\section{Inline code}
+
+On peut annoter une instruction \cinline!printf("Voltage: %g V\\n");! ou une condition \cinline!if valeur < 0:! directement dans le texte, ainsi qu'une commande shell comme \cinline!python3 -m pytest --maxfail=1!.
+
+We can highlight the inline code with syntax highlighting by specifying the language: \cinline[cpp]!std::cout << "Hello, World!" << std::endl;! or \cinline[python]!def greet(name): return f"Hello, {name}"!.
+
+\section{Code Blocks}
+
+\subsection{No language}
+
+\begin{code}[text]
+This is a code block without a specified language.
+\end{code}
+\subsection{C Example}
+
+\begin{code}[c]
+\#include <stdio.h>
+
+double compute_current(double voltage, double resistance) {
+  if (resistance <= 0.0) {
+    fprintf(stderr, "Resistance invalide\\n");
+    return -1.0;
+  }
+  return voltage / resistance;
+}
+
+int main(void) {
+  double voltage = 5.0;
+  double resistance = 220.0;
+  double current = compute_current(voltage, resistance);
+
+  if (current < 0.0) {
+    return 1;
+  }
+
+  printf("Pour %.1f V et %.1f ohms, courant = %.4f A\\n",
+         voltage, resistance, current);
+  return 0;
+}
+\end{code}
+
+\subsection{C++}
+\begin{code}[cpp][linenos,highlightlines={7-10,13}]
+\#include <algorithm>
+\#include <format>
+\#include <iomanip>
+\#include <iostream>
+\#include <map>
+\#include <string>
+
+struct Item {
+  std::string name;
+  int quantity;
+};
+
+int main() {
+  std::map<std::string, Item> stock = {
+      {"multimetre", {"multimetre", 4}},
+      {"oscilloscope", {"oscilloscope", 2}},
+      {"arduino", {"arduino", 18}},
+  };
+
+  auto print_item = [](const Item &item) {
+    std::cout << std::left << std::setw(14) << item.name << " -> "
+              << std::right << std::setw(3) << item.quantity << " pcs\\n";
+  };
+
+  std::cout << "Inventaire disponible:" << std::endl;
+  for (const auto &[key, item] : stock) {
+    print_item(item);
+  }
+
+  stock["arduino"].quantity -= 5;
+  std::cout << std::format("Apres pret, il reste {} arduinos\\n",
+                           stock["arduino"].quantity);
+
+  return 0;
+}
+\end{code}
+
+\end{document}
