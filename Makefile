@@ -33,7 +33,7 @@ build/series/%-solution.pdf: tex/series/%.tex revision.tex heiglogo.sty
         $(CURDIR)/$<)
 
 heiglogo.sty:
-	wget https://github.com/HEIG-VD/logos/releases/download/v0.5.0/heiglogo.sty -O tex/series/$@
+	wget https://github.com/HEIG-VD/logos/releases/download/v0.5.0/heiglogo.sty -O tex/$@
 
 clean:
 	latexmk -C

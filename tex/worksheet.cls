@@ -23,11 +23,12 @@
 \RequirePackage{hyperref}
 \RequirePackage{xfrac}
 \RequirePackage{tikzpagenodes}
-\RequirePackage{inconsolata}
 \RequirePackage{minted}
 \RequirePackage[many,skins,breakable]{tcolorbox}
 \tcbuselibrary{minted}
 \RequirePackage{heiglogo}
+
+\setmonofont{Source Code Pro}
 
 \makeatletter
 \providecommand\input@path{}
@@ -53,13 +54,14 @@
   cinline/.style={
     on line,
     tcbox raise base,
-    boxsep=1pt,
-    left=3pt,
-    right=3pt,
+    boxsep=0.5pt,
+    left=2pt,
+    right=2pt,
     top=1pt,
     bottom=1pt,
     colback=black!3,
-    colframe=black!20,
+    colframe=black!40,
+    boxrule= 0.15mm,
     arc=2pt,
   },
 }
@@ -94,6 +96,8 @@
 
 % Code environment using tcolorbox/minted combo
 \newcommand{\codedefaultlang}{text}
+\newcommand{\worksheetCodeFrameColor}{black!80}
+\newcommand{\worksheetCodeTextColor}{black}
 \newcommand{\setdefaultcodelanguage}[1]{\renewcommand{\codedefaultlang}{#1}}
 \newcommand{\setdefaultcodeoptions}[1]{%
   \if\relax\detokenize{#1}\relax
@@ -105,7 +109,13 @@
 \NewTCBListing{code}{ O{\codedefaultlang} O{} O{} }{%
   listing engine     = minted,
   minted language    = #1,
-  minted options     = {#2},
+  minted options     = {
+    tabsize=3,
+    breaklines,
+    xleftmargin=0.4em,
+    fontsize=\footnotesize,
+    #2
+  },
   enhanced,
   breakable,
   listing only,
@@ -120,7 +130,8 @@
   left               = 0pt,
   right              = 0pt,
   boxsep             = 0pt,
-  colframe           = black!80,
+  colframe           = \worksheetCodeFrameColor,
+  coltext            = \worksheetCodeTextColor,
   #3
 }
 
@@ -130,6 +141,19 @@
   \labelwidth=-\labelsep}
 \sethexercisesinlinecolor{GitHubGray}
 \firstpagefooter{\revision}{}{Page \thepage\ sur \numpages}
+
+\definecolor{worksheetSolutionColor}{RGB}{155,0,0}
+\newcommand{\worksheetSolutionStyle}{\color{worksheetSolutionColor}}
+\newcommand{\worksheetSolutionSetup}{%
+  \worksheetSolutionStyle
+  \renewcommand{\worksheetCodeFrameColor}{worksheetSolutionColor}%
+  \renewcommand{\worksheetCodeTextColor}{worksheetSolutionColor}%
+  \setminted{formatcom=\worksheetSolutionStyle}%
+  \setmintedinline{formatcom=\worksheetSolutionStyle}%
+}
+\unframedsolutions
+\renewcommand{\solutiontitle}{}
+\SolutionEmphasis{\worksheetSolutionSetup}
 
 \makeatletter
 \DeclareRobustCommand*\school[1]{\gdef\@school{#1}}
@@ -142,11 +166,11 @@
 }
 \def\@maketitle{%
   \newpage
-  \logo[height=1.5cm]
-  \null
-  \begin{center}%
-    {\LARGE Série d'exercices \@seriesno \par}%
-    \ifprintanswers Solution \fi
+    \logo[height=1.5cm]
+    \null
+    \begin{center}%
+      {\LARGE Série d'exercices \@seriesno \par}%
+    \ifprintanswers {\worksheetSolutionStyle\textbf{Solution}} \fi
 
     {\LARGE \bfseries\@title \par}%
     \vskip 1.5em%
@@ -156,7 +180,29 @@
     \vskip 1.0em%
   \end{center}%
   \par
-  \noindent\rule{\textwidth}{0.4pt}\vskip 1em}
+\noindent\rule{\textwidth}{0.4pt}\vskip 1em}
+\makeatother
+
+\makeatletter
+\def\@fillin@relay[#1]{%
+  \leavevmode
+  \ifprintanswers
+    \rlap{\raise -\answerclearance \hbox to #1{\hrulefill}}%
+    \begingroup
+      \setbox0 \hbox{\color@begingroup
+             \CorrectChoice@Emphasis \worksheetSolutionStyle \fillin@ans \color@endgroup}%
+      \ifdim\wd0 > #1\relax
+        \hbox{\color@begingroup\CorrectChoice@Emphasis \worksheetSolutionStyle \fillin@ans
+              \color@endgroup}%
+      \else
+        \hbox to #1{\color@begingroup\CorrectChoice@Emphasis \worksheetSolutionStyle
+                    \fillin@ans\color@endgroup\hss}%
+      \fi
+    \endgroup
+  \else
+    \raise -\answerclearance \hbox to #1{\hrulefill}%
+  \fi
+}%
 \makeatother
 
 \ExplSyntaxOn

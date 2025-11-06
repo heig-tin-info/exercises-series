@@ -1,50 +1,50 @@
 \documentclass[12pt,a4paper]{article}
-\usepackage[french]{babel}
+%\usepackage[french]{babel}
 \usepackage{fontspec}
-\usepackage{microtype}
+%\usepackage{microtype}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[xparse,many,skins,breakable]{tcolorbox}
 \tcbuselibrary{minted}
 \usepackage{minted}
 \usepackage{hyperref}
 \usepackage{setspace}
-\usepackage{inconsolata}
+%\usepackage{inconsolata}
 \usepackage{xparse}
 
-\directlua{luaotfload.add_fallback
-  ("fontfallback",
-  {
-      "NotoColorEmoji:mode=harf;",
-      "NotoNaskhArabic:mode=harf;",
-      "NotoSerifHebrew:mode=harf;",
-      "NotoSerifDevanagari:mode=harf;",
-      "NotoSerifTamil:mode=harf;",
-      "NotoSerifTibetan:mode=harf;",
-      "NotoSerifCJKkr:mode=harf;",
-      "NotoSans:mode=harf;",
-      "NotoSansSymbols2-Regular:mode=harf;",
-      "NotoSansMath-Regular:mode=harf;",
-      "NotoMusic-Regular:mode=harf;",
-    }
-  )}
+% \directlua{luaotfload.add_fallback
+%   ("fontfallback",
+%   {
+%       "NotoColorEmoji:mode=harf;",
+%       "NotoNaskhArabic:mode=harf;",
+%       "NotoSerifHebrew:mode=harf;",
+%       "NotoSerifDevanagari:mode=harf;",
+%       "NotoSerifTamil:mode=harf;",
+%       "NotoSerifTibetan:mode=harf;",
+%       "NotoSerifCJKkr:mode=harf;",
+%       "NotoSans:mode=harf;",
+%       "NotoSansSymbols2-Regular:mode=harf;",
+%       "NotoSansMath-Regular:mode=harf;",
+%       "NotoMusic-Regular:mode=harf;",
+%     }
+%   )}
 
-\setmainfont{Latin Modern Roman}[
-  Ligatures=TeX,
-  SmallCapsFont = Latin Modern Roman Caps,
-  RawFeature = {fallback=fontfallback},
-]
+% \setmainfont{Latin Modern Roman}[
+%   Ligatures=TeX,
+%   SmallCapsFont = Latin Modern Roman Caps,
+%   RawFeature = {fallback=fontfallback},
+% ]
 
-\setsansfont{Latin Modern Sans}[
-  RawFeature={fallback=fontfallback}
-]
+% \setsansfont{Latin Modern Sans}[
+%   RawFeature={fallback=fontfallback}
+% ]
 
-\setmonofont{FreeMono}[
-  Scale=0.9,
-  ItalicFont={* Oblique},
-  BoldFont={* Bold},
-  BoldItalicFont={* Bold Oblique},
-  RawFeature={fallback=fontfallback}
-]
+% \setmonofont{FreeMono}[
+%   Scale=0.9,
+%   ItalicFont={* Oblique},
+%   BoldFont={* Bold},
+%   BoldItalicFont={* Bold Oblique},
+%   RawFeature={fallback=fontfallback}
+% ]
 
 \setstretch{1.1}
 
@@ -138,7 +138,7 @@ This is a code block without a specified language.
 \subsection{C Example}
 
 \begin{code}[c]
-\#include <stdio.h>
+#include <stdio.h>
 
 double compute_current(double voltage, double resistance) {
   if (resistance <= 0.0) {
@@ -165,12 +165,12 @@ int main(void) {
 
 \subsection{C++}
 \begin{code}[cpp][linenos,highlightlines={7-10,13}]
-\#include <algorithm>
-\#include <format>
-\#include <iomanip>
-\#include <iostream>
-\#include <map>
-\#include <string>
+#include <algorithm>
+#include <format>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <string>
 
 struct Item {
   std::string name;
