@@ -92,7 +92,82 @@
   \fi
 }
 \ExplSyntaxOff
-\NewDocumentCommand{\canswer}{m}{\texttt{\detokenize{#1}}}
+\ExplSyntaxOn
+\NewDocumentCommand{\canswer}{+m}{\worksheet_canswer:n {#1}}
+\cs_new_protected:Npn \worksheet_canswer:n #1
+  {
+    \group_begin:
+      \ttfamily
+      \obeyspaces
+      \worksheet_canswer_print:n { #1 }
+    \group_end:
+  }
+\cs_new_protected:Npn \worksheet_canswer_print:n #1
+  {
+    \tl_set:Nx \l_tmpa_tl { \detokenize{#1} }
+    \tl_use:N \l_tmpa_tl
+  }
+\ExplSyntaxOff
+
+\ExplSyntaxOn
+\cs_new_protected:Npn \worksheet_sfillin_typeset:nnn #1#2#3
+  {
+    \ifprintanswers
+      {\worksheetSolutionStyle
+        \worksheet_sfillin_content:nnn { #1 } { #2 } { #3 }}
+    \else
+      \tcbox[cinline]{\worksheet_sfillin_content:nnn { #1 } { #2 } { #3 }}
+    \fi
+  }
+\cs_new_protected:Npn \worksheet_sfillin_content:nnn #1#2#3
+  {
+    \IfNoValueTF{#1}
+      { \worksheet_sfillin_text_content:n { #3 } }
+      {
+        \IfBlankTF{#1}
+          { \worksheet_sfillin_text_content:n { #3 } }
+          {
+            \worksheet_sfillin_minted_content:nnn { #1 } { #2 } { #3 }
+          }
+      }
+  }
+\cs_new_protected:Npn \worksheet_sfillin_minted_content:nnn #1#2#3
+  {
+    \ifprintanswers
+      \IfNoValueTF{#2}
+        { \mintinline[showspaces,space=\worksheetSpaceGlyph]{#1}{#3} }
+        { \mintinline[showspaces,space=\worksheetSpaceGlyph,#2]{#1}{#3} }
+    \else
+      \IfNoValueTF{#2}
+        { \mintinline{#1}{#3} }
+        { \mintinline[#2]{#1}{#3} }
+    \fi
+  }
+\cs_new_protected:Npn \worksheet_sfillin_text_content:n #1
+  {
+    \group_begin:
+      \ttfamily
+      \worksheet_sfillin_visible_text:n { #1 }
+    \group_end:
+  }
+\cs_new_protected:Npn \worksheet_sfillin_visible_text:n #1
+  {
+    \group_begin:
+      \obeyspaces
+      \let\space\worksheetSpaceGlyph
+      #1
+    \group_end:
+  }
+\ExplSyntaxOff
+
+\makeatletter
+\ExplSyntaxOn
+\NewDocumentCommand{\sfillin}{ o o O{\fillinlinelength} v }{%
+  \def\fillin@ans{\worksheet_sfillin_typeset:nnn { #1 } { #2 } { #4 }}%
+  \@fillin@relay[#3]%
+}
+\ExplSyntaxOff
+\makeatother
 
 % Code environment using tcolorbox/minted combo
 \newcommand{\codedefaultlang}{text}
@@ -143,6 +218,7 @@
 \firstpagefooter{\revision}{}{Page \thepage\ sur \numpages}
 
 \definecolor{worksheetSolutionColor}{RGB}{155,0,0}
+\newcommand{\worksheetSpaceGlyph}{·}
 \newcommand{\worksheetSolutionStyle}{\color{worksheetSolutionColor}}
 \newcommand{\worksheetSolutionSetup}{%
   \worksheetSolutionStyle
@@ -154,6 +230,40 @@
 \unframedsolutions
 \renewcommand{\solutiontitle}{}
 \SolutionEmphasis{\worksheetSolutionSetup}
+
+\makeatletter
+\renewcommand\answerline[1][{}]{%
+  \ifx\@queslevel\ques@ref
+    \let\ans@l=\questionlabel
+  \else
+    \ifx\@queslevel\part@ref
+      \let\ans@l=\partlabel
+    \else
+      \ifx\@queslevel\subpart@ref
+        \let\ans@l=\subpartlabel
+      \else
+        \ifx\@queslevel\subsubpart@ref
+          \let\ans@l=\subsubpartlabel
+        \else
+          \def\ans@l{}%
+        \fi
+      \fi
+    \fi
+  \fi
+  \par \nobreak \vskip \answerskip
+  \noindent
+  \ifprintanswers
+    \ans@l~\hbox to 0pt{\hbox to \answerlinelength{\hrulefill}\hss}%
+    \raise \answerclearance\hbox to \answerlinelength{%
+      \color@begingroup
+      \CorrectChoice@Emphasis \worksheetSolutionStyle #1\color@endgroup\hss
+    }%
+  \else
+    \ans@l~\hbox to \answerlinelength{\hrulefill}%
+  \fi
+  \par
+}%
+\makeatother
 
 \makeatletter
 \DeclareRobustCommand*\school[1]{\gdef\@school{#1}}
@@ -196,7 +306,7 @@
               \color@endgroup}%
       \else
         \hbox to #1{\color@begingroup\CorrectChoice@Emphasis \worksheetSolutionStyle
-                    \fillin@ans\color@endgroup\hss}%
+                    \hfil \fillin@ans \hfil\color@endgroup}%
       \fi
     \endgroup
   \else

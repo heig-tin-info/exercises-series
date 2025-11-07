@@ -1,11 +1,13 @@
 \documentclass{worksheet}
 \usepackage[french]{babel}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{cprotect}
 \graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage{mathtools, nccmath}
 \title{Types et Formats}
 \course{INFO1-TIN}
 \seriesnumber{3}
-
 \begin{document}
 \maketitle
 
@@ -25,7 +27,7 @@
         \part \cinline!'\xp2'! \hfill \fillin[Incorrect, p2 n'est pas hexadécimal][10cm]
         \part \cinline!"abc"! \hfill \fillin[Correct][10cm]
         \part \cinline!"\abc\ndef"! \hfill \fillin[Correct][10cm]
-        \part \cinline!"\\'\"\\\""! \hfill \fillin[Incorrect, la chaîne n'est pas terminée][10cm]
+        \part \cinline!"'""! \hfill \fillin[Incorrect, la chaîne n'est pas terminée][10cm]
     \end{parts}
     \vskip 2em
 
@@ -36,7 +38,7 @@ int n, p;
 float x;
 n = 10;
 p = 7;
-x = 2.5;
+x = 2.5; test
 \end{code}
 
     \begin{parts}
@@ -52,20 +54,22 @@ x = 2.5;
     \vskip 2em
     \newpage
     \question Que voyez-vous sur la sortie standard ?
-
+    \begingroup
+    \setlength{\fillinlinelength}{5cm}
     \begin{parts}
-        \part \cinline!printf("%d\n", 42);!  \hfill \fillin[\canswer{"42\n"}][5cm]
-        \part \cinline!printf("u% 5d\n", 42);!  \hfill \fillin[\canswer{"u   42\n"}][5cm]
-        \part \cinline!printf("%05d\n", 42);!  \hfill \fillin[\canswer{"00042\n"}][5cm]
-        \part \cinline!printf("%-5d<", 42);!  \hfill \fillin[\canswer{"42   <"}][5cm]
-        \part \cinline!printf("%-05d\n", 42);!  \hfill \fillin[\canswer{"42   \n"}][5cm]
-        \part \cinline!printf("%0*d\n", 10, 42);!  \hfill \fillin[\canswer{"0000000042\n"}][5cm]
-        \part \cinline!printf("%.1f\n", 3.1415);!  \hfill \fillin[\canswer{"3.1\n"}][5cm]
-        \part \cinline!printf("%05.1f\n", 3.1415);!  \hfill \fillin[\canswer{"003.1\n"}][5cm]
-        \part \cinline!printf("%d%d%d\n", 42, 23, 42);!  \hfill \fillin[\canswer{"422342\n"}][5cm]
-        \part \cinline!printf("%d %d %d\n", 42, 23, 42);!  \hfill \fillin[\canswer{"42 23 42\n"}][5cm]
-        \part \cinline!printf(">%c.<", 'a' + 1);!  \hfill \fillin[\canswer{">b.<"}][5cm]
+        \part \cinline!printf("%d\n", 42);!  \hfill \sfillin[c]!"42\n"!
+        \part \cinline!printf("u% 5d\n", 42);! \hfill \sfillin[c]!"u   42\n"!
+        \part \cinline!printf("%05d\n", 42);!  \hfill \sfillin[c]!"00042\n"!
+        \part \cinline!printf("%-5d<", 42);!  \hfill \sfillin[c]!"42   <"!
+        \part \cinline!printf("%-05d\n", 42);!  \hfill \sfillin[c]!"42   \n"!
+        \part \cinline!printf("%0*d\n", 10, 42);!  \hfill \sfillin[c]!"0000000042\n"!
+        \part \cinline!printf("%.1f\n", 3.1415);!  \hfill \sfillin[c]!"3.1\n"!
+        \part \cinline!printf("%05.1f\n", 3.1415);!  \hfill \sfillin[c]!"003.1\n"!
+        \part \cinline!printf("%d%d%d\n", 42, 23, 42);!  \hfill \sfillin[c]!"422342\n"!
+        \part \cinline!printf("%d %d %d\n", 42, 23, 42);!  \hfill \sfillin[c]!"42 23 42\n"!
+        \part \cinline!printf(">%c.<", 'a' + 1);!  \hfill \sfillin[c]!">b.<"!
     \end{parts}
+    \endgroup
     \vskip 2em
 
     % \question Considérons le cas d’un système de vision industrielle qui inspecte des pièces fabriquées au sein d'une ligne d’assemblage. Le programme de ce système de vision comporte certaines variables internes permettant de mémoriser le décompte des pièces analysées. Ces variables sont les suivantes :
@@ -117,6 +121,8 @@ x = 2.5;
     % \end{parts}
 
     \question Quels sont les valeurs des variables modifiées ?
+Indiquer pour chaque expression les variables affectées uniquement.
+Ne pas remplir les variables qui n'ont pas été modifiées.
 
     \begin{code}[c]
 int i = 0;
@@ -125,17 +131,24 @@ int r = 0;
 char c = '\0';
 \end{code}
 
-    \begin{parts}
-        \part \cinline!r = sscanf("42", "%d", &i);! \hfill \fillin[\canswer{i = 42, r = 1}][8cm]
-        \part \cinline!r = sscanf("4 8", "%d", &i);! \hfill \fillin[\canswer{i = 4, r = 1}][8cm]
-        \part \cinline!r = sscanf("4 8", "%d %d", &i, &j);! \hfill \fillin[\canswer{i = 4, j = 8, r = 2}][8cm]
-        \part \cinline!r = sscanf("4 8", "%d%d", &i, &j);! \hfill \fillin[\canswer{i = 4, j = 8, r = 2}][8cm]
-        \part \cinline!r = sscanf("15 16", "%d%c%d", &i, &c, &j);! \hfill \fillin[\canswer{i = 15, c = ' ', j = 16, r = 3}][8cm]
-        \part \cinline!r = sscanf("1568", "%1d%2d", &i, &j);! \hfill \fillin[\canswer{i = 1, j = 56, r = 2}][8cm]
-        \part \cinline!r = sscanf("1568", "%c%c", &i, &j);! \hfill \fillin[\canswer{i = 0x30, j = 0x35, r = 2}][8cm]
-        \part \cinline!r = sscanf("1568", "%*c%c", &i);! \hfill \fillin[\canswer{i = 0x35, r = 1}][8cm]
-    \end{parts}
-    \vskip 2em
+{
+\setlength{\fillinlinelength}{1cm}
+\begin{tabularx}{\textwidth}{Xcccc}
+    \toprule
+    Expression & \texttt{i} & \texttt{j} & \texttt{r} & \texttt{c} \\
+    \midrule
+        \texttt{r = sscanf("42", "\%d", \&i);} & \fillin[42] & \fillin[] & \fillin[1] & \fillin[] \\
+        \texttt{r = sscanf("4 8", "\%d", \&i);} & \fillin[4] & \fillin[] & \fillin[1] & \fillin[] \\
+        \texttt{r = sscanf("4 8", "\%d \%d", \&i, \&j);} & \fillin[4] & \fillin[8] & \fillin[2] & \fillin[] \\
+        \texttt{r = sscanf("4 8", "\%d\%d", \&i, \&j);} & \fillin[4] & \fillin[8] & \fillin[2] & \fillin[] \\
+        \texttt{r = sscanf("15x16", "\%d\%c\%d", \&i, \&c, \&j);} & \fillin[15] & \fillin[16] & \fillin[3] & \fillin['x'] \\
+        \texttt{r = sscanf("1568", "\%1d\%2d", \&i, \&j);} & \fillin[1] & \fillin[56] & \fillin[2] & \fillin[] \\
+        \texttt{r = sscanf("1568", "\%c\%c", \&i, \&j);} & \fillin[0x30] & \fillin[0x35] & \fillin[2] & \fillin[] \\
+        \texttt{r = sscanf("1568", "\%*c\%c", \&i);} & \fillin[0x35] & \fillin[] & \fillin[1] & \fillin[] \\
+    \bottomrule
+\end{tabularx}
+}
+\vskip 2em
 
 \end{questions}
 
